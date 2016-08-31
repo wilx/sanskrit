@@ -43,7 +43,7 @@ void   search      (void);
 void   write_outbuf(void);
 void   write_line  (char *);
 char * str_find    (char *, char *);
-void   getline     (void);
+void   get_line     (void);
 char * command     (char *);
 void   error       (char *, int);
 void   process     (void);
@@ -136,9 +136,9 @@ int  intraspace;          /* intra-syllable space, from above and option 1    */
 /*                       MAIN                                                 */
 /******************************************************************************/
 
-main(argc,argv)
-int argc;
-char *argv[];
+int
+main(int argc,
+     char *argv[])
 { char *p; int k;
 
 /* INITIALIZATION */
@@ -151,7 +151,7 @@ char *argv[];
   o_ptr = outbuf; *o_ptr = '\0';
   for (k=0; k<total_options+1; k++) option[k] = FALSE; /* disable everything  */
 
-  printf("SKT.C Version 2.2 02-Jan-2002\n");
+  printf("SKT.C Version 2.2.1 2016-08-31\n");
 
 #if (DEBUG == 0)
 
@@ -186,7 +186,7 @@ char *argv[];
   printf("Enter text (blank line terminates program) :\n");
 #endif
 
-  getline(); if (eof_flag) { printf("No input text.\n"); exit(1); }
+  get_line(); if (eof_flag) { printf("No input text.\n"); exit(1); }
 
 #if (DEBUG == 0)
 
@@ -238,7 +238,7 @@ char *p,*q;
       if (p == 0)
         { if (sktline == TRUE) { strcat(outbuf,i_ptr); write_outbuf(); }
           else { write_line(inbuf); o_ptr = outbuf; *o_ptr = '\0';  }
-          getline(); 
+          get_line(); 
           continue; 
         }
       q = i_ptr; i_ptr = p;
@@ -270,8 +270,8 @@ char c, d, e;
     if (strlen(outbuf) < 81) { write_line(outbuf); break; }
     if (option[9])                                  /* if obey-lines enabled */
       { if (strlen(outbuf) > 250) 
-         { printf("Line %4d    Warning: Very long output line: %d characters\n",
-                   line_cnt, strlen(outbuf) );
+         { printf("Line %4d    Warning: Very long output line: %u characters\n",
+                  line_cnt, (unsigned)strlen(outbuf) );
          }
         write_line(outbuf); break;
       }
@@ -324,13 +324,13 @@ char * str_find(char *buf, char *str)
 }
 
 /******************************************************************************/
-/*                       GETLINE                                              */
+/*                       GET_LINE                                              */
 /******************************************************************************/
 
 /* Function: get another line from input file; reset i_ptr, increments        */
 /*           line_cnt, and sets eof_flag if EOF.                              */
 
-void getline(void)
+void get_line(void)
 { 
 char *p;
   i_ptr = inbuf;
@@ -445,12 +445,12 @@ unsigned char *i, c,d;
     c = *i_ptr; d = *(i_ptr+1);
 /* END OF LINE */
     if ((c == '\0') || (c == '\n'))
-      { sktword(); strcat (outbuf,i_ptr); write_outbuf(); getline(); CC; }
+      { sktword(); strcat (outbuf,i_ptr); write_outbuf(); get_line(); CC; }
 /* COMMENT DELIMITER */
     if (c == '%')
     { if (*(i_ptr+1) == '\n') sktcont();
       else sktword();
-      strcat(outbuf,i_ptr); write_outbuf(); getline(); CC;
+      strcat(outbuf,i_ptr); write_outbuf(); get_line(); CC;
     }
 /* ILLEGAL CHARS */
     if (strchr("&fqwxzFQWXZ\177",c))
