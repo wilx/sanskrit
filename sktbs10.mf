@@ -1,0 +1,33 @@
+%
+% SKTBS10.MF
+%
+% Revision 1.0 1996/02/13 Charles Wikner wikner@nacdh4.nac.ac.za
+% Revision 2.0 1996/11/27 Charles Wikner wikner@nacdh4.nac.ac.za
+%
+% Copyright 1996 & 2002 Charles Wikner
+% This program can be redistributed and/or modified under the terms
+% of the LaTeX Project Public License Distributed from CTAN
+% archives in directory macros/latex/base/lppl.txt; either
+% version 1 of the License, or any later version.
+%
+mode_setup;
+design_size := 2.032;
+cap# := design_size*1mm#;
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                              %
+  font_size 10pt#;
+  font_identifier := "SKTB10"; 
+  slant := 1/5; 
+  pen_scale := 7;
+  pen_ratio := 1.1;
+  pen_rot := 135; 
+  charwd_scale := 1.1;
+%                                                                              %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+input sktdefs;
+input sktchars;
+input sktligs;
+end;
+

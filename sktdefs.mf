@@ -1,0 +1,195 @@
+%
+% SKTDEFS.MF
+%
+% Revision 1.0 1996/02/13 Charles Wikner wikner@nacdh4.nac.ac.za
+% Revision 2.0 1996/11/27 Charles Wikner wikner@nacdh4.nac.ac.za
+% Revision 2.1 1997/02/11 Charles Wikner wikner@nacdh4.nac.ac.za
+%
+% Copyright 1996 & 2002 Charles Wikner
+% This program can be redistributed and/or modified under the terms
+% of the LaTeX Project Public License Distributed from CTAN
+% archives in directory macros/latex/base/lppl.txt; either
+% version 1 of the License, or any later version.
+%
+% Make pen adjustments here.
+%
+  thin_weight := 2;                % factor to increase thin pen stroke
+  penwd# := cap#/pen_scale;          % width of horizontal or vertical pen stroke
+  penht# := penwd#;                  % ht = wd, at this stage anyway!
+    thin# := (penwd#/6.5cosd(45))*thin_weight;     % pen stroke width at 135-deg
+      thick# := (pen_ratio*6.25thin#)/thin_weight; % pen stroke width at 45-deg
+%
+  ht# := cap#;                       % character height at horizontal line
+  wd# := charwd_scale*ht#;           % character width - nominal reference
+%
+
+define_pixels(penwd,penht,wd);
+define_whole_pixels(ht);
+define_blacker_pixels(thin,thick);
+smoothing := 0;
+
+font_slant := slant;
+font_quad wd#;                % specifies width of `em'
+font_x_height cap#;           % specifies height of `ex'
+font_normal_space := .75wd#;  % inter-word spacing
+font_normal_stretch := .5wd#; % glue for inter-word spacing
+font_normal_shrink  := .2wd#; % glue for inter-word spacing
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%        P E N   D E F I N I T I O N S                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+clear_pen_memory;
+
+pickup pencircle xscaled thick yscaled thin rotated (pen_rot);
+  main_pen := savepen; 
+
+if unknown squarepen :
+  capsule_def (squarepen) makepen (unitsquare shifted (-.5,-.5) 
+  scaled thick rotated 135);
+fi
+
+if unknown penoffsquare :
+  capsule_def (penoffsquare) makepen (unitsquare shifted (0,-.5));
+fi
+
+pickup penoffsquare xscaled (.8thick) yscaled (1.4thin) rotated pen_rot;
+  mpen135 := savepen; 
+
+pickup penoffsquare xscaled (.8thick) yscaled (1.4thin) rotated (pen_rot-180);
+  mpen315 := savepen; 
+
+pickup penoffsquare xscaled (.8thin) yscaled (1.4thick) rotated (pen_rot+90);
+  mpen225 := savepen; 
+
+pickup penoffsquare xscaled (.8thin) yscaled (1.4thick) rotated (pen_rot-90);
+  mpen45 := savepen; 
+
+pickup pencircle xscaled .667thick yscaled thin rotated (pen_rot);
+  sub_pen := savepen; 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%        M A C R O S                                                           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+def mdraw expr p =
+  pickup main_pen;
+  draw p;
+  cullit
+enddef;
+
+def bedraw expr p =
+  picture savedpicture; savedpicture = currentpicture; clearit;
+  pickup main_pen;
+  draw p;
+  cullit;
+  trim (point 0 of p, 180+angle direction 0 of p);
+  trim (point infinity of p, angle direction infinity of p);
+  cullit;
+  addto currentpicture also savedpicture
+enddef;
+
+def bdraw expr p =
+  picture savedpicture; savedpicture = currentpicture; clearit;
+  pickup main_pen;
+  draw p;
+  cullit;
+  trim (point 0 of p, 180+angle direction 0 of p);
+  cullit;
+  addto currentpicture also savedpicture
+enddef;
+
+def edraw expr p =
+  picture savedpicture; savedpicture = currentpicture; clearit;
+  pickup main_pen;
+  draw p;
+  cullit;
+  trim (point infinity of p, angle direction infinity of p);
+  cullit;
+  addto currentpicture also savedpicture
+enddef;
+
+vardef trim (expr z, theta) =
+    if (theta <= 0) : alpha := (theta + 360) ;
+    else : alpha := theta;
+    fi    
+    if ((alpha < 120) or (alpha > 330)) : pickup mpen45;
+    elseif ((alpha >= 120) and (alpha <= 150)) : pickup mpen135;
+    elseif ((alpha >= 300) and (alpha <= 330)) : pickup mpen315;
+    else : pickup mpen225;
+    fi
+  undrawdot z;
+enddef;
+
+def vector (expr z, length, theta) =
+  z--z shifted (length * cosd theta, length * sind theta)
+enddef;
+
+def putdot expr z =
+  pickup squarepen; drawdot z;
+enddef;
+
+def empty =
+    pickup pencircle; 
+    draw (12W,0)--(12W,12H)--(0,0)--(12W,0)--(0,12H)--(12W,12H);
+    draw (0,0)--(0,12H);
+enddef;
+
+% sdraw = mdraw with sub-pen
+def sdraw expr p =
+  pickup sub_pen;
+  draw p;
+  cullit
+enddef;
+
+% sbdraw = bdraw with subpen
+def sbdraw expr p =
+  picture savedpicture; savedpicture = currentpicture; clearit;
+  pickup sub_pen;
+  draw p;
+  cullit;
+  trim (point 0 of p, 180+angle direction 0 of p);
+  cullit;
+  addto currentpicture also savedpicture
+enddef;
+
+% sedraw = edraw with subpen
+def sedraw expr p =
+  picture savedpicture; savedpicture = currentpicture; clearit;
+  pickup sub_pen;
+  draw p;
+  cullit;
+  trim (point infinity of p, angle direction infinity of p);
+  cullit;
+  addto currentpicture also savedpicture
+enddef;
+
+% sbedraw = bedraw with subpen
+def sbedraw expr p =
+  picture savedpicture; savedpicture = currentpicture; clearit;
+  pickup sub_pen;
+  draw p;
+  cullit;
+  trim (point 0 of p, 180+angle direction 0 of p);
+  trim (point infinity of p, angle direction infinity of p);
+  cullit;
+  addto currentpicture also savedpicture
+enddef;
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%        M A G I C    N U M B E R S                                            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+def H  := ht/12 enddef;
+def W  := H     enddef; % used to be wd/12, but because angles used in
+                        % defining pen movements would also need to change
+                        % with aspect ratio, it is simpler to work with a
+                        % fixed grid and then use TRANSFORMATION to scale 
+                        % the x-axis.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%        F I N I S                                                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+currenttransform:=identity xscaled (wd#/ht#) slanted slant;
+

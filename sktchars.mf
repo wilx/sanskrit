@@ -1,0 +1,1254 @@
+%
+% SKTCHARS.MF
+%
+% Revision 1.0 1996/02/13 Charles Wikner wikner@nacdh4.nac.ac.za
+% Revision 2.0 1996/11/27 Charles Wikner wikner@nacdh4.nac.ac.za
+% Revision 2.1 1997/02/11 Charles Wikner wikner@nacdh4.nac.ac.za
+%
+% Copyright 1996 & 2002 Charles Wikner
+% This program can be redistributed and/or modified under the terms
+% of the LaTeX Project Public License Distributed from CTAN
+% archives in directory macros/latex/base/lppl.txt; either
+% version 1 of the License, or any later version.
+
+beginchar(hex"00",5/12wd#,18/12ht#,0); "left-half 17/12 i-hook";
+  bedraw (0W,12H){dir100}..{dir0}(5W,18H);
+endchar;
+beginchar(hex"01",0wd#,18/12ht#,0); "3/12 i-hook";
+  bedraw (0W,12H){dir115}..{dir0}(-1W,18H)..{dir305}(3W,12.5H)..(3W,12H);
+endchar;
+beginchar(hex"02",0wd#,18/12ht#,0); "4/12 i-hook";
+  bedraw (0W,12H){dir115}..{dir0}(-1W,18H)..{dir305}(4W,12.5H)..(4W,12H);
+endchar;
+beginchar(hex"03",0wd#,18/12ht#,0); "5/12 i-hook";
+  bedraw (0W,12H){dir115}..{dir0}(-0.5W,18H)..{dir305}(5W,12.5H)..(5W,12H);
+endchar;
+beginchar(hex"04",0wd#,18/12ht#,0); "6/12 i-hook";
+  bedraw (0W,12H){dir115}..{dir0}(-0.5W,18H)..{dir305}(6W,12.5H)..(6W,12H);
+endchar;
+beginchar(hex"05",0wd#,18/12ht#,0); "7/12 i-hook";
+  bedraw (0W,12H){dir110}..{dir0}(-0.5W,18H)..{dir305}(7W,12.5H)..(7W,12H);
+endchar;
+beginchar(hex"06",0wd#,18/12ht#,0); "8/12 i-hook";
+  bedraw (0W,12H){dir100}..{dir0}(0W,18H)..{dir305}(8W,12.5H)..(8W,12H);
+endchar;
+beginchar(hex"07",0wd#,18/12ht#,0); "9/12 i-hook";
+  bedraw (0W,12H){dir100}..{dir0}(0.5W,18H)..{dir305}(9W,12.5H)..(9W,12H);
+endchar;
+beginchar(hex"08",0wd#,18/12ht#,0); "10/12 i-hook";
+  bedraw (0W,12H){dir100}..{dir0}(1W,18H)..{dir305}(10W,12.5H)..(10W,12H);
+endchar;
+beginchar(hex"09",0wd#,18/12ht#,0); "11/12 i-hook";
+  bedraw (0W,12H){dir100}..{dir0}(1.5W,18H)..{dir305}(11W,12.5H)..(11W,12H);
+endchar;
+beginchar(hex"0A",0wd#,18/12ht#,0); "12/12 i-hook";
+  bedraw (0W,12H){dir100}..{dir0}(2W,18H)..{dir305}(12W,12.5H)..(12W,12H);
+endchar;
+beginchar(hex"0B",0wd#,18/12ht#,0); "13/12 i-hook";
+  bedraw (0W,12H){dir100}..{dir0}(2.5W,18H)..{dir305}(13W,12.5H)..(13W,12H);
+endchar;
+beginchar(hex"0C",0wd#,18/12ht#,0); "14/12 i-hook";
+  bedraw (0W,12H){dir100}..{dir0}(3W,18H)..{dir305}(14W,12.5H)..(14W,12H);
+endchar;
+beginchar(hex"0D",0wd#,18/12ht#,0); "15/12 i-hook";
+  bedraw (0W,12H){dir100}..{dir0}(3.5W,18H)..{dir305}(15W,12.5H)..(15W,12H);
+endchar;
+beginchar(hex"0E",0wd#,18/12ht#,0); "16/12 i-hook";
+  bedraw (0W,12H){dir100}..{dir0}(4W,18H)..{dir305}(16W,12.5H)..(16W,12H);
+endchar;
+beginchar(hex"0F",12/12wd#,ht#,0); "right-half 17/12 i-hook";
+  bedraw (0W,18H){dir0}..{dir305}(12W,12.5H)..(12W,12H);
+endchar;
+beginchar(hex"10",0,.5penht#+23/12ht#,.5penht#); "^ = udaatta";
+  bedraw (0W,23H){dir315}..{dir200}(0W,20H)..{dir160}(-1W,20H);
+  bedraw (1W,20H){dir315}..{dir180}(0W,17H)..{dir135}(-3W,19H);
+  bedraw (-3W,23H)--(2.5W,23H);
+endchar;
+beginchar(hex"11",0/12wd#,.5penht#+23/12ht#,0); "mini-1";
+  sedraw (-.5W,21H){dir160}..{dir0}(0W,23H)..{dir270}(1.5W,21.5H)
+  ..{dir225}(1W,20.5H)--(-.5W,19.5H)--(0W,19H){dir315}..{dir225}(0W,17H);
+endchar;
+beginchar(hex"12",0/12wd#,.5penht#+23/12ht#,0); "mini-2";
+  sbdraw (-1.5W,22H)..{dir0}(0W,23H)..{dir270}(1.5W,21H)..{dir180}(-.5W,18H);
+  sedraw (-.5W,18H){dir180}..{dir90}(-1.5W,18.25H)..{dir315}(-.5W,19H)
+  --(2W,16.5H);
+endchar;
+beginchar(hex"13",0/12wd#,.5penht#+23/12ht#,0); "mini-3";
+  sbdraw (-1.5W,23H)--(-.5W,23H){dir0}..{dir270}(1W,21.5H)..{dir180}(0W,20.75H);
+  sbdraw (-1W,20.75H)--(0W,20.75H);
+  sedraw (0W,20.75H){dir0}..{dir270}(1.5W,19.5H)..{dir180}(-.5W,18H)
+  ..{dir315}(-.5W,19H)--(2W,16.5H);
+endchar;
+beginchar(hex"14",0/12wd#,.5penht#+23/12ht#,0); "mini-2ra";
+  sbdraw (-3.5W,22H)..{dir0}(-2W,23H)..{dir270}(-.5W,21H)..{dir180}(-2.5W,18H);
+  sedraw (-2.5W,18H){dir180}..{dir90}(-3.5W,18.25H)..{dir315}(-2.5W,19H)
+  --(0W,16.5H);
+  sbdraw (1W,23H)--(3W,23H);
+  sedraw (3W,23H)--(5W,23H);
+  sbdraw (3W,23H)--(3W,20H){dir270}..{dir135}(2W,19H);
+  sdraw (2W,19H){dir 315}..{dir90}(2.5W,19H)..{dir135}(2W,20H)
+  ..{dir270}(1.5W,20H)..cycle;
+  sedraw (2W,19H)--(4W,16H);
+endchar;
+beginchar(hex"15",0/12wd#,.5penht#+23/12ht#,0); "mini-2u";
+  sbdraw (-3.5W,22H)..{dir0}(-2W,23H)..{dir270}(-.5W,21H)..{dir180}(-2.5W,18H);
+  sedraw (-2.5W,18H){dir180}..{dir90}(-3.5W,18.25H)..{dir315}(-2.5W,19H)
+  --(0W,16.5H);
+  sedraw (3W,23H){dir315}..{dir200}(3W,20H)..{dir160}(2W,20H);
+  sbdraw (4W,20H){dir315}..{dir180}(3W,17H);
+  sedraw (3W,17H){dir180}..{dir135}(0.5W,18.5H);
+  sbdraw (0.5W,23H)--(3W,23H);
+  sedraw (3W,23H)--(5W,23H);
+endchar;
+beginchar(hex"16",0/12wd#,.5penht#+23/12ht#,0); "mini-3ka";
+  sbdraw (-4.5W,23H)--(-3.5W,23H){dir0}..{dir270}(-2W,21.5H)..{dir180}(-3W,20.75H);
+  sbdraw (-4W,20.75H)--(-3W,20.75H);
+  sedraw (-3W,20.75H){dir0}..{dir270}(-1.5W,19.5H)..{dir180}(-3.5W,18H)
+  ..{dir315}(-3.5W,19H)--(-1W,16.5H);
+  sbdraw (0W,23H)--(3W,23H);
+  sedraw (3W,23H)--(5.5W,23H);
+  sdraw (0W,19.75H)..(1.5W,21.25H)..(3W,19.75H)..(1.5W,18.75H)..cycle;
+  sedraw (3W,19.25H){dir90}..{dir0}(4W,21H)..{dir225}(5W,17.75H);
+  sedraw (3W,23H)--(3W,17H);
+endchar;
+beginchar(hex"17",0,.5penht#+23/12ht#,0); "svarita";
+  bedraw (0W,17H)--(0W,23H);
+endchar;
+beginchar(hex"18",15/12wd#,.5penht#+ht#,.5penht#); "front-uu";
+  bedraw (5W,12H){dir0}..{dir225}(7W,7H)..(5W,6H);
+  edraw (7W,7H){dir330}..{dir180}(6W,0)..{dir135}(0W,4H);
+  bedraw (7W,7H){dir330}..(10W,6H)..{dir0}(12.5W,7.5H)..{dir270}(15W,5H);
+    bedraw (15W,5H){dir270}..{dir180}(12.5W,2.5H)..{dir135}(10.5W,3.5H);
+  bedraw (1W,12H)--(15.5W,12H);
+endchar;
+beginchar(hex"19",15/12wd#,ht#,.5penht#+1/12ht#); "front-.r";
+  bedraw (0W,7H){dir45}..{dir315}(6W,7H)--(7W,6H)--(1W,2H);
+  bedraw (7W,12H)--(7W,0H);
+  bedraw (7W,6H)--(12W,7H)..{dir135}(13W,9H)..{dir315}(11W,7H)--(14W,4H)
+  --(13W,4H){dir180}..{dir270}(11W,2H)..{dir0}(13W,0)..{dir45}(15W,1H);
+  bedraw (0W,12H)--(15.5W,12H);
+endchar;
+beginchar(hex"1A",16/12wd#,ht#,.5penht#+3/12ht#); "front-.R";
+    path p;
+  bedraw (0W,7H){dir45}..{dir315}(6W,7H)--(7W,6H)--(1W,2H);
+  bedraw (7W,12H)--(7W,0H);
+    p = (7W,6H)--(12W,7H)..{dir135}(13W,9H)..{dir315}(11W,7H)--(14W,4H)
+        --(13W,4H){dir180}..{dir270}(11W,2H)..{dir0}(13W,0)..{dir45}(15W,1H);
+  bedraw p;
+    z1 = p intersectionpoint ((12W,-1H)--(12W,1H));
+  bedraw z1{dir240}..{dir0}(14W,-3H)..{dir45}(16W,-2H);
+  bedraw (0W,12H)--(16.5W,12H);
+endchar;
+beginchar(hex"1B",12/12wd#,ht#,.5penht#+1/12ht#); "front-.l";
+  bedraw (5W,7H){dir135}..{dir180}(3W,8H)..{dir270}(0W,5H)
+  ..{dir315}(3W,0H-.5penht);
+  bedraw (4.5W,5.5H){dir60}..{dir0}(8W,8H)..{dir270}(10W,6H)
+  ..{dir225}(9W,4H)--(7W,2H){dir225}..{dir0}(9W,-1H)..{dir45}(11W,0)--(12W,1H);
+  bedraw (8W,12H)--(8W,8H);
+  bedraw (0W,12H)--(12.5W,12H);
+endchar;
+beginchar(hex"1C",12/12wd#,ht#,.5penht#+3/12ht#); "front-.L";
+  bedraw (5W,7H){dir135}..{dir180}(3W,8H)..{dir270}(0W,5H)
+  ..{dir315}(3W,0H-.5penht);
+  bedraw (4.5W,5.5H){dir60}..{dir0}(8W,8H)..{dir270}(10W,6H)
+  ..{dir225}(9W,4H)--(8W,3H){dir225}..{dir0}(9W,0)..{dir45}(11W,1H);
+  bedraw (9W,0){dir225}..{dir0}(10W,-3H)..{dir45}(12W,-2H);
+  bedraw (8W,12H)--(8W,8H);
+  bedraw (0W,12H)--(12.5W,12H);
+endchar;
+beginchar(hex"1D",8/12wd#,.5penht#+ht#,.5penht#); "ru";
+  bedraw (3W,12H)--(3W,6H)..{dir135}(1W,5H);
+  mdraw (1W,5H){dir 315}..{dir90}(2W,5H)..{dir135}(1W,7H)
+  ..{dir315}(0W,6H)..cycle;
+  bedraw (1W,5H)--(7.5W,0H-.5penht);
+  bedraw (3W,5.5H){dir60}..{dir0}(6W,8H)..{dir225}(7W,4H);
+  bedraw (0W,12H)--(8.5W,12H);
+endchar;
+beginchar(hex"1E",10/12wd#,.5penht#+ht#,.5penht#); "ruu";
+  bedraw (3W,12H)--(3W,6H)..{dir135}(1W,5H);
+  mdraw (1W,5H){dir 315}..{dir90}(2W,5H)..{dir135}(1W,7H)
+  ..{dir315}(0W,6H)..cycle;
+  bedraw (1W,5H)--(6.5W,0H-.5penht);
+  bedraw (7W,5H){dir225}..{dir0}(5W,7.5H)..{dir315}(10W,4H);
+  bedraw (0W,12H)--(10.5W,12H);
+endchar;
+beginchar(hex"1F",14/12wd#,.5penht#+13/12ht#,1/12ht#+.5penht#); "alt-Vedic-anusvaara";
+  bdraw (4W,8H){dir135}..(3W,10H){dir90}..(5W,12H){dir0}..{dir270}(6.5W,10.5H);
+  edraw (6.5W,10.5H){dir270}..(5W,5H){dir270}..(8W,3H){dir0}..(11W,4H)
+  ..(13W,8H){dir90}..(11.5W,10H){dir180}..(10W,8H){dir270}..(13W,2H){dir270}
+  ..{dir180}(10W,-1H);
+  putdot (9W,13H);
+endchar;
+beginchar(hex"20",0,.5penht#+19/12ht#,0); "pre-ra with bindu";
+  bedraw (0W,12H)..{dir125}(0W,12.5H)..{dir90}(-2W,17H)..{dir0}(0W,19H)
+  ..{dir315}(2W,18H);
+  putdot (1W,16H);
+endchar;
+beginchar(hex"21",0,.5penht#+ht#,.5penht#+5/12ht#); "anudaatta";
+  bedraw (-5W,-5H)--(3W,-5H);
+endchar;
+beginchar(hex"22",0wd#,.5penht#+0/12ht#,.5penht#+4/12ht#); "r2";
+  bedraw (0W,-4H)--(0W,0)--(-6W,-4H);
+endchar;
+beginchar(hex"23",12/12wd#,.5penht#+ht#,.5penht#); "k1";
+  edraw (6W,6.5H)--(5W,7.5H){dir135}..{dir180}(3W,8.5H)..{dir270}(0W,6H)
+  ..{dir0}(3W,3.5H)..{dir0}(9W,8H)..{dir315}(12W,6H);
+  bedraw (0W,12H)--(12.5W,12H);
+  bedraw (6W,0)--(6W,12H);
+endchar;
+beginchar(hex"24",11/12wd#,.5penht#+ht#,.5penht#); "j1";
+  bedraw (3W,6H)--(11W,6H);
+  bedraw (5W,6H){dir315}..{dir180}(4W,0)..{dir135}(-2W,5H);
+  bedraw (0W,12H)--(11.5W,12H);
+endchar;
+beginchar(hex"25",12/12wd#,.5penht#+ht#,.5penht#); "P = ph";
+  bedraw (0W,12H)--(0W,7H)..{dir0}(3W,4H)..{dir45}(6W,6H)..{dir0}(9W,8H)
+  ..{dir315}(12W,6H);
+  bedraw (6W,12H)--(6W,0H);
+  bedraw (0W,12H)--(12.5W,12H);
+endchar;
+beginchar(hex"26",8/12wd#,.5penht#+ht#,.5penht#+3/12ht#); "h.r";
+  bedraw (6W,12H)--(6W,8.5H)--(2W,8.5H){dir180}..{dir270}(0W,6H)..(1W,4H);
+  bedraw (8W,-.5H){dir200}..(3.5W,.5H)..{dir20}(6W,2.5H)..{dir200}(3W,5H)
+  ..{dir270}(0W,2H)..{dir315}(5W,-4H);
+  bedraw (0W,12H)--(8.5W,12H);
+endchar;
+beginchar(hex"27",0wd#,.5penht#+0/12ht#,.5penht#+6/12ht#); "r3";
+  bedraw (0W,-6H)--(0W,0H);
+  bedraw (-6W,-6H)--(0W,-2H);
+endchar;
+beginchar(hex"28",9/12wd#,.5penht#+ht#,0); "front-''sa-loop1";
+  bedraw (0W,6H){dir0}..{dir90}(6W,10H)..{dir180}(4W,12H)..{dir270}(2.5W,10H)
+  ..{dir0}(9W,6H);
+  bedraw (7W,12H)--(9.5W,12H);
+endchar;
+beginchar(hex"29",9/12wd#,.5penht#+ht#,0); "front-''sa-loop2";
+  bedraw (0W,6H){dir0}..(4W,7H)..{dir180}(4W,11H)..(4W,7H)..{dir0}(9W,6H);
+  bedraw (0W,12H)--(9.5W,12H);
+endchar;
+beginchar(hex"2A",8/12wd#,.5penht#+ht#,.5penht#); "8-W horizontal bar";
+  bedraw (0W,12H)--(8.5W,12H);
+endchar;
+beginchar(hex"2B",4/12wd#,.5penht#+ht#,0); "4-W horizontal bar";
+  bedraw (0W,12H)--(4.5W,12H);
+endchar;
+beginchar(hex"2C",0,0,.5penht#+5/12ht#); "viraama (halanta)";
+  bedraw (0W,-3H){dir0}..{dir315}(5W,-6H);
+endchar;
+beginchar(hex"2D",5/12wd#,.5penht#+ht#,0); "hyphen character";
+  bedraw (-1W,5H)--(5W,5H);
+endchar;
+beginchar(hex"2E",1/12wd#,.5penht#+ht#,0); "1-W horizontal bar";
+  bedraw (0W,12H)--(1.5W,12H);
+endchar;
+beginchar(hex"2F",1/12wd#,.5penht#+18/12ht#,0); "i-link";
+  bedraw (0W,18H)--(1.5W,18H);
+endchar;
+beginchar(hex"30",12/12wd#,.5penht#+ht#,.5penht#); "0";
+  mdraw (3W,6H)..(6.5W,9.5H)..(10W,6H)..(6.5W,2.5H)..cycle;
+endchar;
+beginchar(hex"31",12/12wd#,.5penht#+ht#,.5penht#+1/12ht#); "1";
+  edraw (9W,7.5H){dir225}..(4W,7.5H)..(4W,11H)..(9W,11H)..{dir225}(9W,7.5H)
+  ..(4W,3H)--(6W,1H)..{dir270}(7W,-0.5H)..{dir225}(6W,-2H);
+endchar;
+beginchar(hex"32",12/12wd#,.5penht#+ht#,.5penht#+1/12ht#); "2";
+  bedraw (2W,10H)..{dir0}(6W,12H)..{dir270}(10W,7H)..{dir180}(6W,2H)
+  ..{dir90}(2.5W,4.5H)..{dir315}(5W,5.5H)--(11.5W,-1H);
+endchar;
+beginchar(hex"33",12/12wd#,.5penht#+ht#,.5penht#+1/12ht#); "3";
+  bedraw (3W,11.5H)--(7W,11.5H){dir0}..{dir270}(9.5W,9.5H)..{dir180}(7W,7H)
+  --(4W,7H);
+  bedraw (7W,7H){dir0}..{dir270}(10W,4H)..{dir180}(6.5W,1H)..{dir90}(2.5W,3H)
+  ..{dir315}(5W,4H)--(10W,-1H);
+endchar;
+beginchar(hex"34",12/12wd#,.5penht#+ht#,.5penht#); "4";
+  bedraw (4.5W,11.5H){dir180}..{dir315}(3.5W,8H)--(9W,4H){dir315}..{dir180}(6W,0)
+  ..{dir45}(3W,4H)--(8.5W,8H){dir45}..{dir135}(8.5W,12.5H);
+endchar;
+beginchar(hex"35",12/12wd#,.5penht#+ht#,1/12ht#+.5penht#); "5";
+  bedraw (3.5W,11H)--(3.5W,9H){dir270}..{dir0}(6.5W,5.5H)..{dir90}(10W,9H);
+  bedraw (10W,11H)--(10W,9H){dir270}..{dir180}(4.5W,0H)..{dir0}(4W,3H)
+  ..{dir315}(10W,-1H);
+endchar;
+beginchar(hex"36",12/12wd#,.5penht#+ht#,.5penht#+2/12ht#); "6";
+  bedraw (9W,11H)--(5W,11H){dir180}..{dir270}(2.5W,9H)..{dir0}(5W,6H)
+  --(8.5W,6H);
+  bedraw (7W,6H){dir180}..{dir270}(2.5W,3H)..{dir0}(7W,0H)..{dir180}(9W,3H)
+  ..{dir315}(9W,0H)--(11W,-2H);
+endchar;
+beginchar(hex"37",12/12wd#,.5penht#+ht#,.5penht#); "7";
+  edraw (10W,6.5H){dir270}..{dir180}(7.75W,4H)..{dir90}(5.5W,6.5H)
+  ..{dir0}(7.75W,9H)..(10W,6.5H)..{dir180}(7W,0H)..{dir90}(2W,11H);
+endchar;
+beginchar(hex"38",12/12wd#,.5penht#+ht#,.5penht#); "8";
+  bedraw (8W,10.5H)--(2.5W,4H){dir225}..{dir315}(2.5W,1.5H)..{dir0}(5W,0H)
+  ..{dir65}(9.5W,3H);
+endchar;
+beginchar(hex"39",12/12wd#,.5penht#+ht#,.5penht#+1/12ht#); "9";
+  edraw (3W,7.5H){dir315}..(8W,7.5H)..(8W,11H)..(3W,11H)..{dir315}(3W,7.5H)
+  --(8W,2.5H)..{dir225}(8W,0H)--(7W,-1H);
+endchar;
+beginchar(hex"3A",2/12wd#,.5penht#+ht#,0); "2-W horizontal bar";
+  bedraw (0W,12H)--(2.5W,12H);
+endchar;
+beginchar(hex"3B",3/12wd#,.5penht#+ht#,0); "3-W horizontal bar";
+  bedraw (0W,12H)--(3.5W,12H);
+endchar;
+beginchar(hex"3C",0,.5penht#+19/12ht#,0); "candrabindu (nasal vowel)";
+  bedraw (-4W,18H){dir315}..{dir45}(4W,18H);
+  putdot (0W,19H);
+endchar;
+beginchar("=",6/12wd#,.5penht#+ht#,.5penht#); "ra";
+  bedraw (3W,12H)--(3W,6H)..{dir135}(1W,5H);
+  mdraw (1W,5H){dir 315}..{dir90}(2W,5H)..{dir135}(1W,7H)
+  ..{dir315}(0W,6H)..cycle;
+  bedraw (1W,5H)--(6.5W,0H-.5penht);
+  bedraw (0W,12H)--(6.5W,12H);
+endchar;
+beginchar(hex"3E",13/12wd#,.5penht#+ht#,.5penht#); "Vedic anusvaara";
+  bedraw (2W,10H){dir315}..{dir45}(12W,10H);
+  putdot (7W,12H);
+  bedraw (5W,2H)..{dir0}(7W,4H)..{dir315}(11W,1H);
+endchar;
+beginchar("?",16/12wd#,.5penht#+16/12ht#,.5penht#); "OM";
+  bedraw (2W,10.5H)..{dir0}(5W,12H)..{dir225}(7W,7H)..(5W,6H);
+  bedraw (7W,7H)--(8W,6H){dir315}..{dir180}(6W,0)..{dir135}(2W,2H)--(0W,4H);
+  bedraw (7W,7H){dir315}..(11W,6H)..{dir0}(13.5W,7.5H)..{dir270}(16W,5H);
+    bedraw (16W,5H){dir270}..{dir180}(13.5W,2.5H)..{dir135}(11W,4H);
+  bedraw (8W,14H){dir315}..{dir45}(16W,14H);
+  putdot (12W,16H);
+endchar;
+beginchar("@",12/12wd#,.5penht#+12/12ht#,0); "empty";
+  empty;
+endchar;
+beginchar("A",16/12wd#,.5penht#+ht#,.5penht#); "front-a";
+  bedraw (2W,10.5H)..{dir0}(5W,12H)..{dir225}(7W,7H)..(5W,6H);
+    path p;
+    p = (7W,7H)--(8W,6H){dir315}..{dir180}(6W,0)..{dir135}(2W,2H)--(0W,4H);
+  bedraw p;
+    z1 = p intersectionpoint ((7W,4H)--(11W,4H));
+  bedraw z1--(13W,7H);
+  bedraw (13W,12H)--(13W,0H);
+  bedraw (10W,12H)--(16.5W,12H);
+endchar;
+beginchar("B",10/12wd#,.5penht#+ht#,.5penht#); "B = bh";
+  bedraw (0W,12H)--(3W,12H)--(3W,5H){dir270}..{dir90}(0W,5H)
+  ..{dir0}(1W,6H)--(10W,6H);
+  bedraw (7W,12H)--(10.5W,12H);
+endchar;
+beginchar("C",11/12wd#,.5penht#+ht#,.5penht#); "C = cha";
+  bedraw (4W,9H)..(2W,9H)..{dir270}(0W,7H)..{dir0}(3W,5H)--(4W,5H);
+  bedraw (2W,5H){dir180}..{dir270}(0W,3H)..{dir0}(3W,0)..(9W,4H)..(9.5W,8H)
+  ..{dir220}(8W,9H)..(7W,8H)..(7W,4H)..{dir315}(11W,0H-.5penht);
+  bedraw (8W,12H)--(8W,9H);
+  bedraw (0W,12H)--(11.5W,12H);
+endchar;
+beginchar("D",7/12wd#,.5penht#+ht#,.5penht#); "D = dh";
+  bedraw (-1W,12H)--(1W,12H);
+  bedraw (0W,12H){dir225}..{dir315}(1W,8H);
+  bedraw (3W,8H)--(2W,8H)..{dir270}(0W,6H)..{dir0}(3W,3H)..{dir75}(7W,6H);
+  bedraw (4W,12H)--(7.5W,12H);
+endchar;
+beginchar("E",0wd#,.5penht#+19/12ht#,.5penht#); "ai-hook";
+  bedraw (-8W,18H)..{dir0}(-6W,19H)..{dir305}(0W,12.5H)..(0W,12H);
+  bedraw (-7W,15H)..{dir0}(-5W,16H)..{dir305}(0W,12.5H)..(0W,12H);
+endchar;
+beginchar("F",10/12wd#,.5penht#+ht#,.5penht#); "F = .tha";
+     path p;
+     p = (0W,4.5H)..(4.5W,8.5H)..(9W,4.5H)..(4.5W,0H)..cycle;
+   mdraw p;
+     z1 = p intersectionpoint ((6W,12H)--(6W,6H));
+   bedraw (6W,12H)--z1;
+ bedraw (0W,12H)--(10.5W,12H);
+endchar;
+beginchar("G",7/12wd#,.5penht#+ht#,.5penht#); "gh";
+  bedraw (0W,12H)--(7.5W,12H);
+  bedraw (0W,12H){dir225}..{dir315}(1W,8H);
+  bedraw (3W,8H)--(2W,8H)..{dir270}(0W,6H)..{dir0}(3W,3H)..{dir60}(7W,6H);
+endchar;
+beginchar("H",7/12wd#,.5penht#+ht#,.5penht#); "visarga";
+  putdot (4W,8H);
+  putdot (4W,3H);
+endchar;
+beginchar("I",9/12wd#,.5penht#+ht#,.5penht#+3/12ht#); "front-i";
+  bedraw (6W,12H)--(6W,9H)--(2W,9H)..{dir270}(0W,7H)..{dir0}(2W,5H)
+  ..{dir0}(6W,6H)..{dir180}(3W,0)..{dir90}(0W,2H)..{dir0}(1W,3H)
+  ..{dir315}(3W,2H)--(8W,-3H);
+  bedraw (0W,12H)--(9.5W,12H);
+endchar;
+beginchar("J",12/12wd#,.5penht#+ht#,.5penht#+3/12ht#); "jh";
+  path p;
+  p = (6W,12H)--(6W,9H)--(2W,9H)..{dir270}(0W,7H)..{dir0}(2W,5H)
+      ..{dir0}(6W,6H)..{dir180}(3W,0)..{dir90}(0W,2H)..{dir0}(1W,3H)
+      ..{dir315}(3W,2H)--(8W,-3H);
+  bedraw p;
+  z1 = p intersectionpoint ((6W,4H)--(10W,4H));
+  mdraw z1{dir0}..{dir45}(12W,6H);
+  bedraw (0W,12H)--(12.5W,12H);
+endchar;
+beginchar("K",11/12wd#,.5penht#+ht#,.5penht#); "kh";
+  bedraw (3W,12H)--(3W,6H){dir270}..{dir135}(1W,5H);
+  mdraw (1W,5H){dir 315}..{dir90}(2W,5H)..{dir135}(1W,7H)
+  ..{dir315}(0W,6H)..cycle;
+  edraw (1W,5H)--(3W,3H)..{dir0}(9W,0H);
+  mdraw (6W,6H)..(11W,6H)..cycle;
+  bedraw (0W,12H)--(11.5W,12H);
+endchar;
+beginchar("L",10/12wd#,.5penht#+ht#,.5penht#); "La";
+  path p;
+    p = (5W,5H){dir315}..{dir0}(7.5W,3.5H)..{dir90}(10W,6H)..{dir180}(7.5W,8.5H)
+        ..(5W,6H)..{dir180}(2.5W,3.5H)..{dir90}(0W,6H)..{dir0}(2.5W,8.5H)
+        ..{dir315}(5W,7H);
+  mdraw p;
+    z1 = p intersectionpoint ((7W,12H)--(7W,6H));
+  bedraw (7W,12H)--z1;
+  bedraw (0W,12H)--(10.5W,12H);
+endchar;
+beginchar("M",0,.5penht#+18/12ht#,0); "anusvaara";
+  putdot (0W,18H);
+endchar;
+beginchar("N",9/12wd#,.5penht#+ht#,.5penht#); ".n";
+  bedraw (0W,12H)--(0W,7H){dir270}..(2.75W,4H)..{dir90}(5.5W,7H)--(5.5W,12H);
+  bedraw (0W,12H)--(9.5W,12H);
+endchar;
+beginchar("O",8/12wd#,.5penht#+ht#,.5penht#+1/12ht#); "front-e";
+  bedraw (2W,12H)--(2W,7H){dir270}..(6W,2H)..{dir270}(8.5W,-1H)
+  ..{dir180}(6.5W,-3H);
+  bedraw (8W,12H)--(8W,8H){dir270}..{dir180}(5.5W,4H)..{dir135}(4W,5H);
+  bedraw (0W,12H)--(8.5W,12H);
+endchar;
+beginchar("P",11/12wd#,.5penht#+ht#,.5penht#); "pha";
+  bedraw (0W,12H)--(0W,7H)..{dir0}(3W,4H)..{dir45}(6W,6H)..{dir0}(9W,8H)
+  ..{dir240}(10W,3H);
+  bedraw (6W,12H)--(6W,0H);
+  bedraw (0W,12H)--(11.5W,12H);
+endchar;
+beginchar("Q",10/12wd#,.5penht#+ht#,.5penht#); "Q = .dha";
+  bdraw (7W,12H)--(7W,8.5H)--(4W,8.5H){dir180}..{dir270}(0W,5H)..{dir0}(4W,0)
+  ..(8W,2.5H)..{dir180}(6W,5H)..(5W,1H);
+  bedraw (0W,12H)--(10.5W,12H);
+endchar;
+beginchar("R",0wd#,.5penht#+18/12ht#,.5penht#); "pre-ra-hook";
+  bedraw (0W,12H)..{dir125}(0W,12.5H)..{dir90}(-2W,17H)..{dir0}(0W,19H)
+  ..{dir315}(2W,18H);
+endchar;
+beginchar("S",6/12wd#,.5penht#+ht#,.5penht#); "S = .s";
+  bedraw (0W,12H)--(0W,7H){dir270}..{dir0}(3W,4H)..(6W,6H);
+  bdraw (0W,12H)--(6W,6H);
+  bedraw (0W,12H)--(6.5W,12H);
+endchar;
+beginchar("T",8/12wd#,.5penht#+ht#,.5penht#); "T = th";
+  mdraw (1W,8H){dir145}..{dir0}(0.5W,12H)..(3W,8H)..(0W,6H);
+  edraw (0W,6H){dir315}..{dir0}(4W,4H)..{dir45}(8W,6H);
+  bedraw (5W,12H)--(8.5W,12H);
+endchar;
+beginchar("U",0wd#,.5penht#+ht#,.5penht#+5/12ht#); "U = uu-hook";
+  bdraw (4W,-6H){dir135}..{dir200}(-2.5W,-3H)..{dir0}(-2.5W,-6H)
+  ..{dir90}(0W,-3H);
+endchar;
+beginchar("V",10/12wd#,.5penht#+ht#,.5penht#); "~n";
+  bedraw (0W,8H)..(4W,8H)..{dir270}(5W,6H)..(4W,4H)..(-.5W,4.5H);
+  bedraw (5W,6H)--(10W,6H);
+  bedraw (0W,12H)--(10.5W,12H);
+endchar;
+beginchar("W",0,0,.5penht#+12/12ht#); ".L-hook";
+  bedraw (-1W,-7.5H){dir135}..(-2W,-4H)..(0W,-3H)..(1W,-3H)
+  ..{dir225}(2W,-6H)..{dir0}(3W,-9H)..{dir45}(5W,-8H);
+  bedraw (3W,-9H){dir225}..{dir0}(5W,-12H)..{dir45}(7W,-11H);
+  edraw (-2W,-4H){dir135}..{dir180}(-4W,-3H)..{dir270}(-6W,-5H)
+  ..{dir315}(-4W+.5penht,-9H-.5penht);
+  edraw (0W,0)--(0W,-3H);
+endchar;
+beginchar("X",0,.5penht#+ht#,.5penht#+10/12ht#); "X = .R-hook";
+    path p;
+    p = (0W,0)--(0W,-3H)--(-1W,-3H){dir180}..{dir270}(-3W,-5H)..{dir0}(-1W,-7H)
+        ..{dir45}(1W,-6H);
+  edraw p;
+    z1 = p intersectionpoint ((0W,-4H)--(-4W,-8H));
+  bedraw z1{dir225}..{dir0}(0W,-10H)..{dir45}(3W,-9H);
+endchar;
+beginchar("Y",12/12wd#,.5penht#+ht#,.5penht#); "avagraha";
+  bedraw (12W,12H)--(7W,12H){dir180}..{dir270}(4W,10H)..(7W,6H)
+  ..{dir270}(9W,2H)..{dir180}(7W,0)..{dir135}(2W,4H);
+endchar;
+beginchar("Z",9/12wd#,.5penht#+ht#,.5penht#); "Z = ''s";
+  bedraw (3W,7H){dir180}..{dir90}(0W,9H)..{dir0}(2W,11H)..{dir270}(6W,6H)
+  ..{dir180}(2W,2H)..{dir90}(0W,3H)..{dir0}(2W,4H)..{dir315}(7.5W,0H-.5penht);
+  bedraw (0W,12H)--(10.5W,12H);
+endchar;
+beginchar("[",10/12wd#,.5penht#+ht#,.5penht#); "k.s";
+  bedraw (10W,6H){dir180}..(4W,7H)..{dir0}(4W,12H)..(4W,7H)..{dir270}(0W,3H)
+  ..{dir0}(4W,0)..(6W,1H)..{dir180}(6W,4H)..{dir315}(4W,1H)..(6.5W,-1.5H);
+  bedraw (7W,12H)--(10.5W,12H);
+endchar;
+beginchar(hex"5C",10/12wd#,.5penht#+ht#,.5penht#); "L";
+  mdraw (5W,5H){dir315}..{dir0}(7.5W,3.5H)..{dir90}(10W,6H)..{dir180}(7.5W,8.5H)
+  ..(5W,6H)..{dir180}(2.5W,3.5H)..{dir90}(0W,6H)..{dir0}(2.5W,8.5H)
+  ..{dir315}(5W,7H);
+  bedraw (0W,12H)--(10.5W,12H);
+endchar;
+beginchar(hex"5D",6/12wd#,.5penht#+ht#,.5penht#+2/12ht#); "j~n";
+  bedraw (6W,6H){dir135}..{dir180}(1W,8.5H)..(0W,6H)..{dir180}(1W,0)
+  ..{dir90}(-2W,2H)..{dir315}(0W,2H)--(3W,-2H);
+  bedraw (0W,12H)--(6.5W,12H);
+endchar;
+beginchar(hex"5E",12/12wd#,.5penht#+ht#,.5penht#); "jihvamuuliiya";
+  bedraw (2W,9H){dir315}..{dir45}(10W,9H);
+  bedraw (2.5W,2H){dir45}..{dir315}(10.5W,2H);
+endchar;
+beginchar(hex"5F",0/12wd#,.5penht#+20/12ht#,.5penht#); "R1";
+  bedraw (0W,12H)--(0W,12.5H){dir125}..{dir90}(-1W,15H)..{dir0}(0W,16H)
+  ..{dir315}(2W,15H);
+  bedraw (-3W,19H){dir315}..{dir45}(3W,19H);
+  putdot (0W,20H);
+endchar;
+beginchar(hex"60",12/12wd#,.5penht#+ht#,.5penht#); "empty";
+  empty;
+endchar;
+beginchar("a",3/12wd#,.5penht#+ht#,.5penht#); "V-bar + 3-W horizontal bar";
+  bedraw (0W,0H)--(0W,12H)--(3.5W,12H);
+endchar;
+beginchar("b",6/12wd#,.5penht#+ht#,.5penht#); "b";
+  mdraw (0W,6H)..(1W,8H)..(5W,8H)..(6W,6H)..(5W,4H)..(1W,4H)..cycle;
+  bedraw (1W,8H)--(5W,4H);
+  bedraw (0W,12H)--(6.5W,12H);
+endchar;
+beginchar("c",7/12wd#,.5penht#+ht#,.5penht#); "c";
+  bedraw (-2W,8H)--(4W,8H);
+  bedraw (3W,8H){dir180}..{dir270}(0W,6H)..{dir0}(3W,3H)..(7W,6H);
+  bedraw (0W,12H)--(7.5W,12H);
+endchar;
+beginchar("d",9/12wd#,.5penht#+ht#,.5penht#); "da";
+  bedraw (6W,12H)--(6W,8.5H)--(4W,8.5H){dir180}..{dir270}(0W,6H)..{dir0}(4W,2H)
+  ..{dir90}(6.5W,4H)..(5.5W,5H)..{dir270}(4W,4H)..{dir315}(5W,2H)
+  --(7W+.5penht,0H-.5penht);
+  bedraw (0W,12H)--(9.5W,12H);
+endchar;
+beginchar("e",0wd#,.5penht#+17/12ht#,.5penht#); "e-hook";
+  bedraw (-7W,17H)..{dir0}(-5W,18H)..{dir305}(0W,12.5H)..(0W,12H);
+endchar;
+beginchar("f",11/12wd#,.5penht#+ht#,.5penht#); ".ta";
+  bedraw (7W,12H)--(7W,8.5H)--(5W,8.5H){dir180}..{dir270}(0W,4H)..{dir0}(5W,0)
+  ..{dir45}(9W,2H);
+  bedraw (0W,12H)--(11.5W,12H);
+endchar;
+beginchar("g",7/12wd#,.5penht#+ht#,.5penht#); "g";
+  bedraw (3W,12H)--(3W,6H)..{dir135}(1W,5H);
+  mdraw (1W,5H){dir 315}..{dir90}(2W,5H)..{dir135}(1W,7H)
+  ..{dir315}(0W,6H)..cycle;
+  bedraw (0W,12H)--(7.5W,12H);
+endchar;
+beginchar("h",9/12wd#,.5penht#+ht#,.5penht#+3/12ht#); "ha";
+  bedraw (6W,12H)--(6W,8.5H)--(2W,8.5H){dir180}..{dir270}(0W,6.5H)..(1W,4H);
+  bedraw (5W,1H)..(6W,2H)..{dir190}(3W,5H)..{dir270}(0W,2H)
+  ..{dir315}(5W,-4H);
+  bedraw (0W,12H)--(9.5W,12H);
+endchar;
+beginchar("i",8/12wd#,.5penht#,.5penht#); "low-ja";
+  bedraw (0W,6H)--(8W,6H);
+  bedraw (2W,6H)..(4W,4H)..{dir180}(1W,-1H)..{dir135}(-4W,1H);
+  bedraw (0W,12H)--(8.5W,12H);
+endchar;
+beginchar("j",11/12wd#,.5penht#+ht#,.5penht#); "j";
+  bedraw (3W,7H)--(11W,7H);
+  bedraw (5W,7H){dir315}..{dir180}(4W,0)..{dir135}(-2W,5H);
+  bedraw (0W,12H)--(11.5W,12H);
+endchar;
+beginchar("k",12/12wd#,.5penht#+ht#,.5penht#); "ka";
+  edraw (6W,6.5H)--(5W,7.5H){dir135}..{dir180}(3W,8.5H)..{dir270}(0W,6H)
+  ..{dir0}(3W,3.5H)..{dir0}(10W,8H)..{dir270}(12W,6H)..{dir240}(11W,3H);
+  bedraw (0W,12H)--(12.5W,12H);
+  bedraw (6W,0)--(6W,12H);
+endchar;
+beginchar("l",12/12wd#,.5penht#+ht#,.5penht#); "la";
+  bedraw (5W,7H){dir135}..{dir180}(3W,8H)..{dir270}(0W,5H)
+  ..{dir315}(2.5W+.5penht,0H-.5penht);
+  bedraw (5W,5H){dir90}..{dir0}(8W,8H)..{dir270}(11W,5H)..(9W,0H);
+  bedraw (8W,8H)--(8W,12H);
+  bedraw (0W,12H)--(12.5W,12H);
+endchar;
+beginchar("m",10/12wd#,.5penht#+ht#,.5penht#); "m";
+  bedraw (3W,12H)--(3W,4H){dir270}..{dir90}(0W,4H)..{dir0}(1W,5H)--(10W,5H);
+  bedraw (0W,12H)--(10.5W,12H);
+endchar;
+beginchar("n",8/12wd#,.5penht#+ht#,.5penht#); "n";
+  bedraw (3W,5H){dir270}..{dir90}(0W,5H)..{dir0}(1W,6H);
+  bedraw (1W,6H)--(8W,6H);
+  bedraw (0W,12H)--(8.5W,12H);
+endchar;
+beginchar("o",10/12wd#,.5penht#+ht#,.5penht#); "front-u";
+  bedraw (5W,12H){dir0}..{dir225}(7W,7H)..(5W,6H);
+  edraw (7W,7H){dir330}..{dir180}(6W,0)..{dir135}(0W,4H);
+  bedraw (1W,12H)--(10.5W,12H);
+endchar;
+beginchar("p",6/12wd#,.5penht#+ht#,.5penht#); "p";
+  bedraw (0W,12H)--(0W,7H){dir270}..{dir0}(3W,4H)..{dir45}(6W,6H);
+  bedraw (0W,12H)--(6.5W,12H);
+endchar;
+beginchar("q",9/12wd#,.5penht#+ht#,.5penht#); ".da";
+  bedraw (6W,12H)--(6W,9H)--(2W,9H)..{dir270}(0W,7H)..{dir0}(2W,5H)
+  ..{dir0}(6W,6H)..{dir180}(4W,0)..{dir135}(-1W,3H);
+  bedraw (0W,12H)--(9.5W,12H);
+endchar;
+beginchar("r",0,.5penht#+ht#,.5penht#); "r = basic post-ra stroke";
+  bedraw (0W,6H)--(0W,5.5H)--(-6W,0H);
+endchar;
+beginchar("s",10/12wd#,.5penht#+ht#,.5penht#); "s";
+  bedraw (3W,12H)--(3W,6H)..{dir135}(1W,5H);
+  mdraw (1W,5H){dir 315}..{dir90}(2W,5H)..{dir135}(1W,7H)
+  ..{dir315}(0W,6H)..cycle;
+  bedraw (1W,5H)--(6.5W,0H-.5penht);
+  bedraw (2W,5H)--(10W,5H);
+  bedraw (0W,12H)--(10.5W,12H);
+endchar;
+beginchar("t",7/12wd#,.5penht#+12/12ht#,.5penht#); "t";
+  bedraw (7W,6H){dir135}..(3W,8H)..{dir270}(0W,6H)..{dir315}(3.5W,0H-.5penht);
+  bedraw (0W,12H)--(7.5W,12H);
+endchar;
+beginchar("u",0wd#,.5penht#+ht#,.5penht#+5/12ht#); "u-hook";
+  bdraw (-5W,-3H){dir315}..{dir10}(1.5W,-6H)..{dir180}(1.5W,-3H)
+  ..{dir270}(-1W,-5H);
+endchar;
+beginchar("v",6/12wd#,.5penht#+ht#,.5penht#); "v";
+  mdraw (0W,6H)..(1W,8H)..(5W,8H)..(6W,6H)..(5W,4H)..(1W,4H)..cycle;
+  bedraw (0W,12H)--(6.5W,12H);
+endchar;
+beginchar("w",0,.5penht#+ht#,.5penht#+9/12ht#); ".l-hook";
+  bedraw (-1W,-7.5H){dir135}..(-2W,-4H)..(0W,-3H)..(1W,-3H)
+  ..{dir225}(2W,-6H)..{dir0}(3W,-9H)..{dir45}(5W,-8H);
+  edraw (-2W,-4H){dir135}..{dir180}(-4W,-3H)..{dir270}(-6W,-5H)..(-4W,-9H);
+  edraw (0W,0)--(0W,-3H);
+endchar;
+beginchar("x",0wd#,.5penht#+ht#,.5penht#+7.5/12ht#); ".r-hook";
+  edraw (0W,0)--(0W,-3H)--(-1W,-3H){dir180}..{dir0}(-.5W,-7.5H)
+  ..{dir45}(2.5W,-6.5H);
+endchar;
+beginchar("y",8/12wd#,.5penht#+ht#,.5penht#); "y";
+  bedraw (2W,12H){dir315}..{dir200}(0W,6H);
+  edraw (0W,6H)..{dir0}(4W,4H)..{dir45}(8W,6H);
+  bedraw (0W,12H)--(8.5W,12H);
+endchar;
+beginchar("z",11/12wd#,.5penht#+ht#,.5penht#); "''na";
+  bedraw (6W,12H)--(6W,9H)--(2W,9H)..{dir270}(0W,7H)..{dir0}(2W,5H)
+  ..{dir0}(6W,6H)..{dir180}(4W,0)..{dir135}(-1W,3H);
+  bedraw (0W,12H)--(11.5W,12H);
+  putdot(10W,7H);
+endchar;
+beginchar(hex"7B",0/12wd#,.5penht#+6/12ht#,.5penht#); "post-ra-4";
+  edraw (0W,6H){dir270}..{dir214}(-2W,2H)--(-5W,0H);
+endchar;
+beginchar(hex"7C",10/12wd#,.5penht#+8/12ht#,.5penht#); "alt-Vedic-.dha";
+  mdraw (10W,7H){dir135}..{dir180}(7.5W,8H)..{dir180}(2.5W,3H)
+  ..{dir90}(0W,5.5H)..{dir0}(2.5W,8H)..{dir0}(7.5W,3H)..{dir45}(10W,4H);
+  bedraw (0W,12H)--(10.5W,12H);
+endchar;
+beginchar(hex"7D",9/12wd#,.5penht#+ht#,.5penht#); "m1";
+  bedraw (3W,12H)--(3W,5H){dir270}..{dir90}(0W,5H)..{dir0}(1W,6H)--(9W,6H);
+  bedraw (0W,12H)--(9.5W,12H);
+endchar;
+beginchar(hex"7E",9/12wd#,.5penht#+ht#,.5penht#); "s1";
+  bedraw (3W,12H)--(3W,6H)..{dir135}(1W,5H);
+  mdraw (1W,5H){dir 315}..{dir90}(2W,5H)..{dir135}(1W,7H)
+  ..{dir315}(0W,6H)..cycle;
+  bedraw (1W,5H)--(6.5W,0H-.5penht);
+  bedraw (3W,6H)--(9W,6H);
+  bedraw (0W,12H)--(9.5W,12H);
+endchar;
+beginchar(hex"7F",11/12wd#,.5penht#+ht#,.5penht#); "l-";
+  edraw (5W,7H){dir135}..{dir180}(3W,8H)..{dir270}(0W,5H)
+  ..{dir315}(2.5W+.5penht,0H-.5penht);
+  bedraw (5.5W,4H)..(5W,5H){dir90}..{dir0}(8W,8H)..{dir315}(11W,6H);
+  bedraw (0W,12H)--(11.5W,12H);
+endchar;
+beginchar(hex"80",12/12wd#,.5penht#+ht#,1/12ht#+.5penht#); "kta";
+  bedraw (7W,5.5H)--(3W,5.5H){dir180}..{dir270}(0W,2.5H)
+  ..{dir315}(2W+.5penht,-1H-.5penht);
+  bedraw (0W,8.5H)--(9W,8.5H){dir0}..{dir270}(12W,6H)..{dir240}(11W,3H);
+  bedraw (7W,-1H)--(7W,12H);
+  bedraw (0W,12H)--(12.5W,12H);
+endchar;
+beginchar(hex"81",15/12wd#,.5penht#+ht#,2/12ht#+.5penht#); "ktva";
+  bedraw (5W,5H)--(3W,5H){dir180}..{dir270}(0W,2H)
+  ..{dir315}(2W+.5penht,-2H-.5penht);
+  mdraw (5W,5H)..(5W,2H)..(9.5W,2H)..(9W,5H)..cycle;
+  bedraw (0W,8.5H)--(12W,8.5H){dir0}..{dir270}(15W,6H)..{dir240}(14W,3H);
+  bedraw (10W,12H)--(10W,-2H);
+  bedraw (0W,12H)--(15.5W,12H);
+endchar;
+beginchar(hex"82",20/12wd#,.5penht#+ht#,.5penht#); "kma";
+  edraw (6W,6.5H)--(5W,7.5H){dir135}..{dir180}(3W,8.5H)..{dir270}(0W,6H)
+  ..{dir0}(3W,3.5H)..{dir0}(9W,8H)..{dir270}(12W,4H)..{dir90}(9W,4H)
+  ..{dir0}(10W,5H)--(17W,5H);
+  bedraw (6W,12H)--(6W,0H);
+  bedraw (17W,12H)--(17W,0H);
+  bedraw (0W,12H)--(20.5W,12H);
+endchar;
+beginchar(hex"83",9/12wd#,.5penht#+ht#,.5penht#); "cc";
+  bedraw (0W,9H)--(6W,9H);
+  bedraw (3W,9H){dir225}..{dir270}(2W,7H)..{dir0}(5W,5H);
+  bedraw (0W,5H)--(6W,5H);
+  bedraw (3W,5H){dir225}..{dir270}(2W,3H)..{dir0}(5W,1H)..{dir90}(9W,6H);
+  bedraw (0W,12H)--(9.5W,12H);
+endchar;
+beginchar(hex"84",18/12wd#,.5penht#+ht#,.5penht#); "chya";
+  bedraw (4W,9H)..(2W,9H)..{dir270}(0W,7H)..{dir0}(3W,5H)--(4W,5H);
+  bedraw (2W,5H){dir180}..{dir270}(0W,3H)..{dir0}(3W,0)..(9W,3H)
+  ..(10W,6H)..(9W,9H)..(8W,9H)..(7W,5H)..(8W,3H)..(12W,2H)..(15W,4H);
+  bedraw (8W,12H)--(8W,9H);
+  bedraw (15W,12H)--(15W,0H);
+  bedraw (0W,12H)--(18.5W,12H);
+endchar;
+beginchar(hex"85",18/12wd#,.5penht#+ht#,.5penht#); "jj-horizontal";
+  bedraw (4W,7H)--(16W,7H){dir0}..(18W,6H);
+  mdraw (6W,7H){dir315}..{dir180}(6W,0H)..{dir135}(0W,5H);
+  bedraw (12W,7H){dir315}..{dir180}(12W,0H)..(9W,2H);
+  bedraw (0W,12H)--(18.5W,12H);
+endchar;
+beginchar(hex"86",10/12wd#,.5penht#+ht#,.5penht#); "tt";
+  bedraw (0W,8H)--(6W,8H);
+  bedraw (10W,6H){dir135}..{dir180}(6W,8H)..{dir270}(3W,4H)
+  ..{dir315}(5W+.5penht,0-.5penht);
+  bedraw (0W,12H)..(10.5W,12H);
+endchar;
+beginchar(hex"87",10/12wd#,.5penht#+ht#,.5penht#); "tn";
+  bedraw (6W,4H){dir270}..{dir90}(3W,4H)..{dir0}(4W,5H);
+    bedraw (4W,5H)--(10W,5H);
+  bedraw (10W,8H)--(3W,8H){dir180}..{dir270}(0W,5H)
+  ..{dir315}(3W+.5penht,0H-.5penht);
+  bedraw (0W,12H)--(10.5W,12H);
+endchar;
+beginchar(hex"88",7/12wd#,.5penht#+ht#,.5penht#); "tr";
+  bedraw (1W,2H)--(7W,6H)--(6W,7H){dir135}..{dir225}(0W,7H);
+  bedraw (0W,12H)--(7.5W,12H);
+endchar;
+beginchar(hex"89",8/12wd#,.5penht#+ht#,.5penht#+2/12H); "dda";
+  bedraw (5W,12H)--(5W,9H)--(2W,9H){dir180}..{dir270}(0W,7H)..(2W,5H);
+  bedraw (5W,5H)--(2W,5H){dir180}..{dir270}(0W,3H)..{dir0}(4W,0H)
+  ..{dir90}(6.5W,1.5H)..{dir270}(5W,1.5H)..{dir315}(8W,-2.5H);
+  bedraw (0W,12H)--(8.5W,12H);
+endchar;
+beginchar(hex"8A",9/12wd#,.5penht#+ht#,.5penht#); "nn";
+  bdraw (3W,8H){dir270}..{dir90}(0W,8H)..{dir0}(1W,9H);
+  mdraw (1W,9H){dir0}..(9W,6H);
+  bdraw (4W,2.5H){dir315}..{dir135}(2W,0.5H)..{dir35}(2.5W,3H);
+  mdraw (2.5W,3H){dir35}..(9W,6H);
+  bedraw (0W,12H)--(9.5W,12H);
+endchar;
+beginchar(hex"8B",7/12wd#,.5penht#+ht#,.5penht#); "pt";
+  bedraw (0W,12H)--(0W,10H){dir270}..{dir0}(5W,6H)--(7W,6H);
+  bedraw (5W,6H){dir180}..{dir270}(0W,4H)..(2W+.5penht,0H-.5penht);
+  bedraw (0W,12H)--(7.5W,12H);
+endchar;
+beginchar(hex"8C",8/12wd#,.5penht#+ht#,1/12ht#+.5penht#); "lla";
+    path p; path q;
+    p = (6.5W,-1H)..{dir90}(8W,2H)..{dir180}(6W,4H)..(4W,3H)
+        ..{dir315}(4.5W,1H);
+    q = (4W,3H){dir135}..{dir180}(2W,4H)..{dir270}(0W,2H)
+        ..{dir315}(1.5W+0.5penht,-1H-0.5penht);
+  bedraw p;
+  bedraw q;
+    z1 = p intersectionpoint ((6.4W,2H)--(6.5W,5H));
+    z2 = q intersectionpoint ((1.5W,2H)--(1.5W,5H));
+  bedraw z1..{dir90}(8W,7H)..{dir180}(6W,9H)..(4W,8H)..{dir315}(4.5W,6H);
+  bedraw (4W,8H){dir135}..{dir180}(2W,9H)..{dir270}(0W,7H)..{dir315}z2;
+  bedraw (6W,12H)--(6W,9H);
+  bedraw (0W,12H)--(8.5W,12H);
+endchar;
+beginchar(hex"8D",9/12wd#,.5penht#+ht#,.5penht#); ".s.ta";
+  bedraw (0W,12H)--(0W,9H){dir270}..{dir0}(2W,6H);
+  bedraw (0W,12H)--(5W,7H);
+  bedraw (6W,12H)--(6W,9H){dir270}..(5W,7H)..(2W,6H)..{dir270}(0W,3H)
+  ..{dir0}(3W,0)..{dir45}(7W,2H);
+  bedraw (0W,12H)--(9.5W,12H);
+endchar;
+beginchar(hex"8E",9/12wd#,.5penht#+ht#,.5penht#); ".s.tha";
+  bedraw (0W,12H)--(0W,9H){dir270}..{dir0}(2W,6H);
+  bedraw (0W,12H)--(5W,7H);
+  bedraw (6W,12H)--(6W,9H){dir270}..(5W,7H)..(2W,6H)..{dir270}(0W,3H)
+  ..{dir0}(3.5W,0H);
+  bedraw (3.5W,0){dir0}..{dir90}(7W,3H)..{dir135}(5W,6H);
+  bedraw (0W,12H)--(9.5W,12H);
+endchar;
+beginchar(hex"8F",15/12wd#,.5penht#+ht#,3/12ht#+.5penht#); "hma";
+    path p;
+    p = (12W,2H)--(5W,2H){dir180}..{dir270}(4W,1H)..{dir90}(7W,1H)
+        --(7W,2H){dir90}..{dir180}(3W,5H)..{dir270}(0W,2H)..{dir315}(5W,-4H);
+  bedraw p;
+    z1 = p intersectionpoint ((0W,5H)--(2W,3H));
+  bedraw (6W,12H)--(6W,8.5H)--(2W,8.5H){dir180}..{dir270}(0W,6H)..z1;
+  bedraw (12W,12H)--(12W,-2H);
+  bedraw (0W,12H)--(15.5W,12H);
+endchar;
+beginchar(hex"90",3/12wd#,.5penht#+ht#,0); "alt-tr";
+  bdraw (3W,6H)--(1W,8H){dir135}..{dir210}(-3W,8.5H);
+  edraw (3W,6H)--(-1.5W,1.5H);
+  bedraw (0W,12H)--(3.5W,12H);
+endchar;
+beginchar(hex"91",9/12wd#,.5penht#+ht#,.5penht#+0/12ht#); "half-da";
+  bdraw (6W,12H)--(6W,9H)--(4W,9H){dir180}..{dir270}(0W,6H)..{dir0}(5W,3H)
+         ..{dir90}(7W,4H)..{dir270}(5.5W,4H)..{dir315}(7W,2H);
+  bedraw (7W,4H)--(7W,1H);
+  bedraw (0W,12H)--(9.5W,12H);
+endchar;
+beginchar(hex"92",9/12wd#,.5penht#+ht#,.5penht#+0/12ht#); "add-m";
+  bdraw (-1W,9H)--(0W,9H){dir0}..{dir270}(3W,6H)--(3W,4H){dir270}
+  ..{dir90}(0W,4H)..{dir0}(1W,5H)--(9W,5H);
+  bedraw (0W,12H)--(9.5W,12H);
+endchar;
+beginchar(hex"93",8/12wd#,.5penht#+ht#,.5penht#+0/12ht#); "add-y";
+  bdraw (-1W,9H)--(2W,9H){dir0}..{dir225}(2W,5H);
+  edraw (2W,5H){dir315}..{dir0}(5W,3H)..(8W,6H);
+  bedraw (0W,12H)--(8.5W,12H);
+endchar;
+beginchar(hex"94",0/12wd#,.5penht#+ht#,.5penht#); "y-bottom-loop";
+  mdraw (-1W,3H){dir315}..{dir0}(2W,1H)..(5W,3H);
+endchar;
+beginchar(hex"95",2/12wd#,.5penht#+ht#,.5penht#); "y3";
+  bdraw (-3.3W,2H){dir0}..(2W,5H);
+  bedraw (0W,12H)--(2.5W,12H);
+endchar;
+beginchar(hex"96",10/12wd#,.5penht#+ht#,.5penht#+3/12ht#); "wide-ha";
+    path p; 
+    p = (10W,-3H)--(10W,2H){dir90}..{dir180}(7W,5H)--(3W,5H){dir180}
+        ..{dir270}(0W,2H)..{dir315}(5W,-4H);
+  bedraw p;
+    z1 = p intersectionpoint ((0W,5H)--(2W,3H));
+  bedraw (6W,12H)--(6W,8.5H)--(2W,8.5H){dir180}..{dir270}(0W,6H)..z1;
+  bedraw (0W,12H)--(10.5W,12H);
+endchar;
+beginchar(hex"97",12/12wd#,.5penht#+ht#,.5penht#+4/12ht#); "extra-wide-ha";
+    path p; 
+    p = (12W,-4H)--(12W,1H){dir90}..{dir180}(9W,5H)--(5W,5H){dir180}
+        ..{dir270}(0W,2H)..{dir315}(3W,-4H);
+  bedraw p;
+    z1 = p intersectionpoint ((0W,5H)--(2W,3H));
+  bedraw (6W,12H)--(6W,8.5H)--(2W,8.5H){dir180}..{dir270}(0W,6H)..z1;
+  bedraw (0W,12H)--(12.5W,12H);
+endchar;
+beginchar(hex"98",9/12wd#,.5penht#+ht#,.5penht#+3/12ht#); "h.r.r";
+  bedraw (6W,12H)--(6W,8.5H)--(2W,8.5H){dir180}..{dir270}(0W,6H)..(1W,4H);
+  bedraw (4W,-1H){dir135}..(3.75W,1.4H)..{dir18}(6W,2.5H)..{dir200}(3W,5H)
+  ..{dir270}(0W,2H)..{dir315}(3.0W,-4H);
+  bedraw (7.75W,-.25H){dir200}..(4.5W,-2.25H)..{dir20}(9.25W,-3H);
+  bedraw (0W,12H)--(9.5W,12H);
+endchar;
+beginchar(hex"99",12/12wd#,.5penht#+ht#,.5penht#); "empty";
+  empty;
+endchar;
+beginchar(hex"9A",12/12wd#,.5penht#+ht#,.5penht#); "empty";
+  empty;
+endchar;
+beginchar(hex"9B",12/12wd#,.5penht#+ht#,.5penht#); "empty";
+  empty;
+endchar;
+beginchar(hex"9C",0,.5penht#+23/12ht#,0); "Kaataka jaatya svarita";
+  sbedraw (0W,17H)--(0W,23H);
+  sbedraw (2.5W,17H)--(2.5W,23H);
+  sbedraw (5W,17H)--(5W,23H);
+endchar;
+beginchar(hex"9D",10/12wd#,.5penht#+ht#,.5penht#); "Jaatya Svarita (Atharvaveda)";
+  bedraw (0W,1.5H){dir315}..{dir0}(2W,0H)..{dir90}(4W,3H)--(4W,9H){dir90}
+  ..{dir0}(5.75W,12H)..{dir270}(7.5W,10H)--(7.5W,9H);
+endchar;
+beginchar(hex"9E",0,.5penht#+ht#,.5penht#+5/12ht#); "Jaatya Svarita (Maitrayaniiya)";
+  bedraw (-5.5W,-2.5H){dir305}..(-1.5W,-5H)..{dir55}(2.5W,-3H);
+endchar;
+beginchar(hex"9F",0,.5penht#+ht#,.5penht#+5/12ht#); "Jaatya Svarita (''Sukla Yajurveda)";
+  bedraw (-5.5W,-3H)--(-5.5W,-3.6H){dir270}..{dir90}(-1.5W,-3.6H)--(-1.5W,-3H);
+  bedraw (-1.5W,-3.6H){dir270}..{dir90}(2.5W,-3.6H)--(2.5W,-3H);
+endchar;
+beginchar(hex"A0",12/12wd#,.5penht#+ht#,.5penht#); "empty";
+  empty;
+endchar;
+beginchar(hex"A1",12/12wd#,.5penht#+ht#,.5penht#); "empty";
+  empty;
+endchar;
+beginchar(hex"A2",12/12wd#,.5penht#+ht#,.5penht#); "empty";
+  empty;
+endchar;
+beginchar(hex"A3",12/12wd#,.5penht#+ht#,.5penht#); "empty";
+  empty;
+endchar;
+beginchar(hex"A4",12/12wd#,.5penht#+ht#,.5penht#); "empty";
+  empty;
+endchar;
+beginchar(hex"A5",12/12wd#,.5penht#+ht#,.5penht#); "empty";
+  empty;
+endchar;
+beginchar(hex"A6",12/12wd#,.5penht#+ht#,.5penht#); "empty";
+  empty;
+endchar;
+beginchar(hex"A7",12/12wd#,.5penht#+ht#,.5penht#); "empty";
+  empty;
+endchar;
+beginchar(hex"A8",12/12wd#,.5penht#+ht#,.5penht#); "empty";
+  empty;
+endchar;
+beginchar(hex"A9",12/12wd#,.5penht#+ht#,.5penht#); "empty";
+  empty;
+endchar;
+beginchar(hex"AA",12/12wd#,.5penht#+ht#,.5penht#); "empty";
+  empty;
+endchar;
+beginchar(hex"AB",12/12wd#,.5penht#+ht#,.5penht#); "empty";
+  empty;
+endchar;
+beginchar(hex"AC",12/12wd#,.5penht#+ht#,.5penht#); "empty";
+  empty;
+endchar;
+beginchar(hex"AD",12/12wd#,.5penht#+ht#,.5penht#); "empty";
+  empty;
+endchar;
+beginchar(hex"AE",12/12wd#,.5penht#+ht#,.5penht#); "empty";
+  empty;
+endchar;
+beginchar(hex"AF",12/12wd#,.5penht#+ht#,.5penht#); "empty";
+  empty;
+endchar;
+beginchar(hex"B0",12/12wd#,.5penht#+ht#,.5penht#); "alt-5a";
+  bedraw (4W,11H)..(2.5W,8H)..(6.5W,4H)..{dir90}(9.5W,6H)..(8.5W,7.5H)
+  ..{dir270}(7.5W,6H)..{dir270}(9.5W,2H)..(8.5W,0H);
+endchar;
+beginchar(hex"B1",12/12wd#,.5penht#+ht#,.5penht#); "alt-1";
+  edraw (8.5W,8H)..(5.5W,6H)..(2.5W,9H)..(5.5W,12H)..{dir270}(8.5W,10H)
+  --(8.5W,0H);
+endchar;
+beginchar(hex"B2",12/12wd#,.5penht#+ht#,.5penht#); "alt-9b";
+  bedraw (5W,7H){dir0}..(7.5W,8H)..(4.5W,11H)..(2.5W,8H)..{dir330}(9.5W,0H);
+endchar;
+beginchar(hex"B3",15/12wd#,.5penht#+ht#,1/12ht#+.5penht#); "alt-.r";
+  bedraw (0W,7H){dir45}..{dir315}(4W,7H)--(5W,6H)--(1W,2H);
+  bedraw (5W,12H)--(5W,0H);
+  bedraw (5W,6H)--(12W,6H);
+  bedraw (12W,12H)--(12W,2H)--(11W,2H){dir180}..(9W,0H)..{dir0}(11W,-2H)
+  ..{dir45}(13.5W,-1H);
+  bedraw (0W,12H)--(15W,12H);
+endchar;
+beginchar(hex"B4",12/12wd#,.5penht#+ht#,.5penht#); "alt-4";
+  bedraw (1W,10H)..(6W,5H)..(8W,2.5H)..(6W,0H)..(4W,2.5H)..(6W,5H)..(11W,9H);
+endchar;
+beginchar(hex"B5",12/12wd#,.5penht#+ht#,.5penht#); "alt-5";
+  bedraw (3W,12H)--(3W,7H){dir270}..(6W,4H)..{dir90}(9W,7H);
+  bedraw (9W,10H)--(9W,0H);
+endchar;
+beginchar(hex"B6",12/12wd#,.5penht#+ht#,.5penht#); "alt-6";
+  bedraw (8W,11.5H)--(7.5W,12H){dir135}..{dir315}(5.5W,9H);
+  bedraw (8.5W,9H)--(5.5W,9H){dir180}..{dir270}(3W,7H)..{dir0}(5.5W,5H)
+  --(8.5W,5H);
+  bedraw (6.5W,5H){dir180}..{dir270}(3.5W,2.5H)..{dir0}(6.5W,0H)
+  ..{dir180}(8.5W,2H)..{dir315}(8.5W,0H)--(10.5W,-2H);
+endchar;
+beginchar(hex"B7",15/12wd#,.5penht#+ht#,4/12ht#+.5penht#); "alt-.R";
+  bedraw (0W,7H){dir45}..{dir315}(4W,7H)--(5W,6H)--(1W,2H);
+  bedraw (5W,12H)--(5W,0H);
+  bedraw (5W,6H)--(12W,6H);
+  bedraw (12W,12H)--(12W,3H)--(11W,3H){dir180}..(9W,1H)..{dir0}(11W,-1H)
+  ..{dir45}(13W,0H);
+  bedraw (10W,-1H){dir240}..{dir0}(12W,-4H)..{dir45}(14W,-3H);
+  bedraw (0W,12H)--(15W,12H);
+endchar;
+beginchar(hex"B8",12/12wd#,.5penht#+ht#,.5penht#); "alt-8";
+  bedraw (1.5W,9H)--(10.5W,9H);
+  bedraw (6.5W,9H){dir180}..{dir270}(2.5W,5H)..{dir0}(4.5W,2H)..(8.5W,3H)
+  ..(9.5W,1H)..(8.5W,0H);
+endchar;
+beginchar(hex"B9",12/12wd#,.5penht#+ht#,.5penht#); "alt-9";
+  bedraw (9.5W,10H)..(6.5W,12H)..{dir270}(4.5W,11H)..{dir330}(6.5W,8H);
+  bedraw (5.5W,9H)..{dir270}(2.5W,7H)..{dir330}(10.5W,0H);
+endchar;
+beginchar(hex"BA",14/12wd#,ht#+.5penht#,.5penht#); "A-alt";
+  bedraw (5.7W,12H)--(5.7W,8H){dir270}..{dir0}(9W,5H)..(11W,6H);
+  bdraw (0W,9H)--(2W,9H){dir0}..{dir315}(4W,8H);
+  edraw (4W,8H){dir270}..{dir210}(3W,6H)--(1W,5H);
+  bedraw (3.5W,1.5H)--(6.5W,4.5H);
+  bedraw (0,12H)--(14W,12H);
+  bedraw (11W,12H)--(11W,0H);
+endchar;
+beginchar(hex"BB",10/12wd#,.5penht#+ht#,.5penht#); "alt-k.sa";
+  bedraw (6W,7H){dir180}..{dir270}(2W,3H)..{dir0}(5W,0H)..{dir90}(7W,2H)
+  ..{dir180}(6W,3H)..{dir270}(4.5W,2H)..{dir315}(7W,-1.5H);
+  bedraw (0W,7H)--(8W,7H){dir0}..{dir315}(10W,6H);
+  bedraw (0W,12H)--(10.5W,12H);
+endchar;
+beginchar(hex"BC",8/12wd#,.5penht#+ht#,.5penht#); "alt-j~na";
+  bedraw (1W,7H){dir0}..(5W,3.5H)..{dir180}(2W,0H)..(0W,1H)..{dir0}(1W,2H)
+  ..{dir315}(3W,1H)--(6W,-2H);
+  bedraw (0W,7H)--(6W,7H){dir0}..{dir315}(8W,6H);
+  bedraw (0W,12H)--(8.5W,12H);
+endchar;
+beginchar(hex"BD",14/12wd#,ht#+.5penht#,.5penht#) "alt-jha";
+  bedraw (0W,12H)--(3W,12H)--(3W,5H){dir270}..{dir90}(0W,5H)..{dir0}(1W,6H)
+  --(12W,6H){dir0}..(13.5W,3H)..(12.5W,1H);
+  bedraw (7W,12H)--(14.5W,12H);
+  bedraw (10W,12H)--(10W,0H);
+endchar;
+beginchar(hex"BE",9/12wd#,.5penht#+ht#,.5penht#); "alt-.na";
+  bedraw (3W,12H)--(3W,7H)..{dir135}(1W,6H);
+  mdraw (1W,6H){dir 315}..{dir90}(2W,6H)..{dir105}(1W,8.2H)
+  ..{dir315}(0W,7H)..cycle;
+  bedraw (1W,6H)--(7.5W,-.5H);
+  bedraw (6W,12H)--(6W,3H);
+  bedraw (0W,12H)--(9.5W,12H);
+endchar;
+beginchar(hex"BF",8/12wd#,.5penht#+ht#,.5penht#); "alt-th";
+  mdraw (1W,8H){dir145}..{dir0}(0.5W,11H)..(3W,8H)..(0W,6H);
+  edraw (0W,6H){dir315}..{dir0}(4W,4H)..{dir45}(8W,6H);
+  bedraw (0W,12H)--(8.5W,12H);
+endchar;
+beginchar(hex"C0",12/12wd#,.5penht#+ht#,0/12ht#+.5penht#); "empty";
+  empty;
+endchar;
+beginchar(hex"C1",0/12wd#,.5penht#+ht#,.5penht#); "12-vert";
+  bedraw (0W,12H)--(0W,0H);
+endchar;
+beginchar(hex"C2",8/12wd#,.5penht#+4/12ht#,.5penht#+2/12ht#); "mini-bha";
+  bdraw (0W,4H){dir0}..{dir270}(3W,-1H)..{dir90}(0W,-1H)
+  ..{dir0}(1W,0H)--(8W,0H);
+endchar;
+beginchar(hex"C3",8/12wd#,.5penht#+4/12ht#,5/12ht#+.5penht#); "mini-cha";
+  bedraw (3W,1H)..(2.5W,1H)..{dir270}(0W,-0.5H)..{dir0}(3W,-2H);
+  bedraw (2.5W,-2H){dir180}..{dir270}(0W,-3.5H)..{dir0}(4W,-5H)..(7.5W,1H)
+  ..(7W,1.5H)..(6W,1H)..{dir315}(8W,-5H-.5penht);
+  mdraw (7W,1.5H)--(7W,4H);
+endchar;
+beginchar(hex"C4",8/12wd#,.5penht#+4/12ht#,3/12ht#+.5penht#); "mini-dha";
+  bdraw (-2W,4H)--(-2W,2H){dir270}..{dir0}(1W,0H);
+  bdraw (3W,1H){dir180}..(1W,0H)..{dir0}(3W,-2.5H)..(8W,0H);
+endchar;
+beginchar(hex"C5",0/12wd#,.5penht#+4/12ht#,3/12ht#+.5penht#); "7-vert";
+  bedraw (0W,4H)--(0W,-3H);
+endchar;
+beginchar(hex"C6",8/12wd#,.5penht#+4/12ht#,.5penht#+4/12ht#); "mini-.tha";
+  mdraw (5W,4H)--(5W,1H)--(4W,1H){dir180}..
+    (0W,-2H)..{dir0}(4W,-4H)..(8W,-2H)..{dir180}(5W,1H);
+endchar;
+beginchar(hex"C7",8/12wd#,.5penht#+4/12ht#,3/12ht#+.5penht#); "mini-gha";
+  mdraw (0W,4H){dir200}..{dir270}(-2W,2H)..{dir0}(1W,0H);
+  bdraw (3W,1H){dir180}..(1W,0H)..{dir0}(3W,-2.5H)..(8W,0H);
+endchar;
+beginchar(hex"C8",8/12wd#,.5penht#+4/12ht#,.5penht#+3/12ht#); "mini-gha-2";
+  mdraw (1W,5H){dir225}..{dir270}(0W,3.5H)..{dir315}(2.5W,0.5H);
+  bdraw (4W,1.5H){dir180}..{dir270}(2.5W,0H)..{dir0}(5W,-2.5H)
+  ..{dir90}(8W,0H);
+endchar;
+beginchar(hex"C9",0/12wd#,.5penht#+3/12ht#,0/12ht#+.5penht#); "3-vert";
+  bedraw (0W,3H)--(0W,0H);
+endchar;
+beginchar(hex"CA",9/12wd#,.5penht#+4/12ht#,.5penht#+8/12ht#); "mini-jha";
+  edraw (4W,4H)--(4W,1.5H)--(2W,1.5H)..{dir270}(0.5W,0H)..{dir0}(2.5W,-2H)
+  ..{dir0}(4.5W,-1.25H)..(6W,-1.5H)..{dir180}(3W,-5H)..{dir90}(0.5W,-3.5H)
+  ..{dir315}(1.5W,-3.5H)--(5.5W,-7.5H);
+  mdraw (6.5W,-3H){dir0}..{dir45}(9W,-1H);
+endchar;
+beginchar(hex"CB",9/12wd#,.5penht#+4/12ht#,.5penht#+5/12ht#); "mini-kha";
+  edraw (3W,4H)--(3W,0H){dir270}..{dir135}(1W,-1H);
+  mdraw (1W,-1H){dir 315}..{dir90}(2W,-1H)..{dir135}(1W,1H)
+  ..{dir315}(0W,0H)..cycle;
+  bedraw (1W,-1H)--(2W,-2H){dir315}..{dir0}(7W,-5H);
+  mdraw (5W,0H)..(7W,-2H)..(9W,0H)..(7W,2H)..cycle;
+endchar;
+beginchar(hex"CC",8/12wd#,.5penht#+3/12ht#,4/12ht#+.5penht#); "mini-alt-la";
+  bedraw (8W,0H){dir90}..{dir180}(6W,2H)..(4W,1H)
+  ..{dir315}(4.5W,-1H);
+  bedraw (4W,1H){dir135}..{dir180}(2W,2H)..{dir270}(0W,0H)
+  ..{dir315}(1.5W+0.5penht,-3H-0.5penht);
+endchar;
+beginchar(hex"CD",0/12wd#,.5penht#+3/12ht#,.5penht#+0/12ht#); "bindu";
+  putdot(1W,1H);
+endchar;
+beginchar(hex"CE",3.5/12wd#,.5penht#+4/12ht#,1/12ht#+.5penht#); "mini-.na";
+  mdraw (0W,4H)--(0W,1H){dir270}..{dir0}(1.5W,-1H)..{dir90}(3.5W,1H)--(3.5W,4H);
+endchar;
+beginchar(hex"CF",9/12wd#,.5penht#+4/12ht#,.5penht#+4/12ht#); "mini-alt-.na";
+  edraw (3W,4H)--(3W,1H){dir270}..{dir135}(1W,1H);
+  mdraw (1W,1H){dir 315}..{dir90}(2W,1H)..{dir135}(1W,3H)
+  ..{dir315}(0W,2H)..cycle;
+  bedraw (0W,2H)--(6W,-4H);
+  edraw (6W,4H)--(6W,-2H);
+endchar;
+beginchar(hex"D0",3/12wd#,.5penht#+3/12ht#,3/12ht#+.5penht#); "mini-ka-hook";
+  edraw (0W,0H){dir70}..{dir0}(1.5W,1.5H)..{dir225}(3W,-3H);
+endchar;
+beginchar(hex"D1",7/12wd#,.5penht#+4/12ht#,.5penht#+4/12ht#); "mini-.dha";
+  path q;
+  q = (5W,4H)--(5W,1.5H)--(4W,1.5H){dir180}..{dir270}(0W,-1.5H)..{dir0}(4W,-5H)
+        ..{dir90}(7W,-3H)..{dir180}(5.5W,-1.5H);
+  mdraw q;
+    z2 = q intersectionpoint ((4.5W,-2H)--(4.5W,-6H));
+    bedraw (5.5W,-1.5H){dir180}..{dir315}z2;
+endchar;
+beginchar(hex"D2",0/12wd#,.5penht#+4/12ht#,.5penht#); "alt-mini-post-ra";
+  edraw (0W,4H)--(-5W,0H);
+endchar;
+beginchar(hex"D3",5/12wd#,.5penht#+4/12ht#,2/12ht#+.5penht#); "mini-.sa";
+  path p;
+  p = (0W,4H)--(0W,1H){dir270}..{dir0}(2.5W,-2H)..{dir90}(5W,0H);
+  mdraw p;
+  z1 = p intersectionpoint ((2W,2H)--(6W,-2H));
+  edraw (0W,4H)--z1;
+endchar;
+beginchar(hex"D4",6/12wd#,.5penht#+6/12ht#,.5penht#+2/12ht#); "mini-tha";
+  mdraw (0W,2H){dir135}..(0W,5H)..(2W,3H)..(0W,0H);
+  mdraw (0W,0H)..(3W,-2H)..(6W,0H);
+endchar;
+beginchar(hex"D5",12/12wd#,.5penht#+ht#,.5penht#); "empty";
+  empty;
+endchar;
+beginchar(hex"D6",4/12wd#,.5penht#+3/12ht#,.5penht#+2/12ht#); "micro-va";
+  mdraw (0W,0H)..(2W,2H)..(4W,0H)..(2W,-2H)..cycle;
+endchar;
+beginchar(hex"D7",6/12wd#,.5penht#+4/12ht#,0/12ht#+.5penht#); "mini-''sa-loop";
+  bdraw (0W,0H){dir0}..(3W,1H)..{dir180}(3W,4H)..(2.5W,1H)..{dir0}(6W,0H);
+endchar;
+beginchar(hex"D8",8/12wd#,.5penht#+4/12ht#,3/12ht#+.5penht#); "mini-alt-k.sa";
+  bedraw (4W,4H){dir180}..(1W,1H)..{dir0}(4W,-1H)..{dir180}(5W,1.5H)
+  ..{dir315}(5W,-1H)--(7W,-3H);
+  bdraw (0W,4H)--(8W,4H);
+endchar;
+beginchar(hex"D9",0/12wd#,.5penht#+6/12ht#,.5penht#); "ya-left";
+  edraw (-1W,5H){dir0}..(1W,3H)..(0W,0H);
+endchar;
+beginchar(hex"DA",8/12wd#,.5penht#+3/12ht#,5/12ht#+.5penht#); "mini-''sa";
+  bdraw (3W,0.5H){dir180}..{dir90}(0W,1.5H)..{dir0}(2W,3H);
+  edraw (2W,3H){dir0}..{dir270}(5W,0H)..{dir180}(2W,-3H)
+  ..{dir90}(0W,-2.5H)..{dir0}(1W,-2H)..{dir315}(5W,-4.5H-.5penht);
+endchar;
+beginchar(hex"DB",12/12wd#,.5penht#+ht#,.5penht#); "empty";
+  empty;
+endchar;
+beginchar(hex"DC",12/12wd#,.5penht#+ht#,.5penht#); "empty";
+  empty;
+endchar;
+beginchar(hex"DD",12/12wd#,.5penht#+ht#,.5penht#); "empty";
+  empty;
+endchar;
+beginchar(hex"DE",12/12wd#,.5penht#+ht#,.5penht#); "empty";
+  empty;
+endchar;
+beginchar(hex"DF",12/12wd#,.5penht#+ht#,.5penht#); "empty";
+  empty;
+endchar;
+beginchar(hex"E0",12/12wd#,.5penht#+ht#,.5penht#); "empty";
+  empty;
+endchar;
+beginchar(hex"E1",1/12wd#,.5penht#+0/12ht#,.5penht#+0/12ht#); "1-horiz";
+  bedraw (0W,0H)--(1W,0H);
+endchar;
+beginchar(hex"E2",0/12wd#,.5penht#+3/12ht#,.5penht#+2/12ht#); "mini-ba";
+  path p; p = (0W,0H)..(3W,2H)..(6W,0H)..(3W,-2H)..cycle;
+  z1 = p intersectionpoint ((3W,0H)--(0W,3H));
+  z2 = p intersectionpoint ((3W,0H)--(6W,-3H));
+  bedraw (1.5W,1.5H)--(4.5W,-1.5H);
+endchar;
+beginchar(hex"E3",9/12wd#,.5penht#+4/12ht#,.5penht#); "mini-ca";
+  bedraw (0W,4H)--(5W,4H);
+  bdraw (4W,4H){dir200}..{dir270}(2W,2H)..{dir0}(5W,0H)..{dir90}(9W,4H);
+endchar;
+beginchar(hex"E4",5/12wd#,.5penht#+4/12ht#,5/12ht#+.5penht#); "micro-da";
+  edraw (4W,4H)--(4W,1.5H)--(3W,1.5H){dir180}..{dir270}(0W,-0.5H)
+  ..{dir0}(3W,-3H)
+  ..{dir90}(4.5W,-1.75H)..(3.75W,-1H)..{dir270}(3W,-1.75H)..{dir315}(4W,-3H)
+  --(5.25W+.5penht,-4.75H-.5penht);
+endchar;
+beginchar(hex"E5",2/12wd#,.5penht#+0/12ht#,.5penht#+0/12ht#); "2-horiz";
+  bedraw (0W,0H)--(2.5W,0H);
+endchar;
+beginchar(hex"E6",8/12wd#,.5penht#+4/12ht#,.5penht#+4/12ht#); "mini-.ta";
+  edraw (5W,4H)--(5W,1H)--(4W,1H){dir180}..
+    (0W,-2H)..{dir0}(4W,-4H)..{dir70}(8W,-2H);
+endchar;
+beginchar(hex"E7",6/12wd#,.5penht#+4/12ht#,.5penht#+2/12ht#); "mini-ga";
+  edraw (3W,4H)--(3W,-1H){dir270}..{dir135}(1W,-1H);
+  mdraw (1W,-1H){dir 315}..{dir90}(2W,-1H)..{dir135}(1W,1H)
+  ..{dir315}(0W,0H)..cycle;
+endchar;
+beginchar(hex"E8",5/12wd#,.5penht#+4/12ht#,.5penht#+7/12ht#); "mini-ha";
+  edraw (3.5W,4H)--(3.5W,1.5H)--(2W,1.5H){dir180}..{dir270}(0W,0.5H)
+  ..(1W,-1.5H);
+  bedraw (4W,-3H)..(4.5W,-2H)..{dir190}(1.5W,-1.25H)..{dir270}(0W,-2.5H)
+  ..{dir315}(3.5W,-6H)--(4.5W,-7H);
+endchar;
+beginchar(hex"E9",3/12wd#,.5penht#+0/12ht#,.5penht#+0/12ht#); "3-horiz";
+  bedraw (0W,0H)--(3.5W,0H);
+endchar;
+beginchar(hex"EA",9/12wd#,.5penht#+4/12ht#,0/12ht#+.5penht#); "mini-ja";
+  bedraw (4W,4H)..(6W,2H)..{dir180}(4W,0H)..{dir135}(0W,4H);
+  bdraw (3W,4H)--(9W,4H);
+endchar;
+beginchar(hex"EB",6/12wd#,.5penht#+3/12ht#,.5penht#+2/12ht#); "mini-ka";
+  mdraw (0W,0H)..(3W,2H)..(6W,0H)..(3W,-2H)..cycle;
+endchar;
+beginchar(hex"EC",8/12wd#,.5penht#+4/12ht#,4/12ht#+.5penht#); "mini-la";
+  bedraw (7W,-3H)..{dir90}(8W,0H)..{dir180}(6W,2H)..(4W,1H)
+  ..{dir315}(4.5W,-1H);
+  bedraw (4W,1H){dir135}..{dir180}(2W,2H)..{dir270}(0W,0H)
+  ..{dir315}(1.5W+0.5penht,-3H-0.5penht);
+  edraw (6W,4H)--(6W,2H);
+endchar;
+beginchar(hex"ED",8/12wd#,.5penht#+4/12ht#,.5penht#+3/12ht#); "mini-ma";
+  mdraw (3W,4H)--(3W,-1H){dir270}..{dir90}(0W,-1H)..{dir0}(1W,0H)--(8W,0H);
+endchar;
+beginchar(hex"EE",6/12wd#,.5penht#+0/12ht#,.5penht#+2/12ht#); "mini-na";
+  bdraw (3W,-1H){dir270}..{dir90}(0W,-1H)..{dir0}(1W,0H);
+  mdraw (1W,0H)--(6W,0H);
+endchar;
+beginchar(hex"EF",7/12wd#,.5penht#+0/12ht#,.5penht#+0/12ht#); "7-horiz";
+  bedraw (0W,0H)--(7.5W,0H);
+endchar;
+beginchar(hex"F0",5/12wd#,.5penht#+4/12ht#,2/12ht#+.5penht#); "mini-pa";
+  mdraw (0W,4H)--(0W,1H){dir270}..{dir0}(2.5W,-2H)..{dir90}(5W,0H);
+endchar;
+beginchar(hex"F1",8/12wd#,.5penht#+4/12ht#,.5penht#+5/12ht#); "mini-.da";
+  edraw (6W,4H)--(6W,1.5H)--(3W,1.5H)..{dir270}(1W,-0.5H)..{dir0}(3W,-2H)
+  ..{dir0}(6.5W,-1.25H)..(8W,-3H)..{dir180}(4W,-5H)..{dir135}(0W,-3H);
+endchar;
+beginchar(hex"F2",0/12wd#,.5penht#+4/12ht#,.5penht#); "basic post-ra";
+  edraw (0W,4H)--(-4W,0H);
+endchar;
+beginchar(hex"F3",6/12wd#,.5penht#+4/12ht#,.5penht#+4/12ht#); "mini-sa";
+  edraw (3W,4H)--(3W,0H){dir270}..{dir135}(1W,0H);
+  mdraw (1W,0H){dir 315}..{dir90}(2W,0H)..{dir135}(1W,2H)
+  ..{dir315}(0W,1H)..cycle;
+  bedraw (0W,1H)--(5W,-4H);
+  mdraw (3W,0H)--(6W,0H);
+endchar;
+beginchar(hex"F4",4/12wd#,.5penht#+4/12ht#,.5penht#+1/12ht#); "mini-ta";
+  edraw (4W,4H)--(2W,4H){dir180}..{dir270}(0W,2.5H)..{dir315}(2W,-1H);
+endchar;
+beginchar(hex"F5",5/12wd#,.5penht#+3/12ht#,.5penht#+3/12ht#); "midi-va";
+  mdraw (0W,0H)..(5W,0H)..cycle;
+endchar;
+beginchar(hex"F6",5/12wd#,.5penht#+3/12ht#,.5penht#+2/12ht#); "mini-va";
+  mdraw (0W,0H)..(2.5W,2H)..(5W,0H)..(2.5W,-2H)..cycle;
+endchar;
+beginchar(hex"F7",5/12wd#,.5penht#+3/12ht#,0/12ht#+.5penht#); "mini-ka-join-hook1";
+  edraw (0W,0H){dir60}..{dir0}(2.5W,1.4H)..{dir315}(5W,0H);
+endchar;
+beginchar(hex"F8",6/12wd#,.5penht#+4/12ht#,.5penht#+6/12ht#); "mini-k.sa";
+  edraw (6W,0H){dir180}..(1.5W,3H)..{dir0}(3W,4H)..(4W,3H)
+  ..{dir270}(0W,-2H)
+  ..{dir0}(3W,-4H)..{dir180}(4W,-1.5H)..{dir315}(4W,-4H)--(6W,-6H);
+endchar;
+beginchar(hex"F9",6/12wd#,.5penht#+0/12ht#,.5penht#+2/12ht#); "ya-bottom";
+  mdraw  (0W,0H){dir315}..(3W,-2H)..(6W,0H);
+endchar;
+beginchar(hex"FA",8/12wd#,.5penht#+3/12ht#,.5penht#+2/12ht#); "mini-~na";
+  bedraw (0W,1H)..(2W,2H)..{dir270}(4W,0H)..(2W,-2H)..(0W,-1H);
+  bdraw (4W,0H)--(8W,0H);
+endchar;
+beginchar(hex"FB",12/12wd#,.5penht#+ht#,.5penht#); "empty";
+  empty;
+endchar;
+beginchar(hex"FC",12/12wd#,.5penht#+ht#,.5penht#); "empty";
+  empty;
+endchar;
+beginchar(hex"FD",12/12wd#,.5penht#+ht#,.5penht#); "empty";
+  empty;
+endchar;
+beginchar(hex"FE",12/12wd#,.5penht#+ht#,.5penht#); "empty";
+  empty;
+endchar;
+beginchar(hex"FF",12/12wd#,.5penht#+ht#,.5penht#); "empty";
+  empty;
+endchar;
+\endinput

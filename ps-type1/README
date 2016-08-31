@@ -1,0 +1,152 @@
+%
+% README.TXT
+%
+% Revision 1.0 2004/08/24 Sergey Korop svk@lib.ru
+% Revision 1.1 2005/01/23 Sergey Korop svk@lib.ru
+%
+
+sanskrit-t1
+===========
+
+This package extends ``Sanskrit for LaTeX2e'' package with skt-series' fonts 
+in Type 1 format.
+
+
+The ``Sanskrit for LaTeX2e'' package (referred as 'origin' in the text below) 
+was created by Charles Wikner and it is available from the CTAN:
+
+  CTAN:language/sanskrit
+
+
+CONTENTS OF THIS README FILE
+============================
+
+1. License.
+
+2. Requirements.
+
+3. Revision History.
+
+4. Technical Issues.
+
+5. Installation.
+
+6. Feedback.
+
+
+
+
+LICENSE
+=======
+
+This package should be distributed and used together with it's origin 
+under the terms specified for that origin by Charles Wikner. Currently
+(as for version 2.0 of the origin) it is LaTeX Project Public License.
+
+
+REQUIREMENTS
+============
+
+TeX system capable for producing PostScript/PDF files (e.g. system including
+dvips, pdfTeX or similar software).
+
+
+The files that you should have are:
+
+readme.txt   This file.
+sktdoc.pdf   Documentation of origin typesetted using Type 1 fonts.
+skt.map      Configuration file for dvips and pdfTeX program.
+skt8.pfb     PS Type 1 font file for skt font at 8pt upright.
+skt9.pfb     PS Type 1 font file for skt font at 9pt upright.
+skt10.pfb    PS Type 1 font file for skt font at 10pt upright.
+sktb10.pfb   PS Type 1 font file for skt font at 10pt upright bold.
+sktf10.pfb   PS Type 1 font file for skt font at 10pt upright feint.
+skts10.pfb   PS Type 1 font file for skt font at 10pt slanted.
+sktbs10.pfb  PS Type 1 font file for skt font at 10pt bold slanted.
+sktfs10.pfb  PS Type 1 font file for skt font at 10pt feint slanted.
+
+
+REVISION HISTORY
+================
+ * Revision 1.0 2004/08/24 Sergey Korop svk@lib.ru
+
+    Initial release.
+
+ * Revision 1.1 2005/01/23 Sergey Korop svk@lib.ru
+
+    Fixed incompatibility with dvips: changed /FullName and /FontName 
+    font properties to match PS Font names specified in the map file.
+    Thanks to Mr. Hartmut Henkel for bugreport and proposed solution.
+
+TECHNICAL ISSUES
+================
+
+ 1. There are no UniqueIDs for the fonts provided in this package.
+    According to Type 1 font specs, this is allowed feature, but
+    it may probably confuse some font processing software and/or
+    hardware. However, I think that using no UniqueID is better
+    than guessing one with risk of collision.
+
+ 2. Fonts were generated from METAFONT sources automagically using
+    textrace program. Due to the nature of this process, some
+    discrepancies with original fonts may appear.
+
+ 3. To ensure backward compatibility, always make sure that you are 
+    using the same versions of *.pfb files and their *.mf origins.
+
+ 4. Names of PostScript fonts (i.e. /FullName, /FontName, etc) don't
+    match the names of original TeX fonts. I'm not sure this was the
+    best possible solution, but proposed names are:
+
+      -- self-explainatory (i.e one can always identify the origin);
+
+      -- preventing from possible name collision;
+
+      -- matching PostScript naming conventions, e.g. contain distinct 
+         Font Family and Weight parts.
+
+
+INSTALLATION
+============
+
+Depends from TeX system you use. Users of pdfTeX distributed with 
+teTeX or fpTeX may try following steps:
+
+ IMPORTANT: I can't predict the configuration of your system,
+            so use the commands below at your own risk.
+
+ 1. Put the files of this package into appropriate directories:
+
+      skt.map -> .../texmf/dvips/config/
+        *.pfb -> .../texmf/fonts/type1/sanskrit/
+
+    the name 'sanskrit' for font directory is not mandatory and may
+    be changed if you need.
+
+ 2. Run: 
+
+      texhash 
+      
+      kpsewhich skt10.pfb
+
+    to make sure your TeX software has access to those files. The last
+    command should output the full path to appropriate font file, 
+    if nothing appeared, consult your local TeXnicians. 
+
+    NOTE: don't run kpsewhich directly in the font directory --- this won't 
+    show you the real picture.
+
+ 3. Locate your pfdtex.cfg file (either global or private) and add following 
+    line:
+
+      map +skt.map
+
+This should make outline skt fonts available for docs produced by pdfTeX.
+
+
+FEEDBACK
+========
+
+Suggestions and bug reports to: Sergey Korop, <svk@lib.ru>. Please note
+that since I'm neither professional font designer nor experienced TeXnician,
+I will probably be unable to fulfill your requests.
