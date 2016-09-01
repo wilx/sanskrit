@@ -4,6 +4,7 @@
 % Revision 1.0 1996/02/13 Charles Wikner wikner@nacdh4.nac.ac.za
 % Revision 1.1 1996/03/05 added skt*.tfm files to distribution
 % Revision 2.0 1996/11/27 major upgrade.
+% Revision 2.2.1 2016/09/01 compilation fixes and modernization
 %
 % Copyright 1996 & 2002 Charles Wikner
 % This program can be redistributed and/or modified under the terms
@@ -18,10 +19,9 @@
 \documentclass[12pt]{article}
 \usepackage[larger,iitalic,uitalic]{skt}
 \usepackage{multicol}
-\usepackage{pstricks} % If not using pstricks, then comment out this line
-%                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+\usepackage{xcolor}
+\providecommand{\lightgray}{\color{lightgray}}
 
-\providecommand{\lightgray}{}  % default when pstricks not used
 
 \font\bigskt=skt10 at 46mm
 
@@ -302,7 +302,7 @@ The {\skti devanaagarii\/} accent marks themselves may be printed in
 colour (red is the tradition) or grey. This actually makes the text easier 
 to read: the sample text from the {\skti .Rgveda} on page~\pageref{rgtext}
 has the accents in the first four verses the default black, and in the next 
-four verses they are `lightgray' (using \verb+pstricks+).
+four verses they are `lightgray' (using \verb+xcolor+).
 To set the accent colour redefine the \verb+\ZK+ command anywhere in the 
 \verb+.skt+~file as \verb+\renewcommand{\ZK}[1]{{\lightgray #1}}+ for example.
 
@@ -1009,8 +1009,6 @@ To test the setup on this documentation file: first run the pre-processor
 \verb+skt sktdoc+ and then \verb+latex sktdoc+. 
 The files \verb+ifthen.sty+, \verb+relsize.sty+ and \verb+multicol.sty+ 
 are also required.
-(If you are not using \verb+dvips+ and \verb+pstricks+ then comment out 
-line~12 in \verb+sktdoc.skt+ first.)
 
 The files in this package are:
 
