@@ -18,6 +18,8 @@
 
 \documentclass[12pt]{article}
 \usepackage[larger,iitalic,uitalic]{skt}
+% Page size compatible both with Letter and A4 papers.
+\usepackage[paperheight=279.4mm, paperwidth=210mm]{geometry}
 \usepackage{multicol}
 \usepackage{xcolor}
 \providecommand{\lightgray}{\color{lightgray}}
@@ -128,8 +130,8 @@ that impact on the users' files (those with a \verb+.skt+ extension):
       should be checked against their new definitions.
 \vspace{5mm}
 
-{\large \textbf{Illustrations of Input and {\sktX Devanaagarii} Output}\par}
-
+{\large \textbf{Illustrations of Input and {\sktX Devanaagarii} Output}\par}\nopagebreak%
+%
 The following brief samples demonstrate the available styles of 
 {\skti devanaagarii\/} font and their encoding. In this mode upper 
 case characters are disallowed. 
@@ -1059,21 +1061,9 @@ The files in this package are:
                       reported bugs and (possibly) fixes or patches.
 \vspace{5mm}
 
-Suggestions and bug reports to:\\
-\verb+wikner@nacdh4.nac.ac.za+\\
-17 February 1997.
+Suggestions and bug reports to: \verb+vhaisman@gmail.com+
 
 \vfill
-{\small
-A 600 kbyte 600dpi PostScript print file of the documentation and samples 
-is available by anonymous ftp from
-\verb+ftp.nac.ac.za/wikner/sktdoc.ps600+.
-
-Beware: there is a very thin piece of wire to South Africa, 
-and it is stretched rather taut, so the best time to ftp 
-would be Sunday morning local time (GMT+2:00).
-}
-\vspace{5mm}
 
 \clearpage
 
