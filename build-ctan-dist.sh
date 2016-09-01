@@ -3,6 +3,14 @@
 set -e
 set -x
 
+cc -o skt skt.c
+
+./skt sktdoc.skt sktdoc.tex
+
+latexmk -gg -ps sktdoc.tex
+
+latexmk -g -pdf sktdoc.tex
+
 list_files() {
     find ./ps-type1 -type f \
          \( -name '*.pfb' \
