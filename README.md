@@ -64,9 +64,7 @@ other appropriate) path should point to `skt.exe`.
 
 To test the setup on the documentation file: first run the pre-processor
 `skt sktdoc` and then `latex sktdoc`. The files `ifthen.sty`,
-`relsize.sty`, and `multicol.sty` are also required. If you are not
-using `dvips` and `pstricks` then first comment out line 12 in
-`sktdoc.skt`.
+`relsize.sty`, `xcolor.sty` and `multicol.sty` are also required.
 
 The files that you should have are:
 
