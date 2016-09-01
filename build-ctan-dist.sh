@@ -3,12 +3,12 @@
 set -e
 set -x
 
-{
+list_files() {
     find ./ps-type1 -type f \
          \( -name '*.pfb' \
          -o -name '*.map' \
-         -o -name 'README' \) \
-         -print
+         -o -name 'README' \
+         \) -print
 
     find . -maxdepth 1 -type f \
          \( -name '*.sh' \
@@ -21,9 +21,11 @@ set -x
          -o -name 'sktdoc.pdf' \
          -o -name 'sktdoc.skt' \
          \) -print
-} | \
+}
+
+list_files | \
     tar -cvvzf sanskrit.tar.gz \
         -T - \
-        --transform 's,^\./,language/sanskrit/,' \
+        --transform 's,^\./,sanskrit/,' \
         --owner=sanskrit \
         --group=ctan
