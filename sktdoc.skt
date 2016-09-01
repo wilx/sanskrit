@@ -51,11 +51,15 @@
    {\mbox{\entrynumber{#1} \makebox[14mm][l]{#2}{#3}}\par%
     \hspace*{23.5mm}\mbox{#4}\par}
 
+\title{Sanskrit for \LaTeXe{}\\Version 2}
+\author{Charles Wikner}
+\date{}
+
 \begin{document}
 
-{\Large \textbf{Sanskrit for \LaTeXe \hfill Version 2}\par}%%%
-\vfill
-\vspace{1mm}
+\begin{titlepage}
+  \maketitle
+\end{titlepage}
 
 {\large \textbf{Introduction}\par}
 
