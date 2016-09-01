@@ -114,7 +114,7 @@ that impact on the users' files (those with a \verb+.skt+ extension):
       The accent marking symbols, \verb+<+ and \verb+>+, have changed.\\
 \makebox[8mm][c]{$\bullet$}
       The punctuation marks \verb+! ` ' [ ]+ no longer pass through as 
-      Roman.\newline\hspace*{8mm}\ (But see page 12 for producing them 
+      Roman.\newline\hspace*{8mm}\ (But see page \pageref{ref:punct} for producing them
       in version 2.)\\
 \makebox[8mm][c]{$\bullet$}
       The option file (\verb+skt.opt+) is no longer used; instead the 
@@ -839,7 +839,7 @@ or transliteration format as required, until the matching `\verb+}+'.
 The cycle is then repeated.
 
 Within the \verb+skt+ text, the following punctuation characters will be
-passed to the output as roman:
+passed to the output as roman:\label{ref:punct}
 
 \begin{center}
 \framebox{\texttt{ ( ) * + , - / : ; = ? }}
