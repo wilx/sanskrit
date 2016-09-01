@@ -1,10 +1,5 @@
-History
-=======
-
--   Revision 1.0 1996/02/13 Charles Wikner wikner@nacdh4.nac.ac.za
--   Revision 2.0 1996/11/27 Charles Wikner wikner@nacdh4.nac.ac.za
--   Revision 2.2 2002/01/02 Charles Wikner wikner@nac.ac.za
--   Revision 2.2.1 2016/09/01 Václav Haisman vhaisman@gmail.com
+Introduction
+============
 
 The package contains the font files and pre-processor for printing
 Sanskrit in both devanagari and transliterated roman with diacritics.
@@ -37,7 +32,7 @@ Some features of the transliterated roman:
 -   Technical transliterated output using four ‘cases’, following the
     style of S.M.Katre in his translation of the A.s.taadhyaayii.
 
--   Each transliteration mode has four styles: roman/italic ✕ bold/normal.
+-   Each transliteration mode has four styles: roman/italic x bold/normal.
 
 The font and supporting files are designed for use with LaTeX2e; it is a
 bitmap font using Metafont.
@@ -133,3 +128,16 @@ Eight .tfm font files for above.
 `sktbugxx.txt`  
 There may be a series of such files, where ‘xx’ is a two-digit number,
 listing reported bugs and (possibly) fixes or patches.
+
+History
+=======
+
+-   Revision 1.0 1996/02/13 Charles Wikner wikner@nacdh4.nac.ac.za
+-   Revision 2.0 1996/11/27 Charles Wikner wikner@nacdh4.nac.ac.za
+-   Revision 2.2 2002/01/02 Charles Wikner wikner@nac.ac.za
+-   Revision 2.2.1 2016/09/01 Václav Haisman vhaisman@gmail.com
+
+I, Václav Haisman, am only a maintainer pro tempore. If you are reading this
+and you have patches to submit and actual interest in and knowledge of
+Sanskrit and LaTeX, do not hesitate to ask for maintainership of this
+package. I will gladly pass the baton over to you.
