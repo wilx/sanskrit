@@ -22,4 +22,8 @@ set -x
          -o -name 'sktdoc.skt' \
          \) -print
 } | \
-    tar -cvvzf sanskrit.tar.gz -T - --owner=sanskrit --group=ctan
+    tar -cvvzf sanskrit.tar.gz \
+        -T - \
+        --transform 's,^\./,language/sanskrit/,' \
+        --owner=sanskrit \
+        --group=ctan
