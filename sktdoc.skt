@@ -23,7 +23,7 @@
 \usepackage{multicol}
 \usepackage{xcolor}
 \providecommand{\lightgray}{\color{lightgray}}
-
+\usepackage{microtype}
 
 \font\bigskt=skt10 at 46mm
 
