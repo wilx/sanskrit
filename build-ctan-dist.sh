@@ -11,6 +11,8 @@ latexmk -gg -ps sktdoc.tex
 
 latexmk -g -pdf sktdoc.tex
 
+chmod -R +r .
+
 list_files() {
     find ./ps-type1 -type f \
          \( -name '*.pfb' \
