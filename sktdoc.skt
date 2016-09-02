@@ -92,7 +92,7 @@ Some features of the transliterated Roman:\\[2mm]
 \makebox[8mm][c]{$\bullet$}
       Full accent marking and stacking in basic transliteration mode.\\
 \makebox[8mm][c]{$\bullet$}
-      Four `cases' (as per S\,M\,Katre) in technical transliteration mode.\\
+      Four `cases' (as per S.\,M.\,Katre) in technical transliteration mode.\\
 \makebox[8mm][c]{$\bullet$}
       Each transliteration mode has four styles: Roman/italic $\times$\ 
       bold/normal. 
@@ -1953,17 +1953,17 @@ default; where it is affected by user-selectable options, all the possible
 forms are shown.
 The sources used in compiling this table, in order consulted, are:\\
 \makebox[2mm][l]{\textsuperscript{c}}
-Michael Coulson, \emph{Teach Yourself Sanskrit}, pp 22-24.\\
+Michael Coulson, \emph{Teach Yourself Sanskrit}, pp.~22--24.\\
 \makebox[2mm][l]{\textsuperscript{m}}
-Monier-Williams, \emph{A Practical Grammar of the Sanskrit Language}, p 2.\\
+Monier-Williams, \emph{A Practical Grammar of the Sanskrit Language}, p.~2.\\
 \makebox[2mm][l]{\textsuperscript{p}}
-S.C.Vasu, {\skti A.s.taadhyaayii} \emph{of} {\skti Paa.nini},
+S.\,C.\,Vasu, {\skti A.s.taadhyaayii} \emph{of} {\skti Paa.nini},
            (Riddled with typo's.)\\
 \makebox[2mm][l]{\textsuperscript{a}}
-J~E~Agenbroad, \emph{Difficult Characters: A Collection of Devanagari 
+J.\,E.\,Agenbroad, \emph{Difficult Characters: A Collection of Devanagari 
            Conjunct\newline\hspace*{2mm} 
            Consonants}, Int.~Assoc.~of Orientalist Librarians, 
-           Bulletin 38, pp.~17--53.
+           Bulletin~38, pp.~17--53.
 \addtolength{\parskip}{-2mm}
 \end{minipage}
 
