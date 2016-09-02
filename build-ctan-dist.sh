@@ -3,6 +3,19 @@
 set -e
 set -x
 
+command_exists() {
+    type "$1" &> /dev/null ;
+}
+
+if command_exists pandoc ; then
+    pandoc --smart \
+           --verbose \
+           -f markdown-raw_tex \
+           -t latex \
+           -o README.pdf \
+           README.md
+fi
+
 cc -o skt skt.c
 
 ./skt sktdoc.skt sktdoc.tex
@@ -30,6 +43,8 @@ list_files() {
          -o -name 'sktdoc.ps' \
          -o -name 'sktdoc.pdf' \
          -o -name 'sktdoc.skt' \
+         -o -name 'README.md' \
+         -o -name 'README.pdf'
          \) -print
 }
 
