@@ -44,7 +44,7 @@ list_files() {
          -o -name 'sktdoc.pdf' \
          -o -name 'sktdoc.skt' \
          -o -name 'README.md' \
-         -o -name 'README.pdf'
+         -o -name 'README.pdf' \
          \) -print
 }
 
