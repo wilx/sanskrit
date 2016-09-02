@@ -29,7 +29,7 @@ Some features of the transliterated roman:
 -   Transliterated output in roman script with diacritics, using the
     same encoding scheme as for producing devanaagarii.
 
--   Technical transliterated output using four ‘cases’, following the
+-   Technical transliterated output using four 'cases', following the
     style of S.M.Katre in his translation of the A.s.taadhyaayii.
 
 -   Each transliteration mode has four styles: roman/italic x bold/normal.
@@ -49,7 +49,7 @@ command would be `mf "\mode=ljfour; mag=1; input skt8;"` to produce the
 produced automatically on demand; if not, then you will need to
 
 1.  Convert the .gf files with the command `gftopk skt8.600gf` (the
-    number ‘600’ depends upon your printer resolution and
+    number '600' depends upon your printer resolution and
     the magnification) to produce `skt8.pk` which must be copied to the
     appropriate subdirectory.
 2.  Repeat this process with all eight fonts.
