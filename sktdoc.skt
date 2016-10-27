@@ -22,10 +22,11 @@
 \usepackage[paperheight=279.4mm, paperwidth=210mm]{geometry}
 \usepackage{multicol}
 \usepackage{xcolor}
+\usepackage{mflogo}
 \providecommand{\lightgray}{\color{lightgray}}
 \usepackage{microtype}
 
-\font\bigskt=skt10 at 46mm
+\DeclareFixedFont{\bigskt}{OT1}{skt}{m}{n}{46mm}
 
 \pagenumbering{skt}
 
@@ -977,7 +978,7 @@ $\cdot\ \cdot\ \cdot\ \cdot\ \cdot\ \cdot\ \cdot\ \cdot\ \cdot\ \cdot\ \cdot$
 \end{center}
 
 Finally, the simplest method of producing larger sizes of the font is to
-add the command \verb+\font\bigskt=skt10 at 46mm+ for example, in the
+add the command \verb+\DeclareFixedFont{\bigskt}{OT1}{skt}{m}{n}{46mm}+ for example, in the
 preamble to the document, and then use \verb+{+\verb+\skt \bigskt tattvamasi}+
 in the text body. The result (in `lightgray' to save ink) is:
 \vfill
@@ -992,7 +993,7 @@ in the text body. The result (in `lightgray' to save ink) is:
 If \verb+sktbugxx.txt+ files exist, you may want to implement
 any changes or patches first.
 
-Run the {\sc metafont} program on the eight font source files (the typical 
+Run the \MF{} program on the eight font source files (the typical 
 command would be \verb+mf "\mode=ljfour; mag=1; input skt8;"+)
 to produce the \verb+.tfm+ files. 
 If you are using \verb+dvips+, then the \verb+.pk+ files will be produced 
@@ -1038,21 +1039,21 @@ The files in this package are:
                     ASCII code\newline\hspace*{22mm}characters) for 
                     the skt-series fonts.
 
-\textbf{skt8.mf} {\sc metafont} source file for skt font at 8pt upright.
+\textbf{skt8.mf} \MF{} source file for skt font at 8pt upright.
 
-\textbf{skt9.mf} {\sc metafont} source file for skt font at 9pt upright.
+\textbf{skt9.mf} \MF{} source file for skt font at 9pt upright.
 
-\textbf{skt10.mf} {\sc metafont} source file for skt font at 10pt upright.
+\textbf{skt10.mf} \MF{} source file for skt font at 10pt upright.
 
-\textbf{sktb10.mf} {\sc metafont} source file for skt font at 10pt bold upright.
+\textbf{sktb10.mf} \MF{} source file for skt font at 10pt bold upright.
 
-\textbf{sktf10.mf} {\sc metafont} source file for skt font at 10pt feint upright.
+\textbf{sktf10.mf} \MF{} source file for skt font at 10pt feint upright.
 
-\textbf{skts10.mf} {\sc metafont} source file for skt font at 10pt slanted.
+\textbf{skts10.mf} \MF{} source file for skt font at 10pt slanted.
 
-\textbf{sktbs10.mf} {\sc metafont} source file for skt font at 10pt bold slanted.
+\textbf{sktbs10.mf} \MF{} source file for skt font at 10pt bold slanted.
 
-\textbf{sktfs10.mf} {\sc metafont} source file for skt font at 10pt feint slanted.
+\textbf{sktfs10.mf} \MF{} source file for skt font at 10pt feint slanted.
 
 \textbf{skt*.tfm} Eight \verb+.tfm+ font files for above.
 
