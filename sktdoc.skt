@@ -25,8 +25,20 @@
 \usepackage{mflogo}
 \providecommand{\lightgray}{\color{lightgray}}
 \usepackage{microtype}
+\usepackage{titlesec}
+
+% Tweak section title format to conserve space.
+\titleformat{\section}{\large\bfseries}{\thesection}{\parskip}{}
+% Make \section*s unnumbered.
+\setcounter{secnumdepth}{0}
 
 \DeclareFixedFont{\bigskt}{OT1}{skt}{m}{n}{46mm}
+
+% Dotted hrule.
+\makeatletter
+\newcommand{\Dotfill}{\leavevmode \cleaders \hb@xt@ .9em{\hss .\hss }\hfill \kern \z@}
+\makeatother
+\newcommand{\dotrule}{\hspace*{\fill}\parbox{0.3\textwidth}{\Dotfill}\hspace*{\fill}}
 
 \pagenumbering{skt}
 
@@ -64,8 +76,11 @@
   \maketitle
 \end{titlepage}
 
-{\large \textbf{Introduction}\par}
+\tableofcontents
+\clearpage
 
+\section{Introduction}%
+%
 The package contains the font files and pre-processor for printing
 Sanskrit text in both {\skti devanaagarii} and transliterated Roman
 with diacritics.
@@ -100,10 +115,9 @@ Some features of the transliterated Roman:\\[2mm]
 
 Indebtedness to the earlier work of Frans Velthuis and Dominik Wujastyk is
 acknowledged: the overall structure and encoding is based upon theirs.
-\vspace{3.5mm}
 
-{\large \textbf{Upgrading from Version 1}\par}
-
+\section{Upgrading from Version 1}%
+%
 Every file in this package differs greatly from the Version~1 release,
 so all need to be replaced, and all related pixel files (e.g.~\verb+skt*.pk+)
 should be deleted.
@@ -131,7 +145,7 @@ that impact on the users' files (those with a \verb+.skt+ extension):
       should be checked against their new definitions.
 \vspace{5mm}
 
-{\large \textbf{Illustrations of Input and {\sktX Devanaagarii} Output}\par}\nopagebreak%
+\section{Illustrations of Input and {\sktX Devanaagarii} Output}%
 %
 The following brief samples demonstrate the available styles of 
 {\skti devanaagarii\/} font and their encoding. In this mode upper 
@@ -161,10 +175,10 @@ density; the extremes are:
 {\skt [1- 2- 3-] naiva ki.mcitkaromiiti yukto manyeta tattvavit|}\\[2mm]
 {\skt [1+ 2+ 3+] naiva ki.mcitkaromiiti yukto manyeta tattvavit|[1- 2- 3-]}
 \end{center}
-\vspace{-1mm}
 
-{\large\bf Illustrations of Basic Transliteration\par}
 
+\section{Illustrations of Basic Transliteration}%
+%
 The same input may also be used to produce transliterated output.
 Note that the `\verb+iitalic+' option is selected, but not `\verb+xitalic+'.
 
@@ -200,8 +214,8 @@ but facilitate the printing of capital letters, for example:\\[2mm]
                    {\sktI  Bhaarate Raamo vasati}
 \vspace{4mm}
 
-{\large\bf Illustrations of Technical Transliteration\par}
-
+\section{Illustrations of Technical Transliteration}%
+%
 As in the basic transliteration mode, there are four font styles selected
 through \verb+sktt/T+ or \verb+sktu/U+; however, in this mode only the
 Western accent marking is allowed. This technical (grammatical) mode
@@ -231,12 +245,9 @@ may be encoded in the technical mode as\\[3mm]
 This translates as: A substitute {\sktT kU\/} replaces {\sktT c\/} or 
 {\sktT j\/} before {\sktT .NyaT\/} or [affixes]\newline\hspace*{35mm}with 
 {\sktT GH\/} as an {\sktT _I_T\/} marker.
-\vspace{5mm}
 
-\clearpage
-
-{\large \textbf{Vedic Accent Marking}\par}
-
+\section{Vedic Accent Marking}%
+%
 Since the significance of the {\skti devanaagarii} accent marking may
 differ between {\skti Veda\/}s (e.g.~{\skt a!} is {\skti svarita} in
 {\skti .Rgveda}, but {\skti udaatta} in {\skti Kaa.thaka\/}), the character
@@ -317,10 +328,9 @@ In transiteration, the accents should stack correctly and track in
 italics, e.g.:\\
 {\sktt [38+]_.r.r'#} and {\sktu _.r.r'#[38-]} (signifying a long or short 
 {\skti udaatta .r} used for pronunciation only).
-\vspace{5mm}
 
-{\large \textbf{Dynamic Option Selection}\par}
-
+\section{Dynamic Option Selection}%
+%
 The selection and deselection of options may occur anywhere in the preamble
 (but after \verb+\usepackage{skt}+) or in the body of the text. 
 By default all options are deselected
@@ -355,12 +365,11 @@ the same input text line. For example:\\[2mm]
 Note that once an option is selected (anywhere in the file), it remains
 in effect until explicitly deselected, irrespective of \verb+{+\verb+\skt...}+
 groupings.
-\vspace{5mm}
 
 \clearpage
 
-{\large \textbf{Control Options (0--11)}\par}
-
+\section{Control Options (0--11)}%
+%
 The control options are all those that do not affect character shapes in
 transliteration or {\skti devanaagarii}.
 \vfill
@@ -519,10 +528,9 @@ hyphens, \verb+\-+, in the input text.
 
 The auto-hyphenation is extremely crude (it adds a discretionary hyphen
 after every vowel!), and should only be used for drafts.
-\vspace{3mm}
 
-{\large \textbf{Transliteration Options (20--38)}\par}
-
+\section{Transliteration Options (20--38)}%
+%
 The following table illustrates the transliteration options available:\\[2mm]
 \renewcommand{\arraystretch}{1}
 \begin{tabular}{|c|c|c|c|c|}
@@ -565,12 +573,11 @@ and size used, it may be used to overcome the difficulty distinguishing
 between the macron and the tilde (i.e.~{\skti aa a# [38+]a#[38-]\/}); and
 secondly, it may be used in technical grammar to indicate an explicit
 short vowel ({\sktt [38+]a#[38-]}) or long or short ({\sktt [38+]aa#[38-]})
-\vspace{5mm}
 
 \pagebreak
 
-{\large \textbf{{\sktX Devanaagarii} Character Options(40--79)}\par}
-
+\section{{\sktX Devanaagarii} Character Options(40--79)}%
+%
 The table illustrates the basic character forms available: where multiple
 options apply to the same input (e.g.~65 and~75) the selected option
 with the highest value will apply. Although {\sktX k.sa} and {\sktX j~na}
@@ -613,8 +620,8 @@ rather than in the next section.
 \end{tabular}
 \vfill
 
-{\large \textbf{{\sktX Devanaagarii Sa.myoga\/} Options (100--199)}\par}
-
+\section{{\sktX Devanaagarii Sa.myoga\/} Options (100--199)}%
+%
 The table illustrates the basic {\skti sa.myoga\/} options available.
 In general, the default {\skti sa.myoga\/} is the most compact, and the 
 options use a looser form: the latter may be easier to read, particularly
@@ -819,8 +826,8 @@ the highest value selected will apply.}
 
 \clearpage
 
-{\large \textbf{The Pre-processor: skt.c}\par}
-
+\section{The Pre-processor: skt.c}%
+%
 This ANSI C program processes the source text file (with a default \verb+.skt+
 filename extension) to produce a file suitable for \LaTeXe\ (with a default
 \verb+.tex+ extension). For example, the command \verb+skt test+ will convert
@@ -876,8 +883,8 @@ encountered.
 
 \pagebreak
 
-{\large \textbf{The skt package: skt.sty}\par}
-
+\section{The skt package: skt.sty}%
+%
 The following statement needs to be in the preamble of the document:\\
 \verb+\usepackage[options]{skt}+\\
 where `options' may be any or all or none of the following:
@@ -911,8 +918,8 @@ included in the standard \LaTeXe\ distribution, and Donald Arseneau's
 \verb+relsize.sty+ which you may need to get from the CTAN archives.
 \vspace{5mm}
 
-{\large \textbf{Supplementary Notes}\par}
-
+\section{Supplementary Notes}%
+%
 The program can be simply `fooled' when necessary by inserting a 
 \LaTeX\ null string `\verb+{}+': for example `\verb+{{}\skt >}+' will
 not be `seen' by the pre-processor and thus passed to the output unchanged.
@@ -924,12 +931,7 @@ This requirement may arise (as for example in producing the font map) because
 the pre-processor requires that there be a vowel before an accent or
 {\skti anusvaara}.
 
-\begin{center}
-\vspace{-1mm}
-$\cdot\ \cdot\ \cdot\ \cdot\ \cdot\ \cdot\ \cdot\ \cdot\ \cdot\ \cdot\ \cdot$
-\vspace{-1mm}
-\end{center}
-
+\dotrule
 %\pagebreak
 
 For those rare words that have two successive vowels in {\skti devanaagarii\/} 
@@ -957,11 +959,7 @@ The same trick may be used to split any multicharacter input, provided
 that what is either side of the \verb+{}+ is still valid, for example:\\
 \verb+{+\verb+\skt tha t{}ha}+ produces \ {\skt tha t{}ha}.
 
-\begin{center}
-\vspace{-1mm}
-$\cdot\ \cdot\ \cdot\ \cdot\ \cdot\ \cdot\ \cdot\ \cdot\ \cdot\ \cdot\ \cdot$
-\vspace{-1mm}
-\end{center}
+\dotrule
 
 Some \LaTeX\ commands are `fragile' and balk at having {\bf skt} commands within
 their arguments, e.g.~\verb+\section{\+\verb+skt bahuvriihi}+ produces the 
@@ -971,25 +969,18 @@ fragile command, e.g.\\
 \verb+\newcommand{\bahuvriihi}{\+\verb+skt bahuvriihi}+\\
 \verb+\section{\protect\bahuvriihi}+
 
-\begin{center}
-\vspace{-1mm}
-$\cdot\ \cdot\ \cdot\ \cdot\ \cdot\ \cdot\ \cdot\ \cdot\ \cdot\ \cdot\ \cdot$
-\vspace{-1mm}
-\end{center}
+\dotrule
 
 Finally, the simplest method of producing larger sizes of the font is to
 add the command \verb+\DeclareFixedFont{\bigskt}{OT1}{skt}{m}{n}{46mm}+ for example, in the
 preamble to the document, and then use \verb+{+\verb+\skt \bigskt tattvamasi}+
 in the text body. The result (in `lightgray' to save ink) is:
 \vfill
-
+\nopagebreak%
 {\skt [1- 2- 3+]{\lightgray \bigskt tattvamasi[1+ 2+ 3-]}}
-\vfill
 
-\clearpage
-
-{\large \textbf{Installation}\par}
-
+\section{Installation}%
+%
 If \verb+sktbugxx.txt+ files exist, you may want to implement
 any changes or patches first.
 
@@ -1222,7 +1213,7 @@ Suggestions and bug reports to: \verb+vhaisman@gmail.com+
 \addtolength{\parskip}{2mm}
 \renewcommand{\baselinestretch}{1.1}
 
-{\large \textbf{Sample Text from {\sktX .Rgveda 10..125..}}\par}
+\section{Sample Text from {\sktX .Rgveda 10..125..}}
 \vspace{10mm}
 
 \label{rgtext}
@@ -1288,7 +1279,7 @@ pa_ro di_vaa pa_ra e_naa p.r!thivyaitaava!tii
 \addtolength{\parskip}{4mm}
 \renewcommand{\baselinestretch}{1.2}
 
-{\large \textbf{ Sample Text from {\sktX Saamaveda}}\par}
+\section{Sample Text from {\sktX Saamaveda}}
 \vspace{6mm}
 
 {\sktI Saamaveda Sa.mhitaa} ({\skti Kauthuma\/}), verses 523--528.
@@ -1947,8 +1938,8 @@ F0 &
 
 \hspace*{17mm}\begin{minipage}{137mm}
 \addtolength{\parskip}{2mm}
-{\Large\bf {\sktX Sa.myoga} Table\par}
-
+\section{{\sktX Sa.myoga} Table}%
+%
 This lists the {\skti sa.myoga} tested by the font: the first shown is the
 default; where it is affected by user-selectable options, all the possible 
 forms are shown.
