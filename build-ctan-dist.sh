@@ -24,12 +24,16 @@ latexmk -gg -ps sktdoc.tex
 
 latexmk -g -pdf sktdoc.tex
 
+rm -f ./ps-type1/sktdoc.pdf
+ln ./sktdoc.pdf ./ps-type1/sktdoc.pdf
+
 chmod -R +r .
 
 list_files() {
     find ./ps-type1 -type f \
          \( -name '*.pfb' \
          -o -name '*.map' \
+         -o -name 'sktdoc.pdf' \
          -o -name 'README' \
          \) -print
 
@@ -48,7 +52,7 @@ list_files() {
          \) -print
 }
 
-list_files | \
+list_files | sort | \
     tar -cvvzf sanskrit.tar.gz \
         -T - \
         --transform 's,^\./,sanskrit/,' \
