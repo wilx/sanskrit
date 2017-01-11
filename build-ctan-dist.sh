@@ -16,7 +16,7 @@ if command_exists pandoc ; then
            README.md
 fi
 
-cc -o skt skt.c
+${CC:-cc} -o skt skt.c
 
 ./skt sktdoc.skt sktdoc.tex
 
