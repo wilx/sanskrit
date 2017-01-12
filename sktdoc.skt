@@ -452,6 +452,7 @@ Option selection: & +  & -- & {\skt [4+ 5-]
 %             ha<3k>vyadaa<2>taye ni<2r> hotaa<2r> satsi va<3>hi<1>si<2>}\\
 \cline{2-4}
 \end{tabular}{\skt [40- 4- 5-]}
+\vfill
 
 \framebox[\textwidth]{\hspace*{5mm}\begin{minipage}{130mm}
 {\bf Option 6:} Enable {\skti .Rg/Tait@} accents in basic transliteration mode.
@@ -498,6 +499,7 @@ This enables the printing of warning messages by the pre-processor when using
 a {\skti viraama} in forming a {\skti sa.myoga}. Given the range of 
 {\skti sa.myoga} supported by the font, this warning should only occur
 with very exotic syllables.
+\vfill
 
 \framebox[\textwidth]{\hspace*{5mm}\begin{minipage}{130mm}
 {\bf Option 9:} Enable obey-lines.
@@ -519,6 +521,7 @@ the \verb+.skt+ file.
 
 Without this option enabled, the pre-processor will discard any discretionary
 hyphens, \verb+\-+, in the input text.
+\vfill
 
 \framebox[\textwidth]{\hspace*{5mm}\begin{minipage}{130mm}
 {\bf Option 11:} Enable auto-hyphenation.
