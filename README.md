@@ -134,6 +134,7 @@ History
 -   Revision 2.0 1996/11/27 Charles Wikner wikner@nacdh4.nac.ac.za
 -   Revision 2.2 2002/01/02 Charles Wikner wikner@nac.ac.za
 -   Revision 2.2.1 2016/09/01 Václav Haisman vhaisman@gmail.com
+-   Revision 2.2.2 2017/02/22 Václav Haisman vhaisman@gmail.com
 
 I, Václav Haisman, am only a maintainer pro tempore. If you are reading this
 and you have patches to submit and actual interest in and knowledge of

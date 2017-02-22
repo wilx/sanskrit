@@ -15,6 +15,7 @@
 /*      Revision 2.1 1997/02/11 minor corrections; add more accents           */
 /*      Revision 2.2 2002/01/02 minor corrections; tidy                       */
 /*      Revision 2.2.1 2016-08-31 compilation and other fixes                 */
+/*      Revision 2.2.2 2017-02-22 portability and other tweaks                */
 /*                                                                            */
 /*      Copyright 1996 & 2002 Charles Wikner                                  */
 /*      This program can be redistributed and/or modified under the terms     */
@@ -24,7 +25,9 @@
 /*                                                                            */
 /******************************************************************************/
 
+#ifndef DEBUG
 #define DEBUG 0
+#endif
 
 /* Set DEBUG 0 for normal                                                     */
 /* If non-zero, STDIO is used for input/output                                */
@@ -36,9 +39,9 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
+#include <stdlib.h>
 
 /* DECLARE FUNCTIONS */
-void   exit        (int);
 void   search      (void);
 void   write_outbuf(void);
 void   write_line  (char *);
@@ -60,7 +63,7 @@ void   samyoga     (void);
 int    aci         (char *);
 void   translit    (void);
 
-FILE *infile, *outfile, *fopen();
+FILE *infile, *outfile;
 char infilename[80];
 char outfilename[80];
 #define FILENAME_SCANF "%79s"
@@ -177,11 +180,11 @@ main(int argc,
     }
   p = strchr(infilename,'.');
   if (p == 0) strcat(infilename,".skt");  /* default input file extension */
-  if ((infile=fopen(infilename,"r")) == NULL)
+  if ((infile=fopen(infilename,"rb")) == NULL)
         { printf("Cannot open file %s\n",infilename); exit(1); }
   p = strchr(outfilename,'.');
   if (p == 0) strcat(outfilename,".tex"); /* set default output file extension */
-  if ((outfile=fopen(outfilename,"w")) == NULL)
+  if ((outfile=fopen(outfilename,"wb")) == NULL)
         { printf("Cannot open output file %s\n",outfilename); exit(1); }
 #else
   printf("Enter text (blank line terminates program) :\n");
@@ -1534,7 +1537,7 @@ switch (bwh)
 
 void samyoga(void)
 {
-char *p, sam_flag; int j,k,n;
+char *p, sam_flag; int j,k; size_t n;
  option[0] = 0;
  sam_flag = 0;
  p = s_ptr;
