@@ -1052,7 +1052,7 @@ void single(void)
      case 'H':   VA( 7,0,0, 0,0,0, 3,6,0,0,"H");          /* visarga              */
                  if (interspace==5) {strcat(work,"\\ZS{2}"); break;}
                  if (interspace>5) {strcat(work,"\\ZS{4}"); break;}
-     case 'Y':   VA(12,0,0, 0,0,0, 2,3,0,0,"Y");  break;  /* avagraha             */
+     case 'Y':   VA(12,0,0, 0,0,0, 2,3,0,0,"Y");  /* avagraha             */
                  if (whiteness < 3) { CAT(tmp,"\\ZS{",2*(3-whiteness),"}"); }
                  break;
      case '$':   if (option[61]) {
