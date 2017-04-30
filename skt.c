@@ -2229,7 +2229,7 @@ switch_flag(char const * Y, char const * Z, int * flag) {
 
 #define XLIT(X,Y,Z) case X: SWITCHFLAG(Y,Z); break
 
-#define STACK(X,Y,Z) case X: ISTACK(X,Y,Z)
+#define STACK(X,Y,Z) case X: ISTACK(X,Y,Z); break
 
 #define ISTACK(X,Y,Z) c=0; if(*p=='#'){c+=30; if(option[38]) c+=30; p++;}  \
          switch(*p)                                                        \
@@ -2250,7 +2250,7 @@ switch_flag(char const * Y, char const * Z, int * flag) {
            else { if(option[11] && (*p!='\0') && !(*p=='-' && option[10])) \
                       strcat(outbuf,"\\-"); }                              \
          }                                                                 \
-         break
+
 
 #define NASAL(X,Y,Z) case X: if (*p == '#') strcat(outbuf,"\\~{");         \
                              SWITCHFLAG(Y,Z);                              \
