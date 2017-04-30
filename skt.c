@@ -794,7 +794,8 @@ void sktcont(void)
 
 static char const hal_chars[] = "BCDFGJKLNPQRSTVZbcdfghjklmnpqrstvyz";
                                               /* internal code for consonants */
-#define ISHAL(c) (((strchr(hal_chars,c) != 0) && c) ? TRUE : FALSE)
+#define ISHAL(c) (((c) && (strchr(hal_chars,(c)) != 0)) ? TRUE : FALSE)
+
 void
 clr_vadata(void)
 {
