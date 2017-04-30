@@ -336,7 +336,6 @@ char * str_find(char *buf, char *str)
 
 void get_line(void)
 {
-char *p;
   i_ptr = inbuf;
   *i_ptr = '\0';
   line_cnt++;
@@ -434,7 +433,7 @@ chrcat(w,('0'+((y)%10))); strcat(w,z)
 
 void process(void)
 { int j,k,cap_flag, underscore, nasal_vowel, n_flag, vedic;
-unsigned char *i, c,d;
+unsigned char c,d;
 #define CF ac_flag=svara_flag=ylv_flag=underscore=cap_flag=roman_flag=nasal_vowel=n_flag=vedic=FALSE
 #define CC CF; continue
 #define CR ac_flag=svara_flag=ylv_flag=underscore=cap_flag=nasal_vowel=n_flag=vedic=FALSE;
@@ -1476,7 +1475,6 @@ void backac(void)
 
 void autohyphen(void)
 {
-char *p;
    if (option[11] && *s_ptr!='\0' && ac_char
                       && !(*s_ptr=='-'  && option[10]))
       {
