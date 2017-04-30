@@ -797,9 +797,21 @@ static char const hal_chars[] = "BCDFGJKLNPQRSTVZbcdfghjklmnpqrstvyz";
 #define ISHAL(c) (((strchr(hal_chars,c) != 0) && c) ? TRUE : FALSE)
 
 #define CLRVADATA wid=top=bot=dep=rldep=fbar=fwh=bwh=ra=ya=bs=vaflg=0
+void
+clr_flags(void)
+{
+  ac_hook=0;
+  post_ra=0;
+  pre_ra=0;
+  virama=0;
+  bindu=0;
+  candrabindu=0;
+  accent=0;
+  hal_flag=0;
+  post_ya=0;
+}
 
-#define CLRFLAGS \
-ac_hook=post_ra=pre_ra=virama=bindu=candrabindu=accent=hal_flag=post_ya=0
+#define CLRFLAGS clr_flags();
 
 #define VA(p,q,r,s,t,u,v,w,x,y,z) \
 wid+=p; top=q; bot=r; dep=s; rldep=t; if(!vaflg){fbar=u; fwh=v;} bwh=w; \
