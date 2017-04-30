@@ -427,9 +427,16 @@ void error(char *s, int n)
 
 #define ISAC(c) (((strchr("aAiIuUwWxXeEoO",c) != 0) && c) ? TRUE : FALSE)
 
-#define CAT(w,x,y,z) \
-strcat(w,x); if((y)>9)chrcat(w,('0'+((y)/10))); \
-chrcat(w,('0'+((y)%10))); strcat(w,z)
+void
+cat(char * w, char const * x, int y, char const * z)
+{
+  strcat(w,x);
+  if((y)>9) chrcat(w,('0'+((y)/10)));
+  chrcat(w,('0'+((y)%10)));
+  strcat(w,z);
+}
+
+#define CAT(w,x,y,z) cat((w),(x),(y),(z));
 
 void process(void)
 { int j,k,cap_flag, underscore, nasal_vowel, n_flag, vedic;
