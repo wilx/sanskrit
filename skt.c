@@ -402,9 +402,10 @@ char * command(char *p)
 /*           of inbuf.                                                        */
 
 void error(char *s, int n)
-{ char err_str[80]; int j;
+{ char err_str[80];
   if (++err_cnt <= err_max)
-    { if (n > 0)  { for (j=0; j<n; j++) err_str[j] = *(i_ptr+j);
+    { if (n > 0)  { int j;
+                    for (j=0; j<n; j++) err_str[j] = *(i_ptr+j);
                     err_str[j] = '\0';
                   }
       if (n == 0) { strcpy(err_str,"oct(");
@@ -1551,14 +1552,14 @@ switch (bwh)
 /* LS : if (string_match && option[a]) VA;                                    */
 /* LT : if (string_match && option[a]) { if (option[b]) VA#1 else VA#2 }      */
 
-#define LS(t,u,v,w) n=strlen(t);              \
-        if((option[u]==0) && (strncmp(p,t,n)==0))  \
-          { w; p+=n; v;}
+#define LS(t,u,v,w) { size_t n;                           \
+    if((option[u]==0) && (strncmp(p,t,n=strlen(t))==0))   \
+      { w; p+=n; v;} }
 
-#define LT(t,u,v,w,x,y,z) n=strlen(t);        \
-        if((option[u]==0) && (strncmp(p,t,n)==0))  \
-          { if(option[x]==0) { w; p+=n; v; }     \
-                     else { z; p+=n; y; } }
+#define LT(t,u,v,w,x,y,z) { size_t n;                           \
+    if((option[u]==0) && (strncmp(p,t,n=strlen(t))==0))         \
+      { if(option[x]==0) { w; p+=n; v; }                        \
+        else { z; p+=n; y; } } }
 
 #define NX sam_flag = 'X'; break;
 #define NR sam_flag = 'R'; break;
@@ -1572,7 +1573,7 @@ switch (bwh)
 
 void samyoga(void)
 {
-char *p, sam_flag; int j,k; size_t n;
+ char *p, sam_flag;
  option[0] = 0;
  sam_flag = 0;
  p = s_ptr;
@@ -2070,10 +2071,10 @@ case 'y':
               strcat(work,"\\ZH{-6}{<}");IC;}
   NC;
 
-case 'r':
-  j=0;
+case 'r': {
+  int j=0;
   if (ra)
-     { k=dep;
+     { int k=dep;
        if (ra==5) k-=3;
        if (bot) j++; if (k) j+=2;
        switch (j)
@@ -2098,6 +2099,7 @@ case 'r':
       if(*p=='u') { VA( 8,5,4, 0,0,1, 0,0,0,0,"r8"); *p='a'; NX; }
       if(*p=='U') { VA(10,7,6, 0,0,1, 0,1,0,0,"r9"); *p='a'; NX; }
                     VA( 6,3,1, 0,0,1, 0,2,0,0,"="); NX; }
+}
 
 case 'l':
   if (option[160]==0) {
