@@ -425,7 +425,7 @@ void error(char *s, int n)
 /* Function: process input text within {\skt.., converting to internal        */
 /*           format in sktbuf                                                 */
 
-#define ISAC(c) (((strchr("aAiIuUwWxXeEoO",c) != 0) && c) ? TRUE : FALSE)
+#define ISAC(c) (((c) && (strchr("aAiIuUwWxXeEoO",(c)) != 0)) ? TRUE : FALSE)
 
 void
 cat(char * w, char const * x, int y, char const * z)
@@ -471,7 +471,7 @@ unsigned char c,d;
     if (c < ' ')
     { error("Illegal control character: ",0); CI; }
 /* ADDED IMBEDDED ROMAN */
-    if ( (strchr("[`']",c) && c==d) || ((c == '.') && (d == '!')) )
+    if ((c==d && strchr("[`']",c)) || ((c == '.') && (d == '!')) )
     { if (sktbuf[0]) sktword();
       if (!xlit) { if (feint) strcat(outbuf,"\\ZF{");
                    if (bold)  strcat(outbuf,"\\ZB{");
@@ -501,7 +501,7 @@ unsigned char c,d;
         { if (*(i_ptr+1) != '.') break;
           i_ptr++; continue;
         }
-        if ((strchr("()*+,-/:;=?",c) && c) == 0) break;
+        if ((c && strchr("()*+,-/:;=?",c)) == 0) break;
       }
       if (!xlit) strcat(outbuf,"}");
       CR; continue;
@@ -743,7 +743,7 @@ unsigned char c,d;
     CR;
     if (ISAC(c) || c=='\26') ac_flag = TRUE;
 /**/
-    if (strchr("!\"%()&:;<=>?`\'\27\30\31\32\33\34\35\36\37",c) && c)
+    if (c && strchr("!\"%()&:;<=>?`\'\27\30\31\32\33\34\35\36\37",c))
         svara_flag = TRUE;
     if ((c == 'y') || (c == 'l') || (c == 'v')) ylv_flag = TRUE;
     if (c == 'n') n_flag = TRUE; /* allow accents on letter 'n' */
@@ -1075,7 +1075,7 @@ void single(void)
      default:  error("Lost in single()",-1);
   }
   if ( (ac_char != '\26' ) && ( whiteness < 7) )
-     { if (strchr("iIuUxXwWeE",ac_char) && ac_char)
+     { if (ac_char && strchr("iIuUxXwWeE",ac_char))
        { switch (interspace - whiteness - fwh)
          { case 1: strcat(tmp,"."); break;
            case 2: strcat(tmp,":"); break;
@@ -1164,7 +1164,7 @@ void sam_warning(void)
 (ac_hook=='e' || ac_hook=='E' || pre_ra || bindu || candrabindu)
 
 #define TOPACCENT \
-(strchr("!(\":;<=>?\27",accent) && accent)
+(accent && strchr("!(\":;<=>?\27",accent))
 
 #define BOTHOOKS \
 (virama || c=='U' || c=='X' || c=='W')
@@ -1174,7 +1174,7 @@ void addhooks(void)
   accent = bindu = candrabindu = 0;
   c = *s_ptr;
   if (c == '#') { candrabindu = TRUE; c = *++s_ptr; }
-  if (strchr("!(\"&:;<=>?\27\30\31\32\33\34\35\36",c) && c)
+  if (c && strchr("!(\"&:;<=>?\27\30\31\32\33\34\35\36",c))
      { accent = c; c = *++s_ptr; }
   if (c == '#') { candrabindu = TRUE; c = *++s_ptr; }
   if ( (c == 'M') || (c == 'R') ) { bindu = TRUE; c = *++s_ptr; }
@@ -1222,8 +1222,8 @@ void addhooks(void)
      { t = 0; if (option[4]) t = 8; if (option[5]) t = 12;
               if (option[4] && option[5]) t = 16;
        if (t < v) t = v;
-       if (    (strchr("eioEIO",ac_char) && ac_char)
-            && (strchr("=>?\"\27",accent)  && accent)  )
+       if (    (ac_char && strchr("eioEIO",ac_char) )
+            && (accent && strchr("=>?\"\27",accent) )  )
           { v=8; if ((accent=='\"') || (accent=='\27')) v=3; }
        if (t < v) t = v;
        if (t)   { CAT(work,"\\ZV{",t,"}{"); }
@@ -1333,7 +1333,7 @@ void addhooks(void)
        if (v) strcat(work,"}");
        if (bot) strcat(work,"}");
      }
-  if ( (strchr("&\30\31\32\33\34\35\36",accent) && accent) || (*s_ptr=='%') )
+  if ( (accent && strchr("&\30\31\32\33\34\35\36",accent)) || (*s_ptr=='%') )
      { if (dep > 2) { if (v<0) v=dep-2-v;
                       else v=dep-2; }
        else v=dep;
@@ -1445,7 +1445,7 @@ void backac(void)
 /* now set ac_flag according to vowel                                         */
    if (c == 'o') ac_hook = 'e';
    if (c == 'O') ac_hook = 'E';
-   if (strchr("uUeExXwW",c) && c) ac_hook = ac_char;
+   if (c && strchr("uUeExXwW",c)) ac_hook = ac_char;
 /* finally add all flags, accents, nasals, and final vertical as necessary    */
    j=low_right; k=high_right;     /* save interference from previous syllable */
    addhooks();
@@ -2045,9 +2045,9 @@ char *p, sam_flag; int j,k; size_t n;
   LS("n",    157,NR,VA(14,3,3, 0,0,0, 0,3,2,2,"m1\\ZM{hFnaLe}:a"));
   LT("l",    158,NR,VA(13,2,1, 2,0,0, 0,1,2,6,"m1\\ZM{aLeDPEDFIhBl}+"),
               46,NR,VA(14,3,3, 5,1,0, 0,3,2,2,"m1\\ZM{aLeDdElbL}:a"));
-  if (strchr("mr",*p) && *p)
+  if (*p && strchr("mr",*p))
                   { VA(10,0,0, 0,1,0, 0,0,4,1,"m"); NC; }
-  if (strchr("lbByv",*p) && *p)
+  if (*p && strchr("lbByv",*p))
                   { VA( 9,0,0, 0,0,0, 0,0,1,1,"m1"); NC; }
   if (ISHAL(*p))  { VA(10,0,0, 0,3,0, 0,0,4,1,"m1\\ZM{cLe}."); NC; }
                     VA(10,0,0, 0,1,0, 0,0,4,1,"m"); NC;
@@ -2181,9 +2181,9 @@ case 'v':
   LS("nv",   170,NR,VA(19,3,3, 0,2,1, 0,3,6,2,"=\\ZM{fMo0HnHMu}*:a"));
   LS("n",    170,NR,VA(12,0,0, 0,1,1, 0,0,2,1,"=+:\\ZM{rMolHneHegMi}"));
   LS("r",      0,NC,VA(11,0,0, 0,0,1, 0,0,2,1,"s1\\ZM{aLeDDr}:"));
-  if (strchr("sm",*p) && *p) {
+  if (*p && strchr("sm",*p)) {
                     VA(10,0,0, 0,0,1, 0,0,2,1,"s"); NC; }
-  if (strchr("GZCJqNdDpPBrZSh",*p) && *p) {
+  if (*p && strchr("GZCJqNdDpPBrZSh",*p)) {
                     VA(10,0,0, 0,0,1, 0,0,2,1,"s1\\ZM{cLe}."); NC; }
   if (ISHAL(*p))  { VA( 9,0,0, 0,0,1, 0,0,2,1,"s1"); NC; }
                     VA(10,0,0, 0,0,1, 0,0,2,1,"s"); NC;
@@ -2375,9 +2375,9 @@ char c, *p;
 
    /* now for the vowels with stacked nasal and accent                     */
 
-   case 'i': if (strchr("!`'\"(#\27",*p) && *p) { ISTACK('i',"{\\i}","I"); }
+   case 'i': if (*p && strchr("!`'\"(#\27",*p)) { ISTACK('i',"{\\i}","I"); }
              else { ISTACK('i',"i","I"); } break;
-   case 'E': if (strchr("!`'\"(#\27",*p) && *p) { ISTACK('E',"{a\\i}","AI"); }
+   case 'E': if (*p && strchr("!`'\"(#\27",*p)) { ISTACK('E',"{a\\i}","AI"); }
              else { ISTACK('E',"ai","AI"); } break;
 
 
@@ -2391,7 +2391,7 @@ char c, *p;
 
    case 'w': if (option[26])
              { save = flag; SWITCHFLAG("lr\\llap{\\d{\\kern.51em}}","L\\d R");
-               flag = save; if ( strchr("!\"#$%&'():;<=>?`",*p) && *p)
+               flag = save; if ( *p && strchr("!\"#$%&'():;<=>?`",*p))
                                { ISTACK('w',"{\\i}","I"); break; }
                             ISTACK('w',"i","I"); break; }
              ISTACK('w',"\\d l","\\d L"); break;
@@ -2403,7 +2403,7 @@ char c, *p;
 
    case 'x': if (option[25])
              { save = flag; SWITCHFLAG("r\\llap{\\d{\\kern.51em}}","\\d R");
-               flag = save; if (strchr("!\"#$%&'():;<=>?`",*p) && *p)
+               flag = save; if (*p && strchr("!\"#$%&'():;<=>?`",*p))
                                { ISTACK('x',"{\\i}","I"); break; }
                             ISTACK('x',"i","I"); break; }
              ISTACK('x',"r\\llap{\\d{\\kern.51em}}","\\d R"); break;
