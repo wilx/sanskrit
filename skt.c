@@ -785,7 +785,7 @@ void sktcont(void)
 
 /* Function: convert contents of sktbuf to output string in outbuf            */
 
-static char hal_chars[] = "BCDFGJKLNPQRSTVZbcdfghjklmnpqrstvyz";
+static char const hal_chars[] = "BCDFGJKLNPQRSTVZbcdfghjklmnpqrstvyz";
                                               /* internal code for consonants */
 #define ISHAL(c) (((strchr(hal_chars,c) != 0) && c) ? TRUE : FALSE)
 
