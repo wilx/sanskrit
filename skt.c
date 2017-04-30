@@ -2210,15 +2210,22 @@ int aci(char *p)
 
 /* Function: transliterate contents of sktbuf, output result in outbuf        */
 
-#define SWITCHFLAG(Y,Z) switch(flag)                                        \
-            {  case 0: strcat(outbuf,Y); break;                             \
-               case 1: if (tech) strcat(outbuf,"\\ZX{"); strcat(outbuf,Z);  \
-                       if (tech) strcat(outbuf,"}"); break;                 \
-               case 2: strcat(outbuf,"\\ZW{"); strcat(outbuf,Y);            \
-                       strcat(outbuf,"}"); break;                           \
-               case 3: strcat(outbuf,"\\ZY{"); strcat(outbuf,Z);            \
-                       strcat(outbuf,"}"); break;                           \
-             } flag=0
+void
+switch_flag(char const * Y, char const * Z, int * flag) {
+  switch (*flag) {
+  case 0: strcat(outbuf,Y); break;
+  case 1: if (tech) strcat(outbuf,"\\ZX{"); strcat(outbuf,Z);
+    if (tech) strcat(outbuf,"}"); break;
+  case 2: strcat(outbuf,"\\ZW{"); strcat(outbuf,Y);
+    strcat(outbuf,"}"); break;
+  case 3: strcat(outbuf,"\\ZY{"); strcat(outbuf,Z);
+    strcat(outbuf,"}"); break;
+  }
+  *flag=0;
+}
+
+#define SWITCHFLAG(Y,Z) switch_flag((Y), (Z), &flag)
+
 
 #define XLIT(X,Y,Z) case X: SWITCHFLAG(Y,Z); break
 
