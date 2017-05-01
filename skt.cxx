@@ -152,7 +152,8 @@ struct SKT {
   void cat(char*, const char*, int, const char*);
   void clr_vadata(void);
   void clr_flags(void);
-  void switch_flag(char const * Y, char const * Z, int * flag);
+  void switch_flag(char const * Y, char const * Z, int & flag);
+  void istack(char X, char const * Y, char const * Z, char & c, char * & p, int & flag);
 }; // struct SKT
 
 /******************************************************************************/
@@ -2311,8 +2312,8 @@ SKT::aci(char *p)
 /* Function: transliterate contents of sktbuf, output result in outbuf        */
 
 void
-SKT::switch_flag(char const * Y, char const * Z, int * flag) {
-  switch (*flag) {
+SKT::switch_flag(char const * Y, char const * Z, int & flag) {
+  switch (flag) {
   case 0: strcat(outbuf,Y); break;
   case 1: if (tech) strcat(outbuf,"\\ZX{"); strcat(outbuf,Z);
     if (tech) strcat(outbuf,"}"); break;
@@ -2321,36 +2322,43 @@ SKT::switch_flag(char const * Y, char const * Z, int * flag) {
   case 3: strcat(outbuf,"\\ZY{"); strcat(outbuf,Z);
     strcat(outbuf,"}"); break;
   }
-  *flag=0;
+  flag=0;
 }
 
-#define SWITCHFLAG(Y,Z) switch_flag((Y), (Z), &flag)
+#define SWITCHFLAG(Y,Z) switch_flag((Y), (Z), flag)
 
 
 #define XLIT(X,Y,Z) case X: SWITCHFLAG(Y,Z); break
 
 #define STACK(X,Y,Z) case X: ISTACK(X,Y,Z); break
 
-#define ISTACK(X,Y,Z) c=0; if(*p=='#'){c+=30; if(option[38]) c+=30; p++;}  \
-         switch(*p)                                                        \
-         {case'\27': c++; case'\30': c++;                                  \
-          case'\37': c++; case'\36': c++; case'\35': c++; case'\34': c++;  \
-          case'\33': c++; case'\32': c++; case'\31': c++; case'*': c++;    \
-          case')': c++;  case'?':  c++;  case'>': c++;  case'=':  c++;     \
-          case'<': c++;  case';':  c++;  case':': c++;  case'\'': c++;     \
-          case'`': c++;  case'\"': c++;  case'(': c++;  case'$':  c++;     \
-          case'%': c++;  case'&':  c++;  case'!': c++; p++;}               \
-         if(*p=='#'){c+=30; if(option[38]) c+=30; p++;}                    \
-         if (c != 0) { CAT(outbuf,"\\ZA{",c,"}{"); }                       \
-         SWITCHFLAG(Y,Z);                                                  \
-         if (c != 0) strcat(outbuf,"}");                                   \
-         if(ISAC(X))                                                       \
-         { if (ISAC(*p))                                                   \
-           strcat(outbuf,"\\ZS{1}\\raisebox{.4ex}{.}\\ZS{-1}");\
-           else { if(option[11] && (*p!='\0') && !(*p=='-' && option[10])) \
-                      strcat(outbuf,"\\-"); }                              \
-         }                                                                 \
 
+
+void
+SKT::istack(char X, char const * Y, char const * Z, char & c, char * & p, int & flag)
+{
+  c=0; if(*p=='#'){c+=30; if(option[38]) c+=30; p++;}
+  switch(*p)
+    {case'\27': c++; case'\30': c++;
+    case'\37': c++; case'\36': c++; case'\35': c++; case'\34': c++;
+    case'\33': c++; case'\32': c++; case'\31': c++; case'*': c++;
+    case')': c++;  case'?':  c++;  case'>': c++;  case'=':  c++;
+    case'<': c++;  case';':  c++;  case':': c++;  case'\'': c++;
+    case'`': c++;  case'\"': c++;  case'(': c++;  case'$':  c++;
+    case'%': c++;  case'&':  c++;  case'!': c++; p++;}
+  if(*p=='#'){c+=30; if(option[38]) c+=30; p++;}
+  if (c != 0) { CAT(outbuf,"\\ZA{",c,"}{"); }
+  SWITCHFLAG(Y,Z);
+  if (c != 0) strcat(outbuf,"}");
+  if(ISAC(X))
+    { if (ISAC(*p))
+        strcat(outbuf,"\\ZS{1}\\raisebox{.4ex}{.}\\ZS{-1}");
+      else { if(option[11] && (*p!='\0') && !(*p=='-' && option[10]))
+          strcat(outbuf,"\\-"); }
+    }
+}
+
+#define ISTACK(X,Y,Z) istack(X, Y, Z, c, p, flag)
 
 #define NASAL(X,Y,Z) case X: if (*p == '#') strcat(outbuf,"\\~{");         \
                              SWITCHFLAG(Y,Z);                              \
