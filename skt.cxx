@@ -83,21 +83,18 @@ struct SKT {
   char outfilename[80];
 #define FILENAME_SCANF "%79s"
 
-#define TRUE 1
-#define FALSE 0
-
-  unsigned char feint;      /* flag TRUE while within {\sktf..}                 */
-  unsigned char bold;       /* flag TRUE while within {\sktb..}                 */
-  unsigned char xbold;      /* flag TRUE while within \sktX or \sktT            */
-  unsigned char sktline;    /* flag TRUE if there is any sanskrit on this line  */
-  unsigned char sktmode;    /* flag TRUE while within {\skt.. }                 */
-  unsigned char eof_flag;   /* flag True when end of file detected              */
-  unsigned char xlit;       /* flag TRUE while within {\sktx }                  */
-  unsigned char tech;       /* flag TRUE while within {\sktt }                  */
-  unsigned char ac_flag;    /* flag TRUE while processing skt vowels            */
-  unsigned char svara_flag; /* flag TRUE if previous input char was accent      */
-  unsigned char ylv_flag;   /* flag TRUE if previous input char was y, l, or v  */
-  unsigned char roman_flag; /* flag TRUE if previous output was Roman string    */
+  bool feint : 1;      /* flag true while within {\sktf..}                 */
+  bool bold : 1;       /* flag true while within {\sktb..}                 */
+  bool xbold : 1;      /* flag true while within \sktX or \sktT            */
+  bool sktline : 1;    /* flag true if there is any sanskrit on this line  */
+  bool sktmode : 1;    /* flag true while within {\skt.. }                 */
+  bool eof_flag : 1;   /* flag true when end of file detected              */
+  bool xlit : 1;       /* flag true while within {\sktx }                  */
+  bool tech : 1;       /* flag true while within {\sktt }                  */
+  bool ac_flag : 1;    /* flag true while processing skt vowels            */
+  bool svara_flag : 1; /* flag true if previous input char was accent      */
+  bool ylv_flag : 1;   /* flag true if previous input char was y, l, or v  */
+  bool roman_flag : 1; /* flag true if previous output was Roman string    */
 
   int nest_cnt;            /* '{' increments, '}' decrements, while in \skt..   */
   int err_cnt;             /* incremented by any error while in \skt..          */
@@ -109,9 +106,9 @@ struct SKT {
   char outbuf[2048];       /* output file line buffer of text processed         */
   char *o_ptr;             /* general pointer to output buffer                  */
 
-  unsigned char cont_end;   /* flag TRUE when line ends with %-continuation     */
-  unsigned char cont_begin; /* flag TRUE when line begins after %-continuation  */
-  unsigned char hal_flag;   /* flag TRUE when hal_type detected in syllable     */
+  bool cont_end : 1;   /* flag true when line ends with %-continuation     */
+  bool cont_begin : 1; /* flag true when line begins after %-continuation  */
+  bool hal_flag : 1;   /* flag true when hal_type detected in syllable     */
   unsigned char accent;     /* storage for working accent character             */
   unsigned char nasal;      /* storage for working nasal character              */
   unsigned char ac_char;    /* storage for working vowel character              */
@@ -169,13 +166,13 @@ SKT::run(int argc,
 
 /* INITIALIZATION */
 
-  sktmode = eof_flag = xlit = FALSE;
+  sktmode = eof_flag = xlit = false;
   nest_cnt = err_cnt = 0;
   line_cnt = 0;
   i_ptr = inbuf;  *i_ptr = '\0';
   s_ptr = sktbuf; *s_ptr = '\0';
   o_ptr = outbuf; *o_ptr = '\0';
-  for (k=0; k<total_options+1; k++) option[k] = FALSE; /* disable everything  */
+  for (k=0; k<total_options+1; k++) option[k] = false; /* disable everything  */
 
   printf("SKT.C Version 2.2.1 2016-08-31\n");
 
@@ -252,7 +249,7 @@ SKT::run(int argc,
 /*           until string found or end of file, copying input to output; if   */
 /*           the string is found but command not recognised, it is treated as */
 /*           ordinary text; if valid command i_ptr points to first sanskrit   */
-/*           char after command, and sets sktmode TRUE.                       */
+/*           char after command, and sets sktmode true.                       */
 
 void
 SKT::search(void)
@@ -263,7 +260,7 @@ char *p,*q;
   while (eof_flag == 0)
     { p = str_find(i_ptr,"{\\skt");
       if (p == 0)
-        { if (sktline == TRUE) { strcat(outbuf,i_ptr); write_outbuf(); }
+        { if (sktline == true) { strcat(outbuf,i_ptr); write_outbuf(); }
           else { write_line(inbuf); o_ptr = outbuf; *o_ptr = '\0';  }
           get_line();
           continue;
@@ -278,7 +275,7 @@ char *p,*q;
       nest_cnt++; c = *p; *p = '\0';    /* skip over '{\skt'                  */
       strcat(outbuf,i_ptr);             /* append partial line to outbuf      */
       *p = c; i_ptr = p;
-      sktmode = TRUE; sktline = TRUE;   /* now comes the fun!                 */
+      sktmode = true; sktline = true;   /* now comes the fun!                 */
       break;
     }
 }
@@ -367,54 +364,54 @@ SKT::get_line(void)
   *i_ptr = '\0';
   line_cnt++;
 #if (DEBUG == 0)
-  if (fgets(inbuf,133,infile) == NULL) eof_flag = TRUE;
+  if (fgets(inbuf,133,infile) == NULL) eof_flag = true;
 #else
   scanf(inbuf);
-  if (strlen(inbuf) == 0) eof_flag = TRUE;
+  if (strlen(inbuf) == 0) eof_flag = true;
 #endif
-  if (sktmode == FALSE) sktline = FALSE;
+  if (sktmode == false) sktline = false;
 }
 
 /******************************************************************************/
 /*                       COMMAND                                              */
 /******************************************************************************/
 
-/* Function: check for valid \skt.. command: if \sktx or \sktX set xlit TRUE, */
+/* Function: check for valid \skt.. command: if \sktx or \sktX set xlit true, */
 /*           else clear it; if invalid command, print error message           */
 
 char *
 SKT::command(char *p)
 { char c;
   p += 5;                                            /* skip over '{\skt'     */
-  feint = bold = xlit = tech = xbold = FALSE;
+  feint = bold = xlit = tech = xbold = false;
   c = *p++;
   switch (c)
   {  case ' ': break;                                /* for \skt              */
-     case 'X': xbold = TRUE;                         /* for \sktx or \sktX    */
-     case 'x': xlit = TRUE;
+     case 'X': xbold = true;                         /* for \sktx or \sktX    */
+     case 'x': xlit = true;
                if (*p++ != ' ') p = 0;
                break;
-     case 'I': xbold = TRUE;                         /* for \sktx or \sktX    */
-     case 'i': xlit = TRUE;
+     case 'I': xbold = true;                         /* for \sktx or \sktX    */
+     case 'i': xlit = true;
                if (*p++ != ' ') p = 0;
                break;
-     case 'T': xbold = TRUE;                         /* for \sktt or \sktT    */
-     case 't': tech = TRUE;
+     case 'T': xbold = true;                         /* for \sktt or \sktT    */
+     case 't': tech = true;
                if (*p++ != ' ') p=0;
                break;
-     case 'U': xbold = TRUE;                         /* for \sktu or \sktU    */
-     case 'u': tech = TRUE;
+     case 'U': xbold = true;                         /* for \sktu or \sktU    */
+     case 'u': tech = true;
                if (*p++ != ' ') p=0;
                break;
      case 'b': c = *p++; if (c=='s') c = *p++;       /* for \sktb or \sktbs   */
                if (c != ' ') p = 0;
-               else bold = TRUE;
+               else bold = true;
                break;
      case 's': if (*p++ != ' ') p = 0;               /* for \skts             */
                break;
      case 'f': c= *p++; if (c == 's') c = *p++;      /* for \sktf or \sktfs   */
                if (c != ' ') p = 0;
-               else feint = TRUE;
+               else feint = true;
                break;
      default:  p = 0;
   }
@@ -480,9 +477,10 @@ unsigned char c,d;
  CF;
  sktcont(); /* reset cont_begin flag */
  while(1)
-  { if (eof_flag) return;
+  { unsigned char c,d;
+    if (eof_flag) return;
     if (err_cnt >= err_max)
-       { sktmode = FALSE; xlit = feint = bold = tech = FALSE; return; }
+       { sktmode = false; xlit = feint = bold = tech = false; return; }
     c = *i_ptr; d = *(i_ptr+1);
 /* END OF LINE */
     if ((c == '\0') || (c == '\n'))
@@ -507,7 +505,7 @@ unsigned char c,d;
       if (!xlit) { if (feint) strcat(outbuf,"\\ZF{");
                    if (bold)  strcat(outbuf,"\\ZB{");
                    if (!feint && !bold) strcat(outbuf,"\\ZN{");
-                   roman_flag = TRUE;
+                   roman_flag = true;
                  }
       chrcat(outbuf,d);
       if (!xlit) strcat(outbuf,"}");
@@ -524,7 +522,7 @@ unsigned char c,d;
       if (!xlit) { if (feint) strcat(outbuf,"\\ZF{");
                    if (bold)  strcat(outbuf,"\\ZB{");
                    if (!feint && !bold) strcat(outbuf,"\\ZN{");
-                   roman_flag = TRUE;
+                   roman_flag = true;
                  }
       while(1)
       { chrcat(outbuf,c); c = *++i_ptr;
@@ -569,12 +567,12 @@ unsigned char c,d;
              { error("Invalid option value: ",j+1); k=-1; }
         else { switch(*(i_ptr+j))
                { case '+': if (k==0)
-                             { for(k=1; k<=total_options; k++) option[k]=TRUE;}
-                           else { option[k] = TRUE; }
+                             { for(k=1; k<=total_options; k++) option[k]=true;}
+                           else { option[k] = true; }
                            break;
                  case '-': if (k==0)
-                             { for(k=1; k<=total_options; k++) option[k]=FALSE;}
-                           else { option[k] = FALSE; }
+                             { for(k=1; k<=total_options; k++) option[k]=false;}
+                           else { option[k] = false; }
                            break;
                  default:  error("Expected option sign here: ",j+1); k=-1;
              } }
@@ -589,14 +587,14 @@ unsigned char c,d;
                   }
     if (c == '}')
        { if (--nest_cnt == 0)
-              { sktword(); sktmode = FALSE; xlit = feint = bold = tech = FALSE;
+              { sktword(); sktmode = false; xlit = feint = bold = tech = false;
                 chrcat(outbuf,c); i_ptr++; return;
               }
          else { sktcont(); chrcat(outbuf,c); CI; }
        }
 /* SKTT UNDERSCORE */
     if ( (c=='_') && tech)
-       { underscore = TRUE;
+       { underscore = true;
          c = d; i_ptr++; d = *(i_ptr+1);
        }
 /* SPACE CHAR */
@@ -608,7 +606,7 @@ unsigned char c,d;
     if (isupper(c) || (is_any_of("\"~.",c) && isupper(d)))
     { if (isupper(c))
         { if (!(xlit || tech)) { error("Invalid use of upper case: ",1); CI; }
-          else { cap_flag = TRUE; c = tolower(c); }
+          else { cap_flag = true; c = tolower(c); }
         }
       else
         { if (!(xlit || tech)) { error("Invalid use of upper case: ",2);
@@ -616,7 +614,7 @@ unsigned char c,d;
           if (    (c=='.'  && is_any_of("TDSNHRLM",d))
                || (c=='\"' && is_any_of("SNHD",    d))
                || (c=='~'  && is_any_of("NM",      d)) )
-             { d = tolower(d); cap_flag = TRUE; }
+             { d = tolower(d); cap_flag = true; }
         }
     }
 /* QUOTE CHAR */
@@ -766,19 +764,19 @@ unsigned char c,d;
          printf("Line %4d    Warning: No vowel before avagraha\n",line_cnt);
     if (!is_any_of("ABCDEFGHIJKLMNOPQSTUVWXZ",toupper(c)) && !is_any_of("ry",c) &&
          underscore) { error("Invalid character after underscore",-1);
-                       underscore = FALSE;
+                       underscore = false;
                      }
     if (underscore) chrcat(sktbuf,'_');
     if (cap_flag)   chrcat(sktbuf,'^');
     chrcat(sktbuf,c);
     CR;
-    if (ISAC(c) || c=='\26') ac_flag = TRUE;
+    if (ISAC(c) || c=='\26') ac_flag = true;
 /**/
     if (is_any_of("!\"%()&:;<=>?`\'\27\30\31\32\33\34\35\36\37",c))
-        svara_flag = TRUE;
-    if ((c == 'y') || (c == 'l') || (c == 'v')) ylv_flag = TRUE;
-    if (c == 'n') n_flag = TRUE; /* allow accents on letter 'n' */
-    if (c == '~') vedic = TRUE;  /* allow accents on Vedic anusvaara */
+        svara_flag = true;
+    if ((c == 'y') || (c == 'l') || (c == 'v')) ylv_flag = true;
+    if (c == 'n') n_flag = true; /* allow accents on letter 'n' */
+    if (c == '~') vedic = true;  /* allow accents on Vedic anusvaara */
     i_ptr++;
   }
 }
@@ -809,13 +807,13 @@ SKT::chrcat(char *s, char c)
 void
 SKT::sktcont(void)
 {
-  if (sktbuf[0] == '\0') { cont_begin = FALSE;
+  if (sktbuf[0] == '\0') { cont_begin = false;
                            sktword();
                          }
-  else                   { cont_end = TRUE;
+  else                   { cont_end = true;
                            sktword();
-                           cont_end = FALSE;
-                           cont_begin = TRUE;
+                           cont_end = false;
+                           cont_begin = true;
                          }
 }
 
@@ -871,7 +869,7 @@ ra=x; ya=y; strcat(work,z); vaflg++;
 void
 SKT::sktword(void)
 { char c;
-  if (roman_flag && sktbuf[0]) roman_flag = FALSE;
+  if (roman_flag && sktbuf[0]) roman_flag = false;
 #if DEBUG == 1
 
 s_ptr = sktbuf;
@@ -943,21 +941,21 @@ while (*s_ptr)
           whiteness = bwh; *work = '\0'; cont_begin = 0;
           continue;
         }
-     if (c == 'r') { pre_ra = TRUE; c = *s_ptr; }
+     if (c == 'r') { pre_ra = true; c = *s_ptr; }
      else s_ptr--;
      old_sptr = s_ptr; /* save pointer to start of samyoga                    */
-     if (ISHAL(c)) { hal_flag = TRUE; CLRVADATA; samyoga(); c = *s_ptr; }
+     if (ISHAL(c)) { hal_flag = true; CLRVADATA; samyoga(); c = *s_ptr; }
      ac_char = virama = 0;
      if (!hr_flag) { if (ISAC(c)) { ac_char = *s_ptr++; }
-                     else virama = TRUE;   /* hr_flag = h.r parsed by samyoga */
+                     else virama = true;   /* hr_flag = h.r parsed by samyoga */
                    }
      if (virama && ISHAL(*s_ptr) && option[8]) sam_warning();
-     backac(); hr_flag = FALSE;
+     backac(); hr_flag = false;
      if (*tmp) { if (outbuf[0]=='\0' && tmp[0]=='[') strcat(outbuf,"{}");
                  strcat(outbuf,tmp);
                }
      strcpy(tmp,work); whiteness = bwh;
-     *work = '\0'; cont_begin = FALSE;
+     *work = '\0'; cont_begin = false;
   }
   strcat(outbuf,work);
   s_ptr = sktbuf; *s_ptr = '\0';
@@ -1036,7 +1034,7 @@ SKT::single(void)
                  case 3: strcat(work,"a");   break;
                } break;
      case 'i': VA( 9,3,5, 0,0,0, 0,1,0,0,"I");    break;
-     case 'I': VA( 9,3,5, 0,0,0, 0,1,0,0,"I"); pre_ra = TRUE; break;
+     case 'I': VA( 9,3,5, 0,0,0, 0,1,0,0,"I"); pre_ra = true; break;
      case 'u': if (whiteness < 7) { VA( 9,3,4, 0,0,0, 0,1,0,0,"\\ZS{-2}o"); }
                else               { VA(10,3,4, 0,0,0, 1,1,0,0,"o"); }
                break;
@@ -1211,11 +1209,11 @@ SKT::addhooks(void)
 { char c; int t, j, h, v;
   accent = bindu = candrabindu = 0;
   c = *s_ptr;
-  if (c == '#') { candrabindu = TRUE; c = *++s_ptr; }
+  if (c == '#') { candrabindu = true; c = *++s_ptr; }
   if (is_any_of("!(\"&:;<=>?\27\30\31\32\33\34\35\36",c))
      { accent = c; c = *++s_ptr; }
-  if (c == '#') { candrabindu = TRUE; c = *++s_ptr; }
-  if ( (c == 'M') || (c == 'R') ) { bindu = TRUE; c = *++s_ptr; }
+  if (c == '#') { candrabindu = true; c = *++s_ptr; }
+  if ( (c == 'M') || (c == 'R') ) { bindu = true; c = *++s_ptr; }
   t = h = v = j = 0;
   low_right = high_right = -wid;
   switch (ac_char)
@@ -1420,7 +1418,7 @@ SKT::backac(void)
             else { CLRVADATA; VA(10,7,6, 0,0,1, 1,1,0,0,"r9"); ac_char = 'a'; }
           }
        else {      CLRVADATA; VA( 6,3,1, 0,0,1, 1,2,0,0,"="); }   /* ra      */
-       pre_ra = FALSE; hal_flag = TRUE;
+       pre_ra = false; hal_flag = true;
      }
    if (post_ra)      /* to insert post_ra here, then ya                       */
    { j = 0; k = dep;
@@ -1454,7 +1452,7 @@ SKT::backac(void)
    }
 /* adjust space at back of current syllable for vowels that add vert. bar,    */
 /* and insert hook for long-i                                                 */
-   if (wid && !top) end_bar = TRUE;    /* to append vertical bar to character */
+   if (wid && !top) end_bar = true;    /* to append vertical bar to character */
    c = ac_char;
    if (c == 'I') { if (end_bar) {CAT(work,"i",intraspace,"");}/* add I-hook */
                    else { CAT(work,"\\ZH{-",(2*top),"}");
@@ -1470,7 +1468,7 @@ SKT::backac(void)
    if (c=='I' || c=='A' || c=='o' || c=='O')
       { if (end_bar)                /* add vert. bar to basic character */
             { strcat(work,"a"); bwh=3; }
-        end_bar = TRUE;
+        end_bar = true;
         switch(intraspace - bwh)
         {  case 1: strcat(work,"."); break;
            case 2: strcat(work,":"); break;
@@ -1948,7 +1946,7 @@ SKT::samyoga(void)
   LS("j",      0,NC,VA(17,0,0, 0,0,2, 0,0,3,1,"Ni"));
   LS("c",      0,NC,VA(17,0,0, 0,2,2, 0,0,6,1,"N.c"));
   LS("n",    132,NR,VA(12,3,3, 2,1,2, 0,3,2,2,"\\ZM{DBnMBeRdI}Na"));
-  LS("ra",   133,NX,VA(16,3,3, 0,0,2, 0,2,0,0,"N.="); hr_flag = TRUE);
+  LS("ra",   133,NX,VA(16,3,3, 0,0,2, 0,2,0,0,"N.="); hr_flag = true);
                     VA( 9,0,0, 0,2,2, 0,0,4,1,"N"); NC; }
   else {
   LS("c",      0,NC,VA(18,0,0, 0,0,1, 0,0,6,1,"`N:c"));
@@ -2172,8 +2170,8 @@ case 'v':
  case 'Z':
    if (option[51]) {
      if (option[52]) {
-     if (*p=='x') { VA(12,3,3, 6,0,0, 0,0,0,0,")\\ZV{4}{x}a"); hr_flag=TRUE; IX;}
-     if (*p=='X') { VA(12,3,3, 9,0,0, 0,0,0,0,")\\ZV{4}{X}a"); hr_flag=TRUE; IX;}
+     if (*p=='x') { VA(12,3,3, 6,0,0, 0,0,0,0,")\\ZV{4}{x}a"); hr_flag=true; IX;}
+     if (*p=='X') { VA(12,3,3, 9,0,0, 0,0,0,0,")\\ZV{4}{X}a"); hr_flag=true; IX;}
                      }
   LT("c",      0,NC,VA( 9,0,0, 0,0,0, 0,0,2,1,")\\ZM{rac0FI}"),
              163,NC,VA(17,0,0, 0,2,0, 0,0,4,1,"Z.c"));
@@ -2186,8 +2184,8 @@ case 'v':
                    }
   else {
      if (option[52]) {
-     if (*p=='x') { VA(12,3,3, 6,0,0, 0,0,0,0,"(\\ZV{4}{x}a"); hr_flag=TRUE; IX;}
-     if (*p=='X') { VA(12,3,3, 9,0,0, 0,0,0,0,"(\\ZV{4}{X}a"); hr_flag=TRUE; IX;}
+     if (*p=='x') { VA(12,3,3, 6,0,0, 0,0,0,0,"(\\ZV{4}{x}a"); hr_flag=true; IX;}
+     if (*p=='X') { VA(12,3,3, 9,0,0, 0,0,0,0,"(\\ZV{4}{X}a"); hr_flag=true; IX;}
                      }
   LT("c",      0,NC,VA( 9,0,0, 0,0,0, 0,0,2,1,"(\\ZM{rac0FI}"),
              163,NC,VA(17,0,0, 0,2,0, 0,0,0,0,"Z.c"));
@@ -2231,8 +2229,8 @@ case 'v':
                     VA(10,0,0, 0,0,1, 0,0,2,1,"s"); NC;
 
 case 'h':
-  if (*p=='x') {    VA( 8,2,3, 4,0,0, 0,1,0,0,"h1"); hr_flag=TRUE; IX; }
-  if (*p=='X') {    VA( 9,3,4, 4,0,0, 0,2,0,0,"h5"); hr_flag=TRUE; IX; }
+  if (*p=='x') {    VA( 8,2,3, 4,0,0, 0,1,0,0,"h1"); hr_flag=true; IX; }
+  if (*p=='X') {    VA( 9,3,4, 4,0,0, 0,2,0,0,"h5"); hr_flag=true; IX; }
   LT("N",      0,NR,VA(10,4,0, 3,0,0, 0,0,0,2,"h3\\ZM{m0NmDIfDI}"),
               44,NR,VA(12,6,0, 5,0,0, 0,0,0,2,"h4\\ZM{rcOlDIfDI0dE}"));
   LS("ny",     0,NR,VA(18,0,0, 0,0,0, 0,0,0,2,"h3\\ZM{nCneCe}y1"));
@@ -2260,8 +2258,8 @@ case 'h':
  default: error("Lost in samyoga()",-1); NX;
    }
    if (sam_flag == 'X') { s_ptr = p; break; }
-   if (sam_flag == 'R') { if ((*p=='r') && ra) { post_ra = TRUE; p++; }
-                          if ((*p=='y') && ya) { post_ya = TRUE; p++; }
+   if (sam_flag == 'R') { if ((*p=='r') && ra) { post_ra = true; p++; }
+                          if ((*p=='y') && ya) { post_ya = true; p++; }
                           s_ptr = p; break;
                         }
    if (!ISHAL(*p)) { s_ptr = p; break; }
@@ -2278,8 +2276,8 @@ int
 SKT::aci(char *p)
 { int j;
   for (j=0; j<6; j++) if (!ISHAL(*(p+j))) break;
-  if (*(p+j) == 'i') return(TRUE);
-  else return(FALSE);
+  if (*(p+j) == 'i') return(true);
+  else return(false);
 }
 
 /******************************************************************************/
