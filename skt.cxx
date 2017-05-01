@@ -59,7 +59,7 @@ struct SKT {
   /* DECLARE FUNCTIONS */
   void   search      (void);
   void   write_outbuf(void);
-  void   write_line  (char *);
+  void   write_line  (char const *);
   char * str_find    (char const *, char const *);
   void   get_line    (void);
   char * command     (char *);
@@ -324,7 +324,7 @@ SKT::write_outbuf(void)
 /* Function: write p-string to output device                                  */
 
 void
-SKT::write_line(char *p)
+SKT::write_line(char const *p)
 {
 #if (DEBUG == 0)
   if (err_cnt == 0) fputs(p,outfile);
