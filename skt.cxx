@@ -29,6 +29,7 @@
 #include <cctype>
 #include <cstring>
 #include <cstdlib>
+#include <algorithm>
 
 
 #ifndef DEBUG
@@ -39,6 +40,16 @@
 /* If non-zero, STDIO is used for input/output                                */
 /* 1 = debug process(); output is internal code                               */
 /* 2 = debug sktword(); output is final output                                */
+
+
+template <std::size_t N>
+constexpr
+bool
+is_any_of(char const (&chars)[N], char needle)
+{
+  return std::find_if(&chars[0], &chars[0]+N-1,
+                      [needle](char a) { return a == needle; }) != &chars[0]+N-1;
+}
 
 
 const int total_options = 199;
@@ -444,7 +455,7 @@ SKT::error(char const *s, int n)
 /* Function: process input text within {\skt.., converting to internal        */
 /*           format in sktbuf                                                 */
 
-#define ISAC(c) (((c) && (strchr("aAiIuUwWxXeEoO",(c)) != 0)) ? TRUE : FALSE)
+#define ISAC(c) (is_any_of("aAiIuUwWxXeEoO",(c)))
 
 void
 SKT::cat(char * w, char const * x, int y, char const * z)
@@ -483,7 +494,7 @@ unsigned char c,d;
       strcat(outbuf,i_ptr); write_outbuf(); get_line(); CC;
     }
 /* ILLEGAL CHARS */
-    if (strchr("&fqwxzFQWXZ\177",c))
+    if (is_any_of("&fqwxzFQWXZ\177",c))
 /**/
        { error("Illegal sanskrit character: ",1); CI; }
     if (c>127) { error("Invalid character >80H: ",1); CI; }
@@ -491,7 +502,7 @@ unsigned char c,d;
     if (c < ' ')
     { error("Illegal control character: ",0); CI; }
 /* ADDED IMBEDDED ROMAN */
-    if ((c==d && strchr("[`']",c)) || ((c == '.') && (d == '!')) )
+    if ((c==d && is_any_of("[`']",c)) || ((c == '.') && (d == '!')) )
     { if (sktbuf[0]) sktword();
       if (!xlit) { if (feint) strcat(outbuf,"\\ZF{");
                    if (bold)  strcat(outbuf,"\\ZB{");
@@ -507,7 +518,7 @@ unsigned char c,d;
     if (c == '>') { error("Unexpected `>' character.",-1); CI; }
     if (c == ']') { error("Unexpected `]' character.",-1); CI; }
 /* IMBEDDED ROMAN */
-    if (strchr("()*+,-/:;=?",c) || ((c == '.') && (d == '.')))
+    if (is_any_of("()*+,-/:;=?",c) || ((c == '.') && (d == '.')))
     { if (c == '.') i_ptr++;
       if (sktbuf[0]) sktword();
       if (!xlit) { if (feint) strcat(outbuf,"\\ZF{");
@@ -521,7 +532,7 @@ unsigned char c,d;
         { if (*(i_ptr+1) != '.') break;
           i_ptr++; continue;
         }
-        if ((c && strchr("()*+,-/:;=?",c)) == 0) break;
+        if (!is_any_of("()*+,-/:;=?",c)) break;
       }
       if (!xlit) strcat(outbuf,"}");
       CR; continue;
@@ -594,7 +605,7 @@ unsigned char c,d;
          else { sktword(); while(*++i_ptr == ' '); chrcat(outbuf,c); CC; }
        }
 /* UPPER CASE */
-    if (isupper(c) || (strchr("\"~.",c) && isupper(d)))
+    if (isupper(c) || (is_any_of("\"~.",c) && isupper(d)))
     { if (isupper(c))
         { if (!(xlit || tech)) { error("Invalid use of upper case: ",1); CI; }
           else { cap_flag = TRUE; c = tolower(c); }
@@ -602,9 +613,9 @@ unsigned char c,d;
       else
         { if (!(xlit || tech)) { error("Invalid use of upper case: ",2);
                                  i_ptr++; CI; }
-          if (    (c=='.'  && strchr("TDSNHRLM",d))
-               || (c=='\"' && strchr("SNHD",    d))
-               || (c=='~'  && strchr("NM",      d)) )
+          if (    (c=='.'  && is_any_of("TDSNHRLM",d))
+               || (c=='\"' && is_any_of("SNHD",    d))
+               || (c=='~'  && is_any_of("NM",      d)) )
              { d = tolower(d); cap_flag = TRUE; }
         }
     }
@@ -679,7 +690,7 @@ unsigned char c,d;
           { i_ptr--; error("Accent not allowed here: ",k+1); i_ptr+=k; CI; }
         if ((c == '`' || c == '\'') && (!xlit && !tech))
           { error("Invalid accent in skt mode: ",1); CI; }
-        if (strchr("!\"$%&",c))
+        if (is_any_of("!\"$%&",c))
           { if (tech)
               { error("Invalid accent in sktt mode: ",k); i_ptr+=k-1; CI; }
             if (xlit && !option[6])
@@ -704,13 +715,13 @@ unsigned char c,d;
                     i_ptr++; d = *(i_ptr+1);
                   }
 /* NEXT CHAR IS H */
-    if ( (toupper(d) == 'H') && (!xlit) && (strchr("bcdfgjkptq",c)) )
+    if ( (toupper(d) == 'H') && (!xlit) && (is_any_of("bcdfgjkptq",c)) )
        { if ( (isupper(d) && !cap_flag) || (!isupper(d) && cap_flag) )
               { error("Mixed case consonant: ",2); i_ptr++; CI; }
          else { c = toupper(c); i_ptr++; d = *(i_ptr+1); }
        }
 /* TWO CHAR VOWELS */
-    if ( strchr("aiu",c) && strchr("AIU", toupper(d)) )
+    if ( is_any_of("aiu",c) && is_any_of("AIU", toupper(d)) )
        { if ( (isupper(d) && !cap_flag) || (!isupper(d) && cap_flag) )
             { error("Mixed case vowel: ",2); CI; }
          switch(c)
@@ -753,7 +764,7 @@ unsigned char c,d;
        }
     if (c=='Y' && !(ac_flag || svara_flag))
          printf("Line %4d    Warning: No vowel before avagraha\n",line_cnt);
-    if (!strchr("ABCDEFGHIJKLMNOPQSTUVWXZ",toupper(c)) && !strchr("ry",c) &&
+    if (!is_any_of("ABCDEFGHIJKLMNOPQSTUVWXZ",toupper(c)) && !is_any_of("ry",c) &&
          underscore) { error("Invalid character after underscore",-1);
                        underscore = FALSE;
                      }
@@ -763,7 +774,7 @@ unsigned char c,d;
     CR;
     if (ISAC(c) || c=='\26') ac_flag = TRUE;
 /**/
-    if (c && strchr("!\"%()&:;<=>?`\'\27\30\31\32\33\34\35\36\37",c))
+    if (is_any_of("!\"%()&:;<=>?`\'\27\30\31\32\33\34\35\36\37",c))
         svara_flag = TRUE;
     if ((c == 'y') || (c == 'l') || (c == 'v')) ylv_flag = TRUE;
     if (c == 'n') n_flag = TRUE; /* allow accents on letter 'n' */
@@ -816,7 +827,7 @@ SKT::sktcont(void)
 
 static char const hal_chars[] = "BCDFGJKLNPQRSTVZbcdfghjklmnpqrstvyz";
                                               /* internal code for consonants */
-#define ISHAL(c) (((c) && (strchr(hal_chars,(c)) != 0)) ? TRUE : FALSE)
+#define ISHAL(c) (is_any_of(hal_chars,(c)))
 
 void
 SKT::clr_vadata(void)
@@ -918,7 +929,7 @@ while (*s_ptr)
                     }
           break;
         }
-     if (ISAC(c) || strchr("/|\\~HY$)%*\37\26",c))
+     if (ISAC(c) || is_any_of("/|\\~HY$)%*\37\26",c))
 /**/
         { ac_char = c;
           single();
@@ -926,7 +937,7 @@ while (*s_ptr)
           whiteness = bwh; *work = '\0'; cont_begin = 0;
           continue;
         }
-     if (strchr("0123456789-@",c))
+     if (is_any_of("0123456789-@",c))
         { fixed(c);
           strcat(tmp,work);
           whiteness = bwh; *work = '\0'; cont_begin = 0;
@@ -1100,7 +1111,7 @@ SKT::single(void)
      default:  error("Lost in single()",-1);
   }
   if ( (ac_char != '\26' ) && ( whiteness < 7) )
-     { if (ac_char && strchr("iIuUxXwWeE",ac_char))
+     { if (is_any_of("iIuUxXwWeE",ac_char))
        { switch (interspace - whiteness - fwh)
          { case 1: strcat(tmp,"."); break;
            case 2: strcat(tmp,":"); break;
@@ -1190,7 +1201,7 @@ SKT::sam_warning(void)
 (ac_hook=='e' || ac_hook=='E' || pre_ra || bindu || candrabindu)
 
 #define TOPACCENT \
-(accent && strchr("!(\":;<=>?\27",accent))
+(is_any_of("!(\":;<=>?\27",accent))
 
 #define BOTHOOKS \
 (virama || c=='U' || c=='X' || c=='W')
@@ -1201,7 +1212,7 @@ SKT::addhooks(void)
   accent = bindu = candrabindu = 0;
   c = *s_ptr;
   if (c == '#') { candrabindu = TRUE; c = *++s_ptr; }
-  if (c && strchr("!(\"&:;<=>?\27\30\31\32\33\34\35\36",c))
+  if (is_any_of("!(\"&:;<=>?\27\30\31\32\33\34\35\36",c))
      { accent = c; c = *++s_ptr; }
   if (c == '#') { candrabindu = TRUE; c = *++s_ptr; }
   if ( (c == 'M') || (c == 'R') ) { bindu = TRUE; c = *++s_ptr; }
@@ -1249,8 +1260,8 @@ SKT::addhooks(void)
      { t = 0; if (option[4]) t = 8; if (option[5]) t = 12;
               if (option[4] && option[5]) t = 16;
        if (t < v) t = v;
-       if (    (ac_char && strchr("eioEIO",ac_char) )
-            && (accent && strchr("=>?\"\27",accent) )  )
+       if (    (is_any_of("eioEIO",ac_char) )
+            && (is_any_of("=>?\"\27",accent) )  )
           { v=8; if ((accent=='\"') || (accent=='\27')) v=3; }
        if (t < v) t = v;
        if (t)   { CAT(work,"\\ZV{",t,"}{"); }
@@ -1360,7 +1371,7 @@ SKT::addhooks(void)
        if (v) strcat(work,"}");
        if (bot) strcat(work,"}");
      }
-  if ( (accent && strchr("&\30\31\32\33\34\35\36",accent)) || (*s_ptr=='%') )
+  if ( (is_any_of("&\30\31\32\33\34\35\36",accent)) || (*s_ptr=='%') )
      { if (dep > 2) { if (v<0) v=dep-2-v;
                       else v=dep-2; }
        else v=dep;
@@ -1473,7 +1484,7 @@ SKT::backac(void)
 /* now set ac_flag according to vowel                                         */
    if (c == 'o') ac_hook = 'e';
    if (c == 'O') ac_hook = 'E';
-   if (c && strchr("uUeExXwW",c)) ac_hook = ac_char;
+   if (is_any_of("uUeExXwW",c)) ac_hook = ac_char;
 /* finally add all flags, accents, nasals, and final vertical as necessary    */
    j=low_right; k=high_right;     /* save interference from previous syllable */
    addhooks();
@@ -1784,7 +1795,7 @@ SKT::samyoga(void)
   LT("V",      0,NC,VA( 8,0,0, 0,0,0, 1,0,3,1,":]"),
               50,NC,VA( 8,0,0, 0,0,0, 0,0,3,1,"`]"));
   LS("n",    120,NR,VA(12,3,3, 1,1,0, 2,3,2,2,"\\ZM{0JjDDnMDeRDE}*.a"));
-  if ( (strchr("CNPphSqrz",*p) && *p) || ISAC(*p) || *p=='\0' )
+  if ( (is_any_of("CNPphSqrz",*p)) || ISAC(*p) || *p=='\0' )
                   { VA(11,0,0, 0,0,1, 1,0,2,0,"j");  NC; }
                     VA(11,0,0, 0,0,1, 1,0,2,1,"j1"); NC;
 
@@ -2075,9 +2086,9 @@ SKT::samyoga(void)
   LS("n",    157,NR,VA(14,3,3, 0,0,0, 0,3,2,2,"m1\\ZM{hFnaLe}:a"));
   LT("l",    158,NR,VA(13,2,1, 2,0,0, 0,1,2,6,"m1\\ZM{aLeDPEDFIhBl}+"),
               46,NR,VA(14,3,3, 5,1,0, 0,3,2,2,"m1\\ZM{aLeDdElbL}:a"));
-  if (*p && strchr("mr",*p))
+  if (is_any_of("mr",*p))
                   { VA(10,0,0, 0,1,0, 0,0,4,1,"m"); NC; }
-  if (*p && strchr("lbByv",*p))
+  if (is_any_of("lbByv",*p))
                   { VA( 9,0,0, 0,0,0, 0,0,1,1,"m1"); NC; }
   if (ISHAL(*p))  { VA(10,0,0, 0,3,0, 0,0,4,1,"m1\\ZM{cLe}."); NC; }
                     VA(10,0,0, 0,1,0, 0,0,4,1,"m"); NC;
@@ -2212,9 +2223,9 @@ case 'v':
   LS("nv",   170,NR,VA(19,3,3, 0,2,1, 0,3,6,2,"=\\ZM{fMo0HnHMu}*:a"));
   LS("n",    170,NR,VA(12,0,0, 0,1,1, 0,0,2,1,"=+:\\ZM{rMolHneHegMi}"));
   LS("r",      0,NC,VA(11,0,0, 0,0,1, 0,0,2,1,"s1\\ZM{aLeDDr}:"));
-  if (*p && strchr("sm",*p)) {
+  if (is_any_of("sm",*p)) {
                     VA(10,0,0, 0,0,1, 0,0,2,1,"s"); NC; }
-  if (*p && strchr("GZCJqNdDpPBrZSh",*p)) {
+  if (is_any_of("GZCJqNdDpPBrZSh",*p)) {
                     VA(10,0,0, 0,0,1, 0,0,2,1,"s1\\ZM{cLe}."); NC; }
   if (ISHAL(*p))  { VA( 9,0,0, 0,0,1, 0,0,2,1,"s1"); NC; }
                     VA(10,0,0, 0,0,1, 0,0,2,1,"s"); NC;
@@ -2408,9 +2419,9 @@ char c, *p;
 
    /* now for the vowels with stacked nasal and accent                     */
 
-   case 'i': if (*p && strchr("!`'\"(#\27",*p)) { ISTACK('i',"{\\i}","I"); }
+   case 'i': if (is_any_of("!`'\"(#\27",*p)) { ISTACK('i',"{\\i}","I"); }
              else { ISTACK('i',"i","I"); } break;
-   case 'E': if (*p && strchr("!`'\"(#\27",*p)) { ISTACK('E',"{a\\i}","AI"); }
+   case 'E': if (is_any_of("!`'\"(#\27",*p)) { ISTACK('E',"{a\\i}","AI"); }
              else { ISTACK('E',"ai","AI"); } break;
 
 
@@ -2424,7 +2435,7 @@ char c, *p;
 
    case 'w': if (option[26])
              { save = flag; SWITCHFLAG("lr\\llap{\\d{\\kern.51em}}","L\\d R");
-               flag = save; if ( *p && strchr("!\"#$%&'():;<=>?`",*p))
+               flag = save; if ( is_any_of("!\"#$%&'():;<=>?`",*p))
                                { ISTACK('w',"{\\i}","I"); break; }
                             ISTACK('w',"i","I"); break; }
              ISTACK('w',"\\d l","\\d L"); break;
@@ -2436,7 +2447,7 @@ char c, *p;
 
    case 'x': if (option[25])
              { save = flag; SWITCHFLAG("r\\llap{\\d{\\kern.51em}}","\\d R");
-               flag = save; if (*p && strchr("!\"#$%&'():;<=>?`",*p))
+               flag = save; if (is_any_of("!\"#$%&'():;<=>?`",*p))
                                { ISTACK('x',"{\\i}","I"); break; }
                             ISTACK('x',"i","I"); break; }
              ISTACK('x',"r\\llap{\\d{\\kern.51em}}","\\d R"); break;
