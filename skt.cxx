@@ -346,9 +346,9 @@ SKT::write_line(char *p)
 char *
 SKT::str_find(char const *buf, char const *str)
 { char *p, *x;
-  p = strstr(buf,str);
+  p = strstr(const_cast<char *>(buf),str);
   if (p == 0) return(0);
-  x = strchr(buf,'%');
+  x = strchr(const_cast<char *>(buf),'%');
   if ((x != 0) && (p > x)) return(0);
   return(p);
 }
