@@ -1,6 +1,9 @@
-cmake_minimum_required (VERSION 2.8.4)
+cmake_minimum_required (VERSION 3.1)
 project (skt)
 enable_language (CXX)
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
 set (SKT_DEBUG_LEVEL "0" CACHE STRING "SKT debug level")
 

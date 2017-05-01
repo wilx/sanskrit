@@ -25,6 +25,12 @@
 /*                                                                            */
 /******************************************************************************/
 
+#include <cstdio>
+#include <cctype>
+#include <cstring>
+#include <cstdlib>
+
+
 #ifndef DEBUG
 #define DEBUG 0
 #endif
@@ -34,114 +40,119 @@
 /* 1 = debug process(); output is internal code                               */
 /* 2 = debug sktword(); output is final output                                */
 
-#define total_options 199
 
-#include <stdio.h>
-#include <ctype.h>
-#include <string.h>
-#include <stdlib.h>
+const int total_options = 199;
 
-/* DECLARE FUNCTIONS */
-void   search      (void);
-void   write_outbuf(void);
-void   write_line  (char *);
-char * str_find    (char *, char *);
-void   get_line    (void);
-char * command     (char *);
-void   error       (char *, int);
-void   process     (void);
-void   chrcat      (char *, char);
-void   sktcont     (void);
-void   sktword     (void);
-void   fixed       (char);
-void   single      (void);
-void   sam_warning (void);
-void   addhooks    (void);
-void   backac      (void);
-void   autohyphen  (void);
-void   samyoga     (void);
-int    aci         (char *);
-void   translit    (void);
+struct SKT {
 
-FILE *infile, *outfile;
-char infilename[80];
-char outfilename[80];
+  /* DECLARE FUNCTIONS */
+  void   search      (void);
+  void   write_outbuf(void);
+  void   write_line  (char *);
+  char * str_find    (char *, char *);
+  void   get_line    (void);
+  char * command     (char *);
+  void   error       (char *, int);
+  void   process     (void);
+  void   chrcat      (char *, char);
+  void   sktcont     (void);
+  void   sktword     (void);
+  void   fixed       (char);
+  void   single      (void);
+  void   sam_warning (void);
+  void   addhooks    (void);
+  void   backac      (void);
+  void   autohyphen  (void);
+  void   samyoga     (void);
+  int    aci         (char *);
+  void   translit    (void);
+
+  FILE *infile, *outfile;
+  char infilename[80];
+  char outfilename[80];
 #define FILENAME_SCANF "%79s"
 
 #define TRUE 1
 #define FALSE 0
 
-unsigned char feint;      /* flag TRUE while within {\sktf..}                 */
-unsigned char bold;       /* flag TRUE while within {\sktb..}                 */
-unsigned char xbold;      /* flag TRUE while within \sktX or \sktT            */
-unsigned char sktline;    /* flag TRUE if there is any sanskrit on this line  */
-unsigned char sktmode;    /* flag TRUE while within {\skt.. }                 */
-unsigned char eof_flag;   /* flag True when end of file detected              */
-unsigned char xlit;       /* flag TRUE while within {\sktx }                  */
-unsigned char tech;       /* flag TRUE while within {\sktt }                  */
-unsigned char ac_flag;    /* flag TRUE while processing skt vowels            */
-unsigned char svara_flag; /* flag TRUE if previous input char was accent      */
-unsigned char ylv_flag;   /* flag TRUE if previous input char was y, l, or v  */
-unsigned char roman_flag; /* flag TRUE if previous output was Roman string    */
+  unsigned char feint;      /* flag TRUE while within {\sktf..}                 */
+  unsigned char bold;       /* flag TRUE while within {\sktb..}                 */
+  unsigned char xbold;      /* flag TRUE while within \sktX or \sktT            */
+  unsigned char sktline;    /* flag TRUE if there is any sanskrit on this line  */
+  unsigned char sktmode;    /* flag TRUE while within {\skt.. }                 */
+  unsigned char eof_flag;   /* flag True when end of file detected              */
+  unsigned char xlit;       /* flag TRUE while within {\sktx }                  */
+  unsigned char tech;       /* flag TRUE while within {\sktt }                  */
+  unsigned char ac_flag;    /* flag TRUE while processing skt vowels            */
+  unsigned char svara_flag; /* flag TRUE if previous input char was accent      */
+  unsigned char ylv_flag;   /* flag TRUE if previous input char was y, l, or v  */
+  unsigned char roman_flag; /* flag TRUE if previous output was Roman string    */
 
-int nest_cnt;            /* '{' increments, '}' decrements, while in \skt..   */
-int err_cnt;             /* incremented by any error while in \skt..          */
+  int nest_cnt;            /* '{' increments, '}' decrements, while in \skt..   */
+  int err_cnt;             /* incremented by any error while in \skt..          */
 #define err_max 10       /* after err_max errors, program aborts              */
-int line_cnt;            /* line number of current input line                 */
+  int line_cnt;            /* line number of current input line                 */
 
-char inbuf[255];         /* input file line buffer of text being processed    */
-char *i_ptr;             /* general pointer to input buffer                   */
-char outbuf[2048];       /* output file line buffer of text processed         */
-char *o_ptr;             /* general pointer to output buffer                  */
+  char inbuf[255];         /* input file line buffer of text being processed    */
+  char *i_ptr;             /* general pointer to input buffer                   */
+  char outbuf[2048];       /* output file line buffer of text processed         */
+  char *o_ptr;             /* general pointer to output buffer                  */
 
-unsigned char cont_end;   /* flag TRUE when line ends with %-continuation     */
-unsigned char cont_begin; /* flag TRUE when line begins after %-continuation  */
-unsigned char hal_flag;   /* flag TRUE when hal_type detected in syllable     */
-unsigned char accent;     /* storage for working accent character             */
-unsigned char nasal;      /* storage for working nasal character              */
-unsigned char ac_char;    /* storage for working vowel character              */
-unsigned char pre_ra;     /* storage/flag for 'r' at beginning of samyoga     */
-char ac_hook;             /* vowel hook code                                  */
-char sktbuf[255];         /* storage for sanskrit in internal code            */
-char *s_ptr;              /* general pointer to sanskrit buffer               */
-char *old_sptr;           /* points to samyoga start; used by warning message */
-char work[256];           /* general scratchpad                               */
-char *w_ptr;              /* general pointer to work buffer                   */
-char tmp[2048];           /* temporary buffer for previous syllable           */
-int  wid;                 /* character print width                            */
-int  top;                 /* amount to backspace for top flags                */
-int  bot;                 /* amount to backspace for bottom flags             */
-int  dep;                 /* character descender below line                   */
-int  rldep;               /* dep reduction for .r and .l vowel hooks          */
-int  fbar;                /* length hor. bar to inset if first int  of word   */
-int  fwh;                 /* character front whiteness (without fbar)         */
-int  bwh;                 /* character back whiteness                         */
-int  ra;                  /* post_ra type to use with this character          */
-int  ya;                  /* post_ya type to use with this character          */
-int  bs;                  /* backspace flag for front-vowels                  */
-int  vaflg;               /* zero at first time use of VA macro               */
-int  whiteness;           /* back whiteness of previous syllable (in tmp)     */
-int  end_bar;             /* flag to append vertical bar to end of syllable   */
-int  bindu;               /* nasal flag                                       */
-int  candrabindu;         /* nasal flag                                       */
-int  post_ra;             /* flag to append ra to samyoga                     */
-int  post_ya;             /* flag to append ya to samyoga                     */
-int  virama;              /* flag to add viraama to samyoga (i.e. no vowel)   */
-int  hr_flag;             /* flag indicates vowel picked up in samyoga (h.r)  */
-int  option[total_options+1]; /* table of user option flags                   */
-int  low_left;            /* interference value: top hooks                    */
-int  low_right;           /* interference value: top hooks                    */
-int  high_left;           /* interference value: raised accents               */
-int  high_right;          /* interference value: raised accents               */
-int  interspace;          /* inter-syllable space, determined from opt. 2 & 3 */
-int  intraspace;          /* intra-syllable space, from above and option 1    */
+  unsigned char cont_end;   /* flag TRUE when line ends with %-continuation     */
+  unsigned char cont_begin; /* flag TRUE when line begins after %-continuation  */
+  unsigned char hal_flag;   /* flag TRUE when hal_type detected in syllable     */
+  unsigned char accent;     /* storage for working accent character             */
+  unsigned char nasal;      /* storage for working nasal character              */
+  unsigned char ac_char;    /* storage for working vowel character              */
+  unsigned char pre_ra;     /* storage/flag for 'r' at beginning of samyoga     */
+  char ac_hook;             /* vowel hook code                                  */
+  char sktbuf[255];         /* storage for sanskrit in internal code            */
+  char *s_ptr;              /* general pointer to sanskrit buffer               */
+  char *old_sptr;           /* points to samyoga start; used by warning message */
+  char work[256];           /* general scratchpad                               */
+  char *w_ptr;              /* general pointer to work buffer                   */
+  char tmp[2048];           /* temporary buffer for previous syllable           */
+  int  wid;                 /* character print width                            */
+  int  top;                 /* amount to backspace for top flags                */
+  int  bot;                 /* amount to backspace for bottom flags             */
+  int  dep;                 /* character descender below line                   */
+  int  rldep;               /* dep reduction for .r and .l vowel hooks          */
+  int  fbar;                /* length hor. bar to inset if first int  of word   */
+  int  fwh;                 /* character front whiteness (without fbar)         */
+  int  bwh;                 /* character back whiteness                         */
+  int  ra;                  /* post_ra type to use with this character          */
+  int  ya;                  /* post_ya type to use with this character          */
+  int  bs;                  /* backspace flag for front-vowels                  */
+  int  vaflg;               /* zero at first time use of VA macro               */
+  int  whiteness;           /* back whiteness of previous syllable (in tmp)     */
+  int  end_bar;             /* flag to append vertical bar to end of syllable   */
+  int  bindu;               /* nasal flag                                       */
+  int  candrabindu;         /* nasal flag                                       */
+  int  post_ra;             /* flag to append ra to samyoga                     */
+  int  post_ya;             /* flag to append ya to samyoga                     */
+  int  virama;              /* flag to add viraama to samyoga (i.e. no vowel)   */
+  int  hr_flag;             /* flag indicates vowel picked up in samyoga (h.r)  */
+  int  option[total_options+1]; /* table of user option flags                   */
+  int  low_left;            /* interference value: top hooks                    */
+  int  low_right;           /* interference value: top hooks                    */
+  int  high_left;           /* interference value: raised accents               */
+  int  high_right;          /* interference value: raised accents               */
+  int  interspace;          /* inter-syllable space, determined from opt. 2 & 3 */
+  int  intraspace;          /* intra-syllable space, from above and option 1    */
+
+  int run(int argc, char *argv[]);
+  void cat(char*, const char*, int, const char*);
+  void clr_vadata(void);
+  void clr_flags(void);
+  void switch_flag(char const * Y, char const * Z, int * flag);
+}; // struct SKT
 
 /******************************************************************************/
-/*                       MAIN                                                 */
+/*                       RUN                                                  */
 /******************************************************************************/
 
 int
-main(int argc,
+SKT::run(int argc,
      char *argv[])
 { char *p; int k;
 
@@ -232,7 +243,8 @@ main(int argc,
 /*           ordinary text; if valid command i_ptr points to first sanskrit   */
 /*           char after command, and sets sktmode TRUE.                       */
 
-void search(void)
+void
+SKT::search(void)
 {
 unsigned char c;
 char *p,*q;
@@ -266,7 +278,8 @@ char *p,*q;
 
 /* Function: write outbuf in 80 char lines                                    */
 
-void write_outbuf(void)
+void
+SKT::write_outbuf(void)
 {
 char c, d, e;
   while(1)
@@ -302,7 +315,8 @@ char c, d, e;
 
 /* Function: write p-string to output device                                  */
 
-void write_line(char *p)
+void
+SKT::write_line(char *p)
 {
 #if (DEBUG == 0)
   if (err_cnt == 0) fputs(p,outfile);
@@ -318,7 +332,8 @@ void write_line(char *p)
 /* Function: find first occasion of string *str within *buf before '%' char;  */
 /*           return pointer first char of str within buf, else 0.             */
 
-char * str_find(char *buf, char *str)
+char *
+SKT::str_find(char *buf, char *str)
 { char *p, *x;
   p = strstr(buf,str);
   if (p == 0) return(0);
@@ -334,7 +349,8 @@ char * str_find(char *buf, char *str)
 /* Function: get another line from input file; reset i_ptr, increments        */
 /*           line_cnt, and sets eof_flag if EOF.                              */
 
-void get_line(void)
+void
+SKT::get_line(void)
 {
   i_ptr = inbuf;
   *i_ptr = '\0';
@@ -355,7 +371,8 @@ void get_line(void)
 /* Function: check for valid \skt.. command: if \sktx or \sktX set xlit TRUE, */
 /*           else clear it; if invalid command, print error message           */
 
-char * command(char *p)
+char *
+SKT::command(char *p)
 { char c;
   p += 5;                                            /* skip over '{\skt'     */
   feint = bold = xlit = tech = xbold = FALSE;
@@ -401,7 +418,8 @@ char * command(char *p)
 /* Function: print out error message, including string *s and 'n' characters  */
 /*           of inbuf.                                                        */
 
-void error(char *s, int n)
+void
+SKT::error(char *s, int n)
 { char err_str[80];
   if (++err_cnt <= err_max)
     { if (n > 0)  { int j;
@@ -429,7 +447,7 @@ void error(char *s, int n)
 #define ISAC(c) (((c) && (strchr("aAiIuUwWxXeEoO",(c)) != 0)) ? TRUE : FALSE)
 
 void
-cat(char * w, char const * x, int y, char const * z)
+SKT::cat(char * w, char const * x, int y, char const * z)
 {
   strcat(w,x);
   if((y)>9) chrcat(w,('0'+((y)/10)));
@@ -439,7 +457,8 @@ cat(char * w, char const * x, int y, char const * z)
 
 #define CAT(w,x,y,z) cat((w),(x),(y),(z));
 
-void process(void)
+void
+SKT::process(void)
 { int j,k,cap_flag, underscore, nasal_vowel, n_flag, vedic;
 unsigned char c,d;
 #define CF ac_flag=svara_flag=ylv_flag=underscore=cap_flag=roman_flag=nasal_vowel=n_flag=vedic=FALSE
@@ -764,7 +783,8 @@ unsigned char c,d;
 
 /* Function: append character c to end of buffer s                            */
 
-void chrcat(char *s, char c)
+void
+SKT::chrcat(char *s, char c)
 { char temp[] = " "; temp[0] = c; strcat(s,temp);
 }
 
@@ -775,7 +795,8 @@ void chrcat(char *s, char c)
 /* Function: as sktword() but used where input text line ends in '%' to       */
 /*           continue on next line.                                           */
 
-void sktcont(void)
+void
+SKT::sktcont(void)
 {
   if (sktbuf[0] == '\0') { cont_begin = FALSE;
                            sktword();
@@ -798,7 +819,7 @@ static char const hal_chars[] = "BCDFGJKLNPQRSTVZbcdfghjklmnpqrstvyz";
 #define ISHAL(c) (((c) && (strchr(hal_chars,(c)) != 0)) ? TRUE : FALSE)
 
 void
-clr_vadata(void)
+SKT::clr_vadata(void)
 {
   wid=0;
   top=0;
@@ -817,7 +838,7 @@ clr_vadata(void)
 #define CLRVADATA clr_vadata()
 
 void
-clr_flags(void)
+SKT::clr_flags(void)
 {
   ac_hook=0;
   post_ra=0;
@@ -836,7 +857,8 @@ clr_flags(void)
 wid+=p; top=q; bot=r; dep=s; rldep=t; if(!vaflg){fbar=u; fwh=v;} bwh=w; \
 ra=x; ya=y; strcat(work,z); vaflg++;
 
-void sktword(void)
+void
+SKT::sktword(void)
 { char c;
   if (roman_flag && sktbuf[0]) roman_flag = FALSE;
 #if DEBUG == 1
@@ -945,7 +967,8 @@ while (*s_ptr)
 
 /* Function: output fixed width (stand-alone) character to work buffer             */
 
-void fixed(char c)
+void
+SKT::fixed(char c)
 {
   switch(c)
   {  case '0':                     VA(12,0,0, 0,0,0, 3,2,0,0,"0");  break;
@@ -985,7 +1008,8 @@ void fixed(char c)
 
 /* Function: process a front-vowel to workbuf                                 */
 
-void single(void)
+void
+SKT::single(void)
 { int k;
   k = pre_ra; CLRFLAGS; pre_ra = k;
   CLRVADATA;
@@ -1102,7 +1126,8 @@ void single(void)
 /*           samyoga. Also print input file line number, together with an     */
 /*           indication of the samyoga and where the viraama will be placed.  */
 
-void sam_warning(void)
+void
+SKT::sam_warning(void)
 { char *p, msg[80]="";
   p = old_sptr;
   if (pre_ra)
@@ -1170,7 +1195,8 @@ void sam_warning(void)
 #define BOTHOOKS \
 (virama || c=='U' || c=='X' || c=='W')
 
-void addhooks(void)
+void
+SKT::addhooks(void)
 { char c; int t, j, h, v;
   accent = bindu = candrabindu = 0;
   c = *s_ptr;
@@ -1370,7 +1396,8 @@ void addhooks(void)
 /* Function: adjust inter-syllable spacing, add i-hooks, and set ac_hook      */
 /*           before calling addhooks().                                       */
 
-void backac(void)
+void
+SKT::backac(void)
 {  int j,k; char c;
    ac_hook = end_bar = 0;
    if (pre_ra && !hal_flag)            /* case r.r, r.R, r.l, r.L, ru, rU, ra */
@@ -1511,7 +1538,8 @@ void backac(void)
 /* Function: add discretionary hyphen string (\-) to work buffer if           */
 /*           autohyphen (option[11]) is enabled.                          */
 
-void autohyphen(void)
+void
+SKT::autohyphen(void)
 {
    if (option[11] && *s_ptr!='\0' && ac_char
                       && !(*s_ptr=='-'  && option[10]))
@@ -1571,7 +1599,8 @@ switch (bwh)
 
 /******************************************************************************/
 
-void samyoga(void)
+void
+SKT::samyoga(void)
 {
  char *p, sam_flag;
  option[0] = 0;
@@ -2234,7 +2263,8 @@ case 'h':
 
 /* Function: test for short-i following samyoga                               */
 
-int aci(char *p)
+int
+SKT::aci(char *p)
 { int j;
   for (j=0; j<6; j++) if (!ISHAL(*(p+j))) break;
   if (*(p+j) == 'i') return(TRUE);
@@ -2248,7 +2278,7 @@ int aci(char *p)
 /* Function: transliterate contents of sktbuf, output result in outbuf        */
 
 void
-switch_flag(char const * Y, char const * Z, int * flag) {
+SKT::switch_flag(char const * Y, char const * Z, int * flag) {
   switch (*flag) {
   case 0: strcat(outbuf,Y); break;
   case 1: if (tech) strcat(outbuf,"\\ZX{"); strcat(outbuf,Z);
@@ -2294,7 +2324,8 @@ switch_flag(char const * Y, char const * Z, int * flag) {
                              if (*p == '#') { strcat(outbuf,"}"); p++; }   \
                              break
 
-void translit(void)
+void
+SKT::translit(void)
 {
 int save, flag = 0;
 char c, *p;
@@ -2421,6 +2452,19 @@ break;
  }
  s_ptr = sktbuf; *s_ptr = '\0'; cont_begin = 0;
 }
+
+
+/******************************************************************************/
+/*                       MAIN                                                 */
+/******************************************************************************/
+
+int
+main(int argc, char * argv[])
+{
+  SKT skt;
+  return skt.run(argc, argv);
+}
+
 
 /******************************************************************************/
 /*                       ITI                                                  */

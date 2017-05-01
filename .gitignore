@@ -178,3 +178,15 @@ TSWLatexianTemp*
 
 # KBibTeX
 *~[0-9]*
+
+# skt executable related byproducts
+*.o
+*.ii
+*.i
+*.s
+*.exe
+*~
+CMakeFiles/
+CMakeCache.txt
+Makefile
+*.cmake
