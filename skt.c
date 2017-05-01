@@ -456,7 +456,7 @@ unsigned char c,d;
     c = *i_ptr; d = *(i_ptr+1);
 /* END OF LINE */
     if ((c == '\0') || (c == '\n'))
-      { sktword(); strcat (outbuf,i_ptr); write_outbuf(); get_line(); CC; }
+      { sktword(); strcat(outbuf,i_ptr); write_outbuf(); get_line(); CC; }
 /* COMMENT DELIMITER */
     if (c == '%')
     { if (*(i_ptr+1) == '\n') sktcont();
