@@ -468,10 +468,34 @@ SKT::cat(char * w, char const * x, int y, char const * z)
 void
 SKT::process(void)
 { int j,k,cap_flag, underscore, nasal_vowel, n_flag, vedic;
-unsigned char c,d;
-#define CF ac_flag=svara_flag=ylv_flag=underscore=cap_flag=roman_flag=nasal_vowel=n_flag=vedic=FALSE
+
+  auto const cf = [&,this]() {
+    ac_flag=false;
+    svara_flag=false;
+    ylv_flag=false;
+    underscore=false;
+    cap_flag=false;
+    roman_flag=false;
+    nasal_vowel=false;
+    n_flag=false;
+    vedic=false;
+  };
+
+#define CF cf()
 #define CC CF; continue
-#define CR ac_flag=svara_flag=ylv_flag=underscore=cap_flag=nasal_vowel=n_flag=vedic=FALSE;
+
+  auto const cr = [&,this]() {
+    ac_flag=false;
+    svara_flag=false;
+    ylv_flag=false;
+    underscore=false;
+    cap_flag=false;
+    nasal_vowel=false;
+    n_flag=false;
+    vedic=false;
+  };
+
+#define CR cr()
 #define CI i_ptr++; CC
 
  CF;
