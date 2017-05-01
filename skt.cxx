@@ -49,10 +49,10 @@ struct SKT {
   void   search      (void);
   void   write_outbuf(void);
   void   write_line  (char *);
-  char * str_find    (char *, char *);
+  char * str_find    (char const *, char const *);
   void   get_line    (void);
   char * command     (char *);
-  void   error       (char *, int);
+  void   error       (char const *, int);
   void   process     (void);
   void   chrcat      (char *, char);
   void   sktcont     (void);
@@ -333,7 +333,7 @@ SKT::write_line(char *p)
 /*           return pointer first char of str within buf, else 0.             */
 
 char *
-SKT::str_find(char *buf, char *str)
+SKT::str_find(char const *buf, char const *str)
 { char *p, *x;
   p = strstr(buf,str);
   if (p == 0) return(0);
@@ -419,7 +419,7 @@ SKT::command(char *p)
 /*           of inbuf.                                                        */
 
 void
-SKT::error(char *s, int n)
+SKT::error(char const *s, int n)
 { char err_str[80];
   if (++err_cnt <= err_max)
     { if (n > 0)  { int j;
