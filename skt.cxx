@@ -281,9 +281,9 @@ char *p,*q;
 void
 SKT::write_outbuf(void)
 {
-char c, d, e;
+  char d;
   while(1)
-  { c = '\0';
+  { char c = '\0';
     if (strlen(outbuf) < 81) { write_line(outbuf); break; }
     if (option[9])                                  /* if obey-lines enabled */
       { if (strlen(outbuf) > 250)
@@ -299,7 +299,7 @@ char c, d, e;
                          if (o_ptr == outbuf+50) o_ptr = outbuf+78;
                          c = *o_ptr; *o_ptr++ = '%'; d = *o_ptr;
                        }
-    *o_ptr++ = '\n'; e = *o_ptr; *o_ptr = '\0';
+    *o_ptr++ = '\n'; char e = *o_ptr; *o_ptr = '\0';
     write_line(outbuf);
     *o_ptr = e;
     if (c!='\0') { *--o_ptr = d; *--o_ptr = c; } /* restore displaced chars */
