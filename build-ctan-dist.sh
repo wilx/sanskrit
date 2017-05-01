@@ -16,7 +16,7 @@ if command_exists pandoc ; then
            README.md
 fi
 
-${CC:-cc} -o skt skt.c
+${CXX:-c++} -o skt skt.cxx
 
 ./skt sktdoc.skt sktdoc.tex
 
@@ -43,7 +43,7 @@ list_files() {
          -o -name '*.tfm' \
          -o -name '*.fd' \
          -o -name '*.sty' \
-         -o -name '*.c' \
+         -o -name '*.cxx' \
          -o -name 'sktdoc.ps' \
          -o -name 'sktdoc.pdf' \
          -o -name 'sktdoc.skt' \
