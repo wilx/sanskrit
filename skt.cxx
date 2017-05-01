@@ -2404,23 +2404,47 @@ char c, *p;
               if (option[21]) { ISTACK('~',"\\.m","\\.M"); break; }
               ISTACK('~',"\\d{\\~m}","\\d{\\~M}"); break;
 
-   XLIT('0',"0","0");        XLIT('1',"1","1");     XLIT('2',"2","2");
-   XLIT('3',"3","3");        XLIT('4',"4","4");     XLIT('5',"5","5");
-   XLIT('6',"6","6");        XLIT('7',"7","7");     XLIT('8',"8","8");
+   XLIT('0',"0","0");
+   XLIT('1',"1","1");
+   XLIT('2',"2","2");
+   XLIT('3',"3","3");
+   XLIT('4',"4","4");
+   XLIT('5',"5","5");
+   XLIT('6',"6","6");
+   XLIT('7',"7","7");
+   XLIT('8',"8","8");
    XLIT('9',"9","9");
 
-   XLIT('b',"b","B");        XLIT('c',"c","C");     XLIT('d',"d","D");
-   XLIT('f',"\\d t","\\d T"); XLIT('g',"g","G");     XLIT('h',"h","H");
-   XLIT('j',"j","J");        XLIT('k',"k","K");     XLIT('m',"m","M");
-   STACK('n',"n","N");       XLIT('p',"p","P");     XLIT('q',"\\d d","\\d D");
-   XLIT('r',"r","R");        XLIT('s',"s","S");     XLIT('t',"t","T");
+   XLIT('b',"b","B");
+   XLIT('c',"c","C");
+   XLIT('d',"d","D");
+   XLIT('f',"\\d t","\\d T");
+   XLIT('g',"g","G");
+   XLIT('h',"h","H");
+   XLIT('j',"j","J");
+   XLIT('k',"k","K");
+   XLIT('m',"m","M");
+   STACK('n',"n","N");
+   XLIT('p',"p","P");
+   XLIT('q',"\\d d","\\d D");
+   XLIT('r',"r","R");
+   XLIT('s',"s","S");
+   XLIT('t',"t","T");
    XLIT('z',"\\.n","\\.N");
 
-   XLIT('B',"bh","BH");         XLIT('C',"ch","CH"); XLIT('D',"dh","DH");
-   XLIT('F',"\\d th","\\d TH"); XLIT('G',"gh","GH"); XLIT('H',"\\d h","\\d H");
-   XLIT('J',"jh","JH");         XLIT('K',"kh","KH");
-   XLIT('N',"\\d n","\\d N");   XLIT('P',"ph","PH"); XLIT('Q',"\\d dh","\\d DH");
-   XLIT('T',"th","TH"); XLIT('V',"\\~n","\\~N");
+   XLIT('B',"bh","BH");
+   XLIT('C',"ch","CH");
+   XLIT('D',"dh","DH");
+   XLIT('F',"\\d th","\\d TH");
+   XLIT('G',"gh","GH");
+   XLIT('H',"\\d h","\\d H");
+   XLIT('J',"jh","JH");
+   XLIT('K',"kh","KH");
+   XLIT('N',"\\d n","\\d N");
+   XLIT('P',"ph","PH");
+   XLIT('Q',"\\d dh","\\d DH");
+   XLIT('T',"th","TH");
+   XLIT('V',"\\~n","\\~N");
 
    case 'S':  if (option[28]) { SWITCHFLAG("sh","SH"); break; }
               SWITCHFLAG("\\d s","\\d S"); break;
@@ -2455,11 +2479,15 @@ char c, *p;
              else { ISTACK('E',"ai","AI"); } break;
 
 
-   STACK('a',"a","A");           STACK('u',"u","U");
-   STACK('e',"e","E");           STACK('o',"o","O");
+   STACK('a',"a","A");
+   STACK('u',"u","U");
+   STACK('e',"e","E");
+   STACK('o',"o","O");
 
-   STACK('A',"\\=a","\\=A");     STACK('I',"\\={\\i}","\\=I");
-   STACK('U',"\\=u","\\=U");     STACK('O',"au","AU");
+   STACK('A',"\\=a","\\=A");
+   STACK('I',"\\={\\i}","\\=I");
+   STACK('U',"\\=u","\\=U");
+   STACK('O',"au","AU");
 
    STACK('\26'," "," ");
 
