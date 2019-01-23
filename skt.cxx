@@ -154,6 +154,7 @@ struct SKT {
   void clr_flags(void);
   void switch_flag(char const * Y, char const * Z, int & flag);
   void istack(char X, char const * Y, char const * Z, char & c, char * & p, int & flag);
+  void nasal_func(char const * Y, char const * Z, char * & p, int & flag);
 }; // struct SKT
 
 /******************************************************************************/
@@ -2332,8 +2333,6 @@ SKT::switch_flag(char const * Y, char const * Z, int & flag) {
 
 #define STACK(X,Y,Z) case X: ISTACK(X,Y,Z); break
 
-
-
 void
 SKT::istack(char X, char const * Y, char const * Z, char & c, char * & p, int & flag)
 {
@@ -2360,10 +2359,16 @@ SKT::istack(char X, char const * Y, char const * Z, char & c, char * & p, int & 
 
 #define ISTACK(X,Y,Z) istack(X, Y, Z, c, p, flag)
 
-#define NASAL(X,Y,Z) case X: if (*p == '#') strcat(outbuf,"\\~{");         \
-                             SWITCHFLAG(Y,Z);                              \
-                             if (*p == '#') { strcat(outbuf,"}"); p++; }   \
-                             break
+
+void
+SKT::nasal_func(char const * Y, char const * Z, char * & p, int & flag)
+{
+  if (*p == '#') strcat(outbuf,"\\~{");
+  SWITCHFLAG(Y,Z);
+  if (*p == '#') { strcat(outbuf,"}"); p++; }
+}
+
+#define NASAL(X,Y,Z) case X: nasal_func(Y, Z, p, flag); break
 
 void
 SKT::translit(void)
@@ -2457,7 +2462,9 @@ char c, *p;
    case 'Z':  if (option[27]) { SWITCHFLAG("\\.s","\\.S"); break; }
               SWITCHFLAG("\\'s","\\'S"); break;
 
-   NASAL('l',"l","L");          NASAL('v',"v","V");  NASAL('y',"y","Y");
+   NASAL('l',"l","L");
+   NASAL('v',"v","V");
+   NASAL('y',"y","Y");
 
    case 'M':  if (option[22]) { SWITCHFLAG("\\.m","\\.M"); break; }
               SWITCHFLAG("\\d m","\\d M"); break;
