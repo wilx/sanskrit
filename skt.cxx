@@ -30,6 +30,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <algorithm>
+#include <string>
 
 
 #ifndef DEBUG
@@ -40,6 +41,11 @@
 /* If non-zero, STDIO is used for input/output                                */
 /* 1 = debug process(); output is internal code                               */
 /* 2 = debug sktword(); output is final output                                */
+
+
+typedef std::string char_buffer;
+typedef std::string::iterator char_buffer_iterator;
+typedef std::string::const_iterator const_char_buffer_iterator;
 
 
 template <std::size_t N>
@@ -75,7 +81,7 @@ struct SKT {
   void   backac      (void);
   void   autohyphen  (void);
   void   samyoga     (void);
-  int    aci         (char *);
+  int    aci         (char const *);
   void   translit    (void);
 
   FILE *infile, *outfile;
@@ -2299,7 +2305,7 @@ case 'h':
 /* Function: test for short-i following samyoga                               */
 
 int
-SKT::aci(char *p)
+SKT::aci(char const *p)
 { int j;
   for (j=0; j<6; j++) if (!ISHAL(*(p+j))) break;
   if (*(p+j) == 'i') return(true);
