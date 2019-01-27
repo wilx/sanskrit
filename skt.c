@@ -40,6 +40,8 @@
 #include <ctype.h>
 #include <string.h>
 #include <stdlib.h>
+#include <assert.h>
+#include "buf.h"
 
 /* DECLARE FUNCTIONS */
 void   search      (void);
@@ -89,7 +91,7 @@ int err_cnt;             /* incremented by any error while in \skt..          */
 #define err_max 10       /* after err_max errors, program aborts              */
 int line_cnt;            /* line number of current input line                 */
 
-char inbuf[255];         /* input file line buffer of text being processed    */
+skt_buffer_t inbuf;         /* input file line buffer of text being processed    */
 char *i_ptr;             /* general pointer to input buffer                   */
 char outbuf[2048];       /* output file line buffer of text processed         */
 char *o_ptr;             /* general pointer to output buffer                  */
@@ -150,7 +152,8 @@ main(int argc,
   sktmode = eof_flag = xlit = FALSE;
   nest_cnt = err_cnt = 0;
   line_cnt = 0;
-  i_ptr = inbuf;  *i_ptr = '\0';
+  initialize_buffer(&inbuf, 3);
+  i_ptr = inbuf.buf;  *i_ptr = '\0';
   s_ptr = sktbuf; *s_ptr = '\0';
   o_ptr = outbuf; *o_ptr = '\0';
   for (k=0; k<total_options+1; k++) option[k] = FALSE; /* disable everything  */
@@ -241,7 +244,7 @@ char *p,*q;
     { p = str_find(i_ptr,"{\\skt");
       if (p == 0)
         { if (sktline == TRUE) { strcat(outbuf,i_ptr); write_outbuf(); }
-          else { write_line(inbuf); o_ptr = outbuf; *o_ptr = '\0';  }
+          else { write_line(inbuf.buf); o_ptr = outbuf; *o_ptr = '\0';  }
           get_line();
           continue;
         }
@@ -336,16 +339,49 @@ char * str_find(char *buf, char *str)
 
 void get_line(void)
 {
-  i_ptr = inbuf;
-  *i_ptr = '\0';
-  line_cnt++;
-#if (DEBUG == 0)
-  if (fgets(inbuf,133,infile) == NULL) eof_flag = TRUE;
-#else
-  scanf(inbuf);
-  if (strlen(inbuf) == 0) eof_flag = TRUE;
-#endif
+  size_t buffer_size;
+  size_t bytes_read = 0;
+  do
+  {
+      buffer_size = buffer_get_size(&inbuf);
+      size_t to_read = buffer_size - bytes_read;
+      if (fgets(inbuf.buf + bytes_read, to_read, infile) == NULL)
+      {
+          if (ferror(infile))
+          {
+              printf("Error reading file");
+              exit(EXIT_FAILURE);
+          }
+          if (feof(infile))
+              eof_flag = TRUE;
+
+          assert(eof_flag == TRUE);
+          break;
+      }
+
+      size_t eol_pos = strcspn(inbuf.buf, "\r\n");
+      if (inbuf.buf[eol_pos] == 0)
+      {
+          /* EOL has not been reached by this fgets().
+             We have to extend the buffer and read more characters
+             to read full line. */
+          bytes_read = eol_pos;
+          buffer_resize(&inbuf, buffer_size + buffer_size / 2 + 2);
+          continue;
+      }
+      else
+      {
+          /* This must have been EOL. */
+          assert(inbuf.buf[eol_pos] == '\r' || inbuf.buf[eol_pos] == '\n');
+          break;
+      }
+  }
+  while (1);
+
   if (sktmode == FALSE) sktline = FALSE;
+
+  i_ptr = inbuf.buf;
+  line_cnt++;
 }
 
 /******************************************************************************/
@@ -362,19 +398,19 @@ char * command(char *p)
   c = *p++;
   switch (c)
   {  case ' ': break;                                /* for \skt              */
-     case 'X': xbold = TRUE;                         /* for \sktx or \sktX    */
+     case 'X': xbold = TRUE; /* fallthrough */       /* for \sktx or \sktX    */
      case 'x': xlit = TRUE;
                if (*p++ != ' ') p = 0;
                break;
-     case 'I': xbold = TRUE;                         /* for \sktx or \sktX    */
+     case 'I': xbold = TRUE; /* fallthrough */       /* for \sktx or \sktX    */
      case 'i': xlit = TRUE;
                if (*p++ != ' ') p = 0;
                break;
-     case 'T': xbold = TRUE;                         /* for \sktt or \sktT    */
+     case 'T': xbold = TRUE; /* fallthrough */       /* for \sktt or \sktT    */
      case 't': tech = TRUE;
                if (*p++ != ' ') p=0;
                break;
-     case 'U': xbold = TRUE;                         /* for \sktu or \sktU    */
+     case 'U': xbold = TRUE; /* fallthrough */       /* for \sktu or \sktU    */
      case 'u': tech = TRUE;
                if (*p++ != ' ') p=0;
                break;
@@ -833,8 +869,8 @@ clr_flags(void)
 #define CLRFLAGS clr_flags();
 
 #define VA(p,q,r,s,t,u,v,w,x,y,z) \
-wid+=p; top=q; bot=r; dep=s; rldep=t; if(!vaflg){fbar=u; fwh=v;} bwh=w; \
-ra=x; ya=y; strcat(work,z); vaflg++;
+{ wid+=p; top=q; bot=r; dep=s; rldep=t; if(!vaflg){fbar=u; fwh=v;} bwh=w; \
+ra=x; ya=y; strcat(work,z); vaflg++; }
 
 void sktword(void)
 { char c;
@@ -2268,7 +2304,7 @@ switch_flag(char const * Y, char const * Z, int * flag) {
 
 #define STACK(X,Y,Z) case X: ISTACK(X,Y,Z); break
 
-#define ISTACK(X,Y,Z) c=0; if(*p=='#'){c+=30; if(option[38]) c+=30; p++;}  \
+#define ISTACK(X,Y,Z) { c=0; if(*p=='#'){c+=30; if(option[38]) c+=30; p++;}\
          switch(*p)                                                        \
          {case'\27': c++; case'\30': c++;                                  \
           case'\37': c++; case'\36': c++; case'\35': c++; case'\34': c++;  \
@@ -2287,7 +2323,7 @@ switch_flag(char const * Y, char const * Z, int * flag) {
            else { if(option[11] && (*p!='\0') && !(*p=='-' && option[10])) \
                       strcat(outbuf,"\\-"); }                              \
          }                                                                 \
-
+}
 
 #define NASAL(X,Y,Z) case X: if (*p == '#') strcat(outbuf,"\\~{");         \
                              SWITCHFLAG(Y,Z);                              \
