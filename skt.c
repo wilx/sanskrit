@@ -16,6 +16,7 @@
 /*      Revision 2.2 2002/01/02 minor corrections; tidy                       */
 /*      Revision 2.2.1 2016-08-31 compilation and other fixes                 */
 /*      Revision 2.2.2 2017-02-22 portability and other tweaks                */
+/*      Revision 2.2.3 2018-02-10 extend working buffers ten times            */
 /*                                                                            */
 /*      Copyright 1996 & 2002 Charles Wikner                                  */
 /*      This program can be redistributed and/or modified under the terms     */
@@ -64,9 +65,12 @@ int    aci         (char *);
 void   translit    (void);
 
 FILE *infile, *outfile;
-char infilename[80];
-char outfilename[80];
-#define FILENAME_SCANF "%79s"
+#define FILENAME_LEN 4096
+char infilename[FILENAME_LEN+1];
+char outfilename[FILENAME_LEN+1];
+#define SKT_STRINGIFY2(X) #X
+#define SKT_STRINGIFY(X) SKT_STRINGIFY2(X)
+#define FILENAME_SCANF "%" SKT_STRINGIFY(FILENAME_LEN) "s"
 
 #define TRUE 1
 #define FALSE 0
@@ -89,9 +93,13 @@ int err_cnt;             /* incremented by any error while in \skt..          */
 #define err_max 10       /* after err_max errors, program aborts              */
 int line_cnt;            /* line number of current input line                 */
 
-char inbuf[255];         /* input file line buffer of text being processed    */
+#define BUFFER_LENGTH_MULTIPLIER 10
+
+/* input file line buffer of text being processed    */
+char inbuf[255*BUFFER_LENGTH_MULTIPLIER];
 char *i_ptr;             /* general pointer to input buffer                   */
-char outbuf[2048];       /* output file line buffer of text processed         */
+/* output file line buffer of text processed         */
+char outbuf[2048*BUFFER_LENGTH_MULTIPLIER];
 char *o_ptr;             /* general pointer to output buffer                  */
 
 unsigned char cont_end;   /* flag TRUE when line ends with %-continuation     */
@@ -102,12 +110,15 @@ unsigned char nasal;      /* storage for working nasal character              */
 unsigned char ac_char;    /* storage for working vowel character              */
 unsigned char pre_ra;     /* storage/flag for 'r' at beginning of samyoga     */
 char ac_hook;             /* vowel hook code                                  */
-char sktbuf[255];         /* storage for sanskrit in internal code            */
+/* storage for sanskrit in internal code            */
+char sktbuf[255*BUFFER_LENGTH_MULTIPLIER];
 char *s_ptr;              /* general pointer to sanskrit buffer               */
 char *old_sptr;           /* points to samyoga start; used by warning message */
-char work[256];           /* general scratchpad                               */
+/* general scratchpad                               */
+char work[256*BUFFER_LENGTH_MULTIPLIER];
 char *w_ptr;              /* general pointer to work buffer                   */
-char tmp[2048];           /* temporary buffer for previous syllable           */
+/* temporary buffer for previous syllable           */
+char tmp[2048*BUFFER_LENGTH_MULTIPLIER];
 int  wid;                 /* character print width                            */
 int  top;                 /* amount to backspace for top flags                */
 int  bot;                 /* amount to backspace for bottom flags             */
