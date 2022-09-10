@@ -9,17 +9,7 @@ if (MSVC)
   add_definitions (-D_CRT_SECURE_NO_WARNINGS=1)
 endif (MSVC)
 
-if (APPLE)
-  add_executable(skt MACOSX_BUNDLE skt.c)
-  set_target_properties(skt PROPERTIES
-    BUNDLE True
-    MACOSX_BUNDLE_BUNDLE_NAME skt
-    MACOSX_BUNDLE_BUNDLE_VERSION "${skt_version}"
-    MACOSX_BUNDLE_SHORT_VERSION_STRING "${skt_version}"
-  )
-else (APPLE)
-  add_executable(skt skt.c)
-endif (APPLE)
+add_executable(skt skt.c)
 set_target_properties(skt PROPERTIES
   VERSION "${skt_version}"
 )
