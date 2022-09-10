@@ -24,4 +24,4 @@ jobs:
       - name: Build
         run: cmake --build build
       - name: Test skt executable
-        run: cd build ; ctest -V
+        run: cd build ; ctest -V ; [ -s sktdoc.tex ] || exit 1
