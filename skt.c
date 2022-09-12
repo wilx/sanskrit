@@ -843,9 +843,9 @@ clr_flags(void)
 
 #define CLRFLAGS clr_flags();
 
-#define VA(p,q,r,s,t,u,v,w,x,y,z) \
+#define VA(p,q,r,s,t,u,v,w,x,y,z) do { \
 wid+=p; top=q; bot=r; dep=s; rldep=t; if(!vaflg){fbar=u; fwh=v;} bwh=w; \
-ra=x; ya=y; strcat(work,z); vaflg++;
+ra=x; ya=y; strcat(work,z); vaflg++; } while (0)
 
 void sktword(void)
 { char c;
@@ -960,7 +960,7 @@ void fixed(char c)
 {
   switch(c)
   {  case '0':                     VA(12,0,0, 0,0,0, 3,2,0,0,"0");  break;
-     case '1':   if (option[61]) { VA(12,0,0, 0,0,0, 2,3,0,0,"@1"); break;}
+     case '1':   if (option[61]) { VA(12,0,0, 0,0,0, 2,3,0,0,"@1"); break; }
                  else            { VA(12,0,0, 0,0,0, 3,2,0,0,"1");  break; }
      case '2':                     VA(12,0,0, 0,0,0, 2,2,0,0,"2");  break;
      case '3':                     VA(12,0,0, 0,0,0, 2,2,0,0,"3");  break;
@@ -971,12 +971,12 @@ void fixed(char c)
                  else            { VA(12,0,0, 0,0,0, 3,2,0,0,"5");  break; }
      case '6':   if (option[66]) { VA(12,0,0, 0,0,0, 3,3,0,0,"@6"); break; }
                  else            { VA(12,0,0, 0,0,0, 2,2,0,0,"6");  break; }
-     case '7':                     VA(12,0,0, 0,0,0, 2,2,0,0,"7");  break;
+     case '7':                   { VA(12,0,0, 0,0,0, 2,2,0,0,"7");  break; }
      case '8':   if (option[68]) { VA(12,0,0, 0,0,0, 2,2,0,0,"@8"); break; }
-                 else              VA(12,0,0, 0,0,0, 2,3,0,0,"8");  break;
+                 else            { VA(12,0,0, 0,0,0, 2,3,0,0,"8");  break; }
      case '9':   if (option[79]) { VA(12,0,5, 0,0,0, 2,3,0,0,"@2"); break; }
                  if (option[69]) { VA(12,0,5, 0,0,0, 2,3,0,0,"@9"); break; }
-                 else              VA(12,0,5, 0,0,0, 2,3,0,0,"9");  break;
+                 else            { VA(12,0,5, 0,0,0, 2,3,0,0,"9");  break; }
      case '-':   if (option[10] == 0) break;      /* discretionary hyphen */
                  switch (whiteness)
                    {  case 2: strcat(tmp,".");  break;
@@ -1760,7 +1760,9 @@ void samyoga(void)
   LS("jy",   119,NC,VA(20,0,0, 0,2,0, 1,0,6,2,"\\ZM{0Jj0djRdA}*.ay1"));
   if(*p=='j') { if (ISHAL(*(p+1)) || option[119]) {
                     VA(18,0,0, 0,0,0, 1,0,2,1,"j2"); IC; }
-              else  VA(12,3,3, 2,0,0, 1,3,3,2,"\\ZM{0Jj0djRdA}*.a"); IR; }
+              else {
+                    VA(12,3,3, 2,0,0, 1,3,3,2,"\\ZM{0Jj0djRdA}*.a"); IR; }
+              }
   LT("J",      0,NR,VA(23,0,0, 0,0,0, 0,3,2,1,"jJ"),
               42,NR,VA(25,4,4, 0,2,0, 0,1,1,2,"j1`J"));
   LT("V",      0,NC,VA( 8,0,0, 0,0,0, 1,0,3,1,":]"),
@@ -2224,7 +2226,7 @@ case 'h':
                     VA(10,0,0, 0,2,0, 0,0,2,1,"L2");  NC; }
                     if(ISHAL(*p)) {
                     VA(11,0,0, 0,0,0, 0,0,2,1,"L2."); NC; }
-               else VA(10,0,0, 0,2,0, 0,0,2,1,"L2");  NC; }
+               else { VA(10,0,0, 0,2,0, 0,0,2,1,"L2"); NC; } }
   if(ISHAL(*p))   { VA(10,3,3, 0,0,0, 0,0,3,1,"L1");  NC; }
                     VA(10,3,3, 0,3,0, 0,0,3,1,"L" );  NX;
 
