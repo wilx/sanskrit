@@ -301,7 +301,7 @@ char c, d, e;
     write_line(outbuf);
     *o_ptr = e;
     if (c!='\0') { *--o_ptr = d; *--o_ptr = c; } /* restore displaced chars */
-    strcpy(outbuf,o_ptr);
+    memmove(outbuf, o_ptr, strlen(o_ptr) + 1);
   }
   o_ptr = outbuf;
   *o_ptr = '\0';
