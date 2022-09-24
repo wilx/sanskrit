@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 2.8.12)
 project (skt)
-set (skt_version "2.2.3")
+set (skt_version "2.2.4")
 
 set (SKT_DEBUG_LEVEL "0" CACHE STRING "SKT debug level")
 
