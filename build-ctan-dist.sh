@@ -8,9 +8,8 @@ command_exists() {
 }
 
 if command_exists pandoc ; then
-    pandoc --smart \
-           --verbose \
-           -f markdown-raw_tex \
+    pandoc --verbose \
+           -f markdown+smart-raw_tex \
            -t latex \
            -o README.pdf \
            README.md
