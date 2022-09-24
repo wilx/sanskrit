@@ -18,3 +18,7 @@ enable_testing()
 add_test(NAME "skt"
   WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}"
   COMMAND "${CMAKE_CURRENT_BINARY_DIR}/skt" "${CMAKE_CURRENT_SOURCE_DIR}/sktdoc.skt" "${CMAKE_CURRENT_BINARY_DIR}/sktdoc.tex")
+
+add_test(NAME "output-buffer-move"
+  WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}"
+  COMMAND "${CMAKE_CURRENT_BINARY_DIR}/skt" "${CMAKE_CURRENT_SOURCE_DIR}/tests/copyright.skt" "copyright.tex")
